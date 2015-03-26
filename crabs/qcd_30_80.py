@@ -21,7 +21,7 @@ config.Data.splitting = 'FileBased'
 config.Data.publication = False
 
 config.Data.unitsPerJob = 1
-config.Data.totalUnits = 20
+config.Data.totalUnits = 100
 
 config.section_("Site")
 config.Site.storageSite = "T2_EE_Estonia"
