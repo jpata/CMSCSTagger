@@ -195,7 +195,7 @@ class TMVAClassifier:
         self.factory = TMVA.Factory(
             self.name, self.out,
             "Transformations=I;N:"+
-            "DrawProgressBar=False:"+
+            "DrawProgressBar=True:"+
             "!V:"+
             "AnalysisType=Multiclass"
         )
@@ -213,11 +213,11 @@ class TMVAClassifier:
         self.pt_eta_cat = self.factory.BookMethod(
             TMVA.Types.kCategory,
             "pteta_" + self.name,
-            "VerbosityLevel=Debug", #options
+            "VerbosityLevel=Fatal", #options
         )
         
         self.mva_opts = ("!H:" +
-            "!V:" +
+            "!V:VerbosityLevel=Fatal:" +
             "NTrees={0}:".format(self.ntrees) +
             "BoostType=Grad:" +
             "Shrinkage={0}:".format(self.shrinkage) +
@@ -230,15 +230,15 @@ class TMVAClassifier:
             print cls, data.tree.GetEntries()
         
         skipped = []
-        for ptbin in range(1, 82):
-            for etabin in range(1, 22):
-                cut_str = "pt_bin=={0} && eta_bin=={1}".format(ptbin, etabin)
+        for ptbin in range(0, 9):
+            for etabin in range(0, 3):
+                cut_str = "(pt_bin - pt_bin%10)/10=={0} && (eta_bin - eta_bin%10)/10=={1}".format(ptbin, etabin)
                 cut = ROOT.TCut(cut_str)
                 min_n = min(
                     [data.tree.GetEntries(cut_str) for (data, cls) in self.data]
                 )
                 if min_n < 10:
-                    print "skipping", ptbin, etabin
+                    print "skipping", ptbin, etabin, [data.tree.GetEntries(cut_str) for (data, cls) in self.data]
                     skipped += [(ptbin, etabin)]
                     continue
                     
@@ -258,17 +258,24 @@ class TMVAClassifier:
                 "((pt_bin - pt_bin%10)/10 == {0} && (eta_bin - eta_bin%10)/10 == {1})".format(ptbin, etabin)
             ]
         skipcut = "||".join(skipcut)
-        skipcut = "!(" + skipcut + ")"
-        
+        cut = ROOT.TCut(skipcut)
+        self.pt_eta_cat.AddMethod(
+            cut,
+            ":".join(self.variables),
+            TMVA.Types.kBDT,
+            self.mva_name + "_uncat",
+            #"VerbosityLevel=Debug"
+            self.mva_opts
+        )        
         self.factory.PrepareTrainingAndTestTree(
             ROOT.TCut(""),
             "SplitMode=Block:NormMode=NumEvents:!V"
         )
         
         self.factory.TrainAllMethods()
-        #self.factory.TestAllMethods()
-        #self.factory.EvaluateAllMethods()
-        #self.factory.DeleteAllMethods()
+        self.factory.TestAllMethods()
+        self.factory.EvaluateAllMethods()
+        self.factory.DeleteAllMethods()
         #del self.factory
         
         #Clean up factory

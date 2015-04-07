@@ -63,10 +63,10 @@ temp.cd()
 
 if "project" in steps:
     #Select a subregion of the full training data
-    # subdata = data.selection(
-    #     partition=[0, 100000]
-    # )
-    subdata = data.selection()
+    subdata = data.selection(
+        partition=[0, 50000]
+    )
+    #subdata = data.selection()
     subdata.tfile = temp
     subdata.tree.SetName("subdata")
     subdata.tree.SetDirectory(temp)
