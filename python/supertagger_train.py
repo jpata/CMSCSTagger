@@ -187,6 +187,7 @@ class TMVAClassifier:
         self.ncuts = kwargs.get("ncuts", 50)
         self.max_depth = kwargs.get("max_depth", 3)
         self.data_classes = kwargs.get("data_classes")
+        self.data = []
         
     def prepare(self):
         self.out = ROOT.TFile(
@@ -205,6 +206,7 @@ class TMVAClassifier:
             self.factory.AddVariable(var, "F")
     
     def add_class(self, class_name, data):
+        self.data += [(data, class_name)]
         self.factory.AddTree(data.tree, class_name, 1.0)
         
     def train(self):
@@ -214,10 +216,13 @@ class TMVAClassifier:
             "SplitMode=Block:NormMode=NumEvents:!V"
         )
         
-        self.factory.BookMethod(
-            TMVA.Types.kBDT,
-            self.mva_name,
-            ("!H:" +
+        self.pt_eta_cat = self.factory.BookMethod(
+            TMVA.Types.kCategory,
+            "pt_eta_bin",
+            "", #options
+        )
+        
+        self.mva_opts = ("!H:" +
             "!V:" +
             "NTrees={0}:".format(self.ntrees) +
             "BoostType=Grad:" +
@@ -225,8 +230,24 @@ class TMVAClassifier:
             "GradBaggingFraction={0}:".format(self.bag_fraction) +
             "nCuts={0}:".format(self.ncuts) + 
             "MaxDepth={0}".format(self.max_depth)
-            )
         )
+        
+        for data, cls in self.data:
+            print cls, data.tree.GetEntries()
+            
+        for i in range(1, 3):
+            for j in range(1, 3):
+                cut_str = "pt_bin=={0} && eta_bin=={1}".format(i,j)
+                cut = ROOT.TCut(cut_str)
+                for data, cls in self.data:
+                    print cls, i, j, data.tree.GetEntries(cut_str)
+                self.pt_eta_cat.AddMethod(
+                    cut,
+                    ":".join(self.variables),
+                    TMVA.Types.kBDT,
+                    self.mva_name + "_pt_bin_{0}_eta_bin_{1}".format(i,j),
+                    self.mva_opts
+                )
         
         self.factory.TrainAllMethods()
         self.factory.TestAllMethods()

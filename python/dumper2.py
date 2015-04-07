@@ -95,6 +95,7 @@ otree.SetDirectory(ofile)
 
 registered_branches_jet = [
     jet_pt, jet_eta, jet_csv1, jet_csv2, jet_csv3,
+    jet_pt_bin, jet_eta_bin,
     jet_flavour,
     jet_nsvs,
     jet_sv_chi2ndf, jet_sv_flight3dsig, jet_sv_flight2dsig
@@ -106,7 +107,7 @@ for br in registered_branches_jet:
 pt_bins = np.linspace(20, 820, 81)
 eta_bins = np.linspace(0.0, 2.5, 21)
 
-n = tt.GetEntries()
+n = 10000
 print n
 for i in range(n):
     if i%1000==0:
