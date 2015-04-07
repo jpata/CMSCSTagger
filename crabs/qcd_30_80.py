@@ -6,7 +6,7 @@ config = Configuration()
 
 config.section_("General")
 config.General.transferLogs = True
-config.General.requestName = "btagana_qcd_30_80_v1"
+config.General.requestName = "btagana_qcd_30_80"
 
 config.section_("JobType")
 config.JobType.pluginName = 'Analysis'
