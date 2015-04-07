@@ -14,18 +14,20 @@ factory = TMVA.Factory(
 )
 out.cd()
 
-factory.AddVariable("bd_csv_ivf", "F")
-factory.AddVariable("bd_csv_avf", "F")
+factory.AddVariable("csv1", "F")
+factory.AddVariable("csv2", "F")
+factory.AddSpectator("pt", "F")
+factory.AddSpectator("eta", "F")
 
-factory.AddTree(t, "b", 1.0, TCut("cl==2"))
-factory.AddTree(t, "c", 1.0, TCut("cl==1"))
-factory.AddTree(t, "l", 1.0, TCut("cl==0"))
+factory.AddTree(t, "b", 1.0, TCut("abs(flavour) == 5"))
+factory.AddTree(t, "c", 1.0, TCut("abs(flavour) == 4"))
+factory.AddTree(t, "l", 1.0, TCut("abs(flavour) < 4"))
 
 factory.PrepareTrainingAndTestTree(TCut(""), "SplitMode=Random:NormMode=NumEvents:!V")
 factory.BookMethod(
     TMVA.Types.kBDT,
     "BDTG",
-    "!H:!V:NTrees=1000:BoostType=Grad:Shrinkage=0.10:GradBaggingFraction=0.50:nCuts=20"
+    "!H:!V:NTrees=200:BoostType=Grad:Shrinkage=0.10:GradBaggingFraction=0.50:nCuts=20"
 )
 factory.TrainAllMethods()
 factory.TestAllMethods()
