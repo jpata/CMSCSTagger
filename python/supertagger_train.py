@@ -5,8 +5,6 @@ import numpy as np
 import ctypes 
 import array
 
-import root_numpy as rnpy
-
 def array2root(arr,
     filename,
     treename,
@@ -140,15 +138,13 @@ class ROOTData(Data):
         elif partition:
             low, high = min(partition), max(partition)
             tree = self.tree.CopyTree("", "", high-low, low)
-
+        else:
+            tree = self.tree.CloneTree()
         c.tree = tree
         return c
         
     def __len__(self):
         return self.tree.GetEntries()
-        
-    def as_array(self):
-        return rnpy.tree2rec(self.tree)
 
 class TrainingReport:
     pass
@@ -172,7 +168,7 @@ class Classifier:
 class TMVAClassifier:
     def __init__(self, **kwargs):
         self.name = kwargs.get("name")
-        self.mva_name = "bdt"
+        self.mva_name = "bdt_" + self.name
 
         self.weights_file = "weights/{0}_{1}.weights.xml".format(
             self.name, self.mva_name
@@ -180,6 +176,7 @@ class TMVAClassifier:
         self.out_file = "outputs/TMVAMulticlass_{0}.root".format(self.name)
         
         self.variables = kwargs.get("variables")
+        self.spectators = kwargs.get("spectators", [])
         
         self.ntrees = kwargs.get("ntrees", 1200)
         self.shrinkage = kwargs.get("shrinkage", 0.1)
@@ -199,27 +196,24 @@ class TMVAClassifier:
             self.name, self.out,
             "Transformations=I;N:"+
             "DrawProgressBar=False:"+
-            "!V:Silent:DrawProgressBar=True:"+
+            "!V:"+
             "AnalysisType=Multiclass"
         )
         for var in self.variables:
             self.factory.AddVariable(var, "F")
-    
+        for var in self.spectators:
+            self.factory.AddSpectator(var, "F")
     def add_class(self, class_name, data):
         self.data += [(data, class_name)]
         self.factory.AddTree(data.tree, class_name, 1.0)
         
     def train(self):
-        
-        self.factory.PrepareTrainingAndTestTree(
-            ROOT.TCut(""),
-            "SplitMode=Block:NormMode=NumEvents:!V"
-        )
+        print "training", self.name
         
         self.pt_eta_cat = self.factory.BookMethod(
             TMVA.Types.kCategory,
-            "pt_eta_bin",
-            "", #options
+            "pteta_" + self.name,
+            "VerbosityLevel=Debug", #options
         )
         
         self.mva_opts = ("!H:" +
@@ -234,24 +228,46 @@ class TMVAClassifier:
         
         for data, cls in self.data:
             print cls, data.tree.GetEntries()
-            
-        for i in range(1, 3):
-            for j in range(1, 3):
-                cut_str = "pt_bin=={0} && eta_bin=={1}".format(i,j)
+        
+        skipped = []
+        for ptbin in range(1, 82):
+            for etabin in range(1, 22):
+                cut_str = "pt_bin=={0} && eta_bin=={1}".format(ptbin, etabin)
                 cut = ROOT.TCut(cut_str)
-                for data, cls in self.data:
-                    print cls, i, j, data.tree.GetEntries(cut_str)
+                min_n = min(
+                    [data.tree.GetEntries(cut_str) for (data, cls) in self.data]
+                )
+                if min_n < 10:
+                    print "skipping", ptbin, etabin
+                    skipped += [(ptbin, etabin)]
+                    continue
+                    
                 self.pt_eta_cat.AddMethod(
                     cut,
                     ":".join(self.variables),
                     TMVA.Types.kBDT,
-                    self.mva_name + "_pt_bin_{0}_eta_bin_{1}".format(i,j),
+                    self.mva_name + "_{0}_{1}".format(ptbin, etabin),
+                    #"VerbosityLevel=Debug"
                     self.mva_opts
                 )
         
+        skipcut = []
+        for (ptbin, etabin) in skipped:
+            print "skipped", ptbin, etabin
+            skipcut += [
+                "((pt_bin - pt_bin%10)/10 == {0} && (eta_bin - eta_bin%10)/10 == {1})".format(ptbin, etabin)
+            ]
+        skipcut = "||".join(skipcut)
+        skipcut = "!(" + skipcut + ")"
+        
+        self.factory.PrepareTrainingAndTestTree(
+            ROOT.TCut(""),
+            "SplitMode=Block:NormMode=NumEvents:!V"
+        )
+        
         self.factory.TrainAllMethods()
-        self.factory.TestAllMethods()
-        self.factory.EvaluateAllMethods()
+        #self.factory.TestAllMethods()
+        #self.factory.EvaluateAllMethods()
         #self.factory.DeleteAllMethods()
         #del self.factory
         

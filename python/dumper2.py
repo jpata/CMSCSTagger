@@ -107,7 +107,7 @@ for br in registered_branches_jet:
 pt_bins = np.linspace(20, 820, 81)
 eta_bins = np.linspace(0.0, 2.5, 21)
 
-n = 10000
+n = tt.GetEntries()
 print n
 for i in range(n):
     if i%1000==0:
