@@ -90,7 +90,7 @@ def root2array(
 class Data(object):
     def __init__(self, **kwargs):
         self.classes = kwargs.get("classes", [])
-        
+        self.name = kwargs.get("name")
     def selection(self, sel):
         """
         Applies selection on the data.
@@ -168,10 +168,11 @@ class Classifier:
 class TMVAClassifier:
     def __init__(self, **kwargs):
         self.name = kwargs.get("name")
-        self.mva_name = "bdt_" + self.name
+        self.data_name = kwargs.get("data_name")
+        self.mva_name = "bdt_" + self.name + "_" + self.data_name
 
-        self.weights_file = "weights/{0}_{1}.weights.xml".format(
-            self.name, self.mva_name
+        self.weights_file = "weights/{0}.weights.xml".format(
+            self.mva_name
         )
         self.out_file = "outputs/TMVAMulticlass_{0}.root".format(self.name)
         
@@ -195,8 +196,8 @@ class TMVAClassifier:
         self.factory = TMVA.Factory(
             self.name, self.out,
             "Transformations=I;N:"+
-            "DrawProgressBar=True:"+
-            "!V:"+
+            "DrawProgressBar=False:"+
+            "!V:Silent=True:"+
             "AnalysisType=Multiclass"
         )
         for var in self.variables:
@@ -209,12 +210,6 @@ class TMVAClassifier:
         
     def train(self):
         print "training", self.name
-        
-        self.pt_eta_cat = self.factory.BookMethod(
-            TMVA.Types.kCategory,
-            "pteta_" + self.name,
-            "VerbosityLevel=Fatal", #options
-        )
         
         self.mva_opts = ("!H:" +
             "!V:VerbosityLevel=Fatal:" +
@@ -230,43 +225,13 @@ class TMVAClassifier:
             print cls, data.tree.GetEntries()
         
         skipped = []
-        for ptbin in range(0, 9):
-            for etabin in range(0, 3):
-                cut_str = "(pt_bin - pt_bin%10)/10=={0} && (eta_bin - eta_bin%10)/10=={1}".format(ptbin, etabin)
-                cut = ROOT.TCut(cut_str)
-                min_n = min(
-                    [data.tree.GetEntries(cut_str) for (data, cls) in self.data]
-                )
-                if min_n < 10:
-                    print "skipping", ptbin, etabin, [data.tree.GetEntries(cut_str) for (data, cls) in self.data]
-                    skipped += [(ptbin, etabin)]
-                    continue
-                    
-                self.pt_eta_cat.AddMethod(
-                    cut,
-                    ":".join(self.variables),
-                    TMVA.Types.kBDT,
-                    self.mva_name + "_{0}_{1}".format(ptbin, etabin),
-                    #"VerbosityLevel=Debug"
-                    self.mva_opts
-                )
-        
-        skipcut = []
-        for (ptbin, etabin) in skipped:
-            print "skipped", ptbin, etabin
-            skipcut += [
-                "((pt_bin - pt_bin%10)/10 == {0} && (eta_bin - eta_bin%10)/10 == {1})".format(ptbin, etabin)
-            ]
-        skipcut = "||".join(skipcut)
-        cut = ROOT.TCut(skipcut)
-        self.pt_eta_cat.AddMethod(
-            cut,
-            ":".join(self.variables),
+        self.factory.BookMethod(
             TMVA.Types.kBDT,
-            self.mva_name + "_uncat",
+            self.mva_name,
             #"VerbosityLevel=Debug"
             self.mva_opts
-        )        
+        )
+    
         self.factory.PrepareTrainingAndTestTree(
             ROOT.TCut(""),
             "SplitMode=Block:NormMode=NumEvents:!V"

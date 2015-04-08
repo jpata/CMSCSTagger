@@ -3,23 +3,16 @@ import numpy as np
 from copy import deepcopy
 import ROOT
 from multiprocessing import Pool
+import glob
 
-steps = ["project", "train", "evaluate"]
-#steps = ["train", "evaluate"]
+#steps = ["project", "train", "evaluate"]
+steps = ["train", "evaluate"]
 #steps = ["evaluate"]
 
 input_file = "jets.root"
 output_file = "out.root"
 
 spectators = ["pt_bin", "eta_bin"]
-cls = [
-    TMVAClassifier(
-        name="cls1",
-        variables=["csv1", "csv2"],
-        data_classes=["l", "c", "b", "g"],
-        ntrees=400,
-        spectators=spectators
-    ),
 
     # TMVAClassifier(
     #     name="cls2",
@@ -52,65 +45,75 @@ cls = [
     #     ntrees=1200,
     #     spectators=spectators
     # )
-]
 
-data = ROOTData(filename="jets.root", treename="tree")
-print "full data", len(data)
+datas = [
+    ROOTData(
+        filename=fn, treename="tree", name="f_{0}".format(ifn)
+    ) for ifn, fn in enumerate(glob.glob("tree_*.root"))
+]
 
 #Create a temporary file to avoid creating root ttrees in memory
 temp = ROOT.TFile("tempfile.root", "RECREATE")
 temp.cd()
 
-if "project" in steps:
-    #Select a subregion of the full training data
-    subdata = data.selection(
-        partition=[0, 50000]
-    )
-    #subdata = data.selection()
-    subdata.tfile = temp
-    subdata.tree.SetName("subdata")
-    subdata.tree.SetDirectory(temp)
-    subdata.tree.Write("", ROOT.TObject.kOverwrite)
-    
-    #create datasets based on classes
-    print "creating training classes"
-    datas_cls = {
-        "b": subdata.selection(
-            selection="abs(flavour)==5"
-        ),
-        "c": subdata.selection(
-            selection="abs(flavour)==4"
-        ),
-        "l": subdata.selection(
-            selection="abs(flavour)<4"
-        ),
-        "g": subdata.selection(
-            selection="abs(flavour)==21"
-        ),
-    }
-    for k, d in datas_cls.items():
-        print k, d.tree.GetEntries()
-        d.tree.SetName("subdata_cls_{0}".format(k))
-        d.tree.SetDirectory(temp)
-        d.tree.Write("", ROOT.TObject.kOverwrite)
+cls = {}
+datas_cls = {}
 
 if "train" in steps:    
     print "creating classifier"
+    
+    #Select a subregion of the full training data
+    for data in datas:
+        cls[data.name] = [TMVAClassifier(
+            name="cls1",
+            data_name=data.name,
+            variables=["csv1", "csv2"],
+            data_classes=["l", "c", "b", "g"],
+            ntrees=200,
+            spectators=spectators
+        )]
+        
+        #create datasets based on classes
+        print "creating training classes"
+        datas_cls[data.name] = {
+            "b": data.selection(
+                selection="abs(flavour)==5"
+            ),
+            "c": data.selection(
+                selection="abs(flavour)==4"
+            ),
+            "l": data.selection(
+                selection="abs(flavour)<4"
+            ),
+            "g": data.selection(
+                selection="abs(flavour)==21"
+            ),
+        }
+        for k, d in datas_cls[data.name].items():
+            print k, d.tree.GetEntries()
+            d.tree.SetName("subdata_cls_{0}".format(k))
+            d.tree.SetDirectory(temp)
+            d.tree.Write("", ROOT.TObject.kOverwrite)
 
     def train(kwargs):
         c = kwargs.get("classifier")
+        dname = c.data_name
         #data_dict = kwargs.get("data")
         c.prepare()
-        c.add_class("l", datas_cls["l"])
-        c.add_class("c", datas_cls["c"])
-        c.add_class("b", datas_cls["b"])
-        c.add_class("g", datas_cls["g"])
+        c.add_class("l", datas_cls[dname]["l"])
+        c.add_class("c", datas_cls[dname]["c"])
+        c.add_class("b", datas_cls[dname]["b"])
+        c.add_class("g", datas_cls[dname]["g"])
         c.train()
         return c
         
     pool = Pool(4)
-    cls = map(train, [
-        {"classifier":cls[i]} for i in range(len(cls))
+    clss = []
+    for c in cls.values():
+        print c
+        clss += c
+    cls = pool.map(train, [
+        {"classifier":clss[i]} for i in range(len(clss))
     ])
 
 
