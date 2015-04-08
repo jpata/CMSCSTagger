@@ -48,7 +48,7 @@ spectators = ["pt_bin", "eta_bin"]
 
 datas = [
     ROOTData(
-        filename=fn, treename="tree", name="f_{0}".format(ifn)
+        filename=fn, treename="tree", name="f_{0}".format(fn.split(".")[0])
     ) for ifn, fn in enumerate(glob.glob("tree_*.root"))
 ]
 
@@ -64,7 +64,7 @@ if "train" in steps:
     
     #Select a subregion of the full training data
     for data in datas:
-        cls[data.name] = [TMVAClassifier(
+        _cls = [TMVAClassifier(
             name="cls1",
             data_name=data.name,
             variables=["csv1", "csv2"],
@@ -74,8 +74,8 @@ if "train" in steps:
         )]
         
         #create datasets based on classes
-        print "creating training classes"
-        datas_cls[data.name] = {
+        print "creating training classes", data.name
+        _data = {
             "b": data.selection(
                 selection="abs(flavour)==5"
             ),
@@ -89,12 +89,17 @@ if "train" in steps:
                 selection="abs(flavour)==21"
             ),
         }
-        for k, d in datas_cls[data.name].items():
-            print k, d.tree.GetEntries()
+        skip = False
+        for k, d in _data.items():
+            if d.tree.GetEntries() < 10:
+                skip = True
+                print "Skipping", data.name
             d.tree.SetName("subdata_cls_{0}".format(k))
             d.tree.SetDirectory(temp)
             d.tree.Write("", ROOT.TObject.kOverwrite)
-
+        if not skip:
+            datas_cls[data.name] = _data
+            cls[data.name] = _cls
     def train(kwargs):
         c = kwargs.get("classifier")
         dname = c.data_name
