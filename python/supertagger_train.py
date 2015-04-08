@@ -4,6 +4,7 @@ from copy import deepcopy
 import numpy as np
 import ctypes 
 import array
+import os
 
 def array2root(arr,
     filename,
@@ -50,8 +51,10 @@ def root2array(
     colnames=None,
     ):
     
+    assert(os.path.isfile(filename))
     of = ROOT.TFile(filename)
     tree = of.Get(treename)
+    assert(tree != None)
     
     nevs = tree.GetEntries()
     ncols = len(colnames)
@@ -260,7 +263,10 @@ class TMVAClassifier:
         for var in self.variables:
             vardict[var] = array.array("f", [0])
             reader.AddVariable(var, vardict[var])
-                
+        for var in self.spectators:
+            vardict[var] = array.array("f", [0])
+            reader.AddSpectator(var, vardict[var])
+        
         reader.BookMVA(self.mva_name, self.weights_file)
     
         ret = np.zeros((len(data), len(self.data_classes)), dtype="f")

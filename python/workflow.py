@@ -105,9 +105,9 @@ if "train" in steps:
         dname = c.data_name
         #data_dict = kwargs.get("data")
         c.prepare()
+        c.add_class("b", datas_cls[dname]["b"])
         c.add_class("l", datas_cls[dname]["l"])
         c.add_class("c", datas_cls[dname]["c"])
-        c.add_class("b", datas_cls[dname]["b"])
         c.add_class("g", datas_cls[dname]["g"])
         c.train()
         return c
@@ -124,6 +124,7 @@ if "train" in steps:
 
 if "evaluate" in steps:
     for c in cls:
+        print "evaluating", c
         dtest = ROOTData(filename=c.out_file, treename="TestTree")
         dtrain = ROOTData(filename=c.out_file, treename="TrainTree")
         
@@ -133,7 +134,7 @@ if "evaluate" in steps:
                 ev,
                 "outputs/TMVAMulticlass_" + c.name + "_" + dn + ".root",
                 "tree",
-                colnames=["prob_b", "prob_c", "prob_l"]
+                colnames=["prob_b", "prob_l", "prob_c", "prob_g"]
             )
 temp.Write()
 temp.Close()
