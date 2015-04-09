@@ -4,7 +4,7 @@ from copy import deepcopy
 import ROOT
 import multiprocessing
 from multiprocessing import Pool
-import glob
+import glob, sys, os
 
 #steps = ["project", "train", "evaluate"]
 steps = ["train", "evaluate"]
@@ -13,19 +13,22 @@ steps = ["train", "evaluate"]
 input_file = "jets.root"
 output_file = "out.root"
 
-spectators = ["pt", "eta"]
+spectators = ["flavour", "pt", "eta"]
+
+#Create a temporary file to avoid creating root ttrees in memory
+temp = ROOT.TFile(os.environ.get("MY_TMPDIR", "./") + "/tempfile.root", "RECREATE")
+temp.cd()
+
 datas = [
     ROOTData(
         filename=fn, treename="tree", name="f_{0}".format(fn.split(".")[0])
-        ) for ifn, fn in enumerate(glob.glob("tree_*.root"))
+        ) for ifn, fn in enumerate(sys.argv[1:])
 ]
-
-#Create a temporary file to avoid creating root ttrees in memory
-temp = ROOT.TFile("tempfile.root", "RECREATE")
-temp.cd()
 
 cls = {}
 datas_cls = {}
+
+temp.cd()
 
 if "train" in steps:
     print "creating classifier"
@@ -37,20 +40,29 @@ if "train" in steps:
                 name="cls1",
                 data_name=data.name,
                 variables=["csv1", "csv2"],
-                data_classes=["b", "c", "l", "g"],
-                ntrees=1000,
-                spectators=spectators
-            ),
-
-            TMVAClassifier(
-                name="cls1_bag",
-                data_name=data.name,
-                variables=["csv1", "csv2"],
-                data_classes=["b", "c", "l", "g"],
+                data_classes=["b", "lgc"],
                 ntrees=1000,
                 spectators=spectators,
-                use_bootstrap=True,
+                max_events=100000
             ),
+            TMVAClassifier(
+                name="cls2",
+                data_name=data.name,
+                variables=["csv1", "csv2", "sv_chi2ndf", "sv_flight3dsig"],
+                data_classes=["b", "lgc"],
+                ntrees=1000,
+                spectators=spectators,
+                max_events=100000
+            ),
+            #TMVAClassifier(
+            #    name="cls1_bag",
+            #    data_name=data.name,
+            #    variables=["csv1", "csv2"],
+            #    data_classes=["b", "c", "l", "g"],
+            #    ntrees=1000,
+            #    spectators=spectators,
+            #    use_bootstrap=True,
+            #),
             #TMVAClassifier(
             #    name="cls2",
             #    data_name=data.name,
@@ -97,10 +109,13 @@ if "train" in steps:
             "lg": data.selection(
                 selection="(abs(flavour)<4 || abs(flavour)==21)"
             ),
+            "lgc": data.selection(
+                selection="abs(flavour) != 5"
+            )
         }
         skip = False
         for k, d in _data.items():
-            if d.tree.GetEntries() < 10:
+            if d.tree.GetEntries() < 100:
                 skip = True
                 print "Skipping", data.name
             d.tree.SetName("subdata_cls_{0}".format(k))
@@ -138,10 +153,11 @@ if "train" in steps:
         c = train(kwargs)
         evaluate(kwargs)
 
-    pool = Pool(int(multiprocessing.cpu_count()*0.7))
     clss = []
     for c in cls.values():
         clss += c
+    ncores = min(len(clss), int(multiprocessing.cpu_count()*0.7))
+    pool = Pool(ncores)
     cls = pool.map(run, [
         {"classifier":clss[i]} for i in range(len(clss))
     ])

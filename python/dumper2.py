@@ -104,8 +104,8 @@ registered_branches_jet = [
 for br in registered_branches_jet:
     br.create_branch(otree)
 
-pt_bins = np.linspace(20, 820, 81)
-eta_bins = np.linspace(0.0, 2.5, 21)
+pt_bins = np.linspace(20, 520, 11)
+eta_bins = np.linspace(0.0, 2.5, 11)
 
 n = tt.GetEntries()
 print n

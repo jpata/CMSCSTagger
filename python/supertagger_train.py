@@ -5,6 +5,7 @@ import numpy as np
 import ctypes
 import array
 import os
+import math
 
 def array2root(arr,
     filename,
@@ -187,9 +188,11 @@ class TMVAClassifier:
         self.bag_fraction = kwargs.get("bag_fraction", 0.5)
         self.ncuts = kwargs.get("ncuts", 50)
         self.max_depth = kwargs.get("max_depth", 3)
-        self.data_classes = kwargs.get("data_classes")
-        self.use_bootstrap = kwargs.get("use_bootstrap")
-        self.data = []
+        self.data_classes = kwargs.get("data_classes", [])
+        self.use_bootstrap = kwargs.get("use_bootstrap", False)
+        self.max_events = kwargs.get("max_events", None)
+        self.ntot = 0
+        self.data = {}
 
     def prepare(self):
         self.out = ROOT.TFile(
@@ -209,7 +212,8 @@ class TMVAClassifier:
         for var in self.spectators:
             self.factory.AddSpectator(var, "F")
     def add_class(self, class_name, data):
-        self.data += [(data, class_name)]
+        self.data[class_name] = data
+        print class_name, data.tree.GetEntries()
         self.factory.AddTree(data.tree, class_name, 1.0)
 
     def train(self):
@@ -222,11 +226,10 @@ class TMVAClassifier:
             "Shrinkage={0}:".format(self.shrinkage) +
             "GradBaggingFraction={0}:".format(self.bag_fraction) +
             "nCuts={0}:".format(self.ncuts) +
-            "MaxDepth={0}".format(self.max_depth)+
-            "UseBaggedBoost={0}".format(self.use_bootstrap)+
+            "MaxDepth={0}:".format(self.max_depth)+
+            "UseBaggedBoost={0}:".format(self.use_bootstrap)+
             "DoBoostMonitor=True"
         )
-
         skipped = []
         self.factory.BookMethod(
             TMVA.Types.kBDT,
@@ -235,9 +238,15 @@ class TMVAClassifier:
             self.mva_opts
         )
 
+        nevents_str = []
+        for icl, cl in enumerate(self.data_classes):
+            nmax = min(self.max_events, self.data[cl].tree.GetEntries() / 2)
+            nevents_str += ["nTrain_{0}={1}".format(cl, nmax)]
+            nevents_str += ["nTest_{0}={1}".format(cl, nmax)]
+        nevents_str = ":".join(nevents_str)
         self.factory.PrepareTrainingAndTestTree(
             ROOT.TCut("csv1>0 && csv1<1.0 && csv2>0 && csv2<1.0"),
-            "SplitMode=Block:NormMode=NumEvents:!V"
+            "SplitMode=Random:MixMode=Random:NormMode=NumEvents:V:" + nevents_str
         )
 
         self.factory.TrainAllMethods()
