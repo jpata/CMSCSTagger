@@ -24,7 +24,9 @@ class NTupleVariable:
 
 tf = ROOT.TFile(sys.argv[1])
 tt = tf.Get("btagana/ttree")
-#brlist = tt.GetListOfBranches()
+brlist = tt.GetListOfBranches()
+#for br in sorted([b.GetName() for b in brlist]):
+#    print br
 
 jet_pt = NTupleVariable(
     name="pt",
@@ -45,7 +47,6 @@ jet_eta_bin = NTupleVariable(
     name="eta_bin",
     func=lambda x: x.eta_bin
 )
-
 
 jet_csv1 = NTupleVariable(
     name="csv1",
@@ -104,8 +105,8 @@ registered_branches_jet = [
 for br in registered_branches_jet:
     br.create_branch(otree)
 
-pt_bins = np.linspace(20, 520, 11)
-eta_bins = np.linspace(0.0, 2.5, 11)
+pt_bins = np.linspace(20, 520, 81)
+eta_bins = np.linspace(0.0, 2.5, 21)
 
 n = tt.GetEntries()
 print n
