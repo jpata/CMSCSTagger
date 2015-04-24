@@ -1,52 +1,171 @@
 import ROOT, sys
-ROOT.gROOT.SetBatch(True)
+from treeStructure import *
+import math
+import numpy as np
+from array import array
 
-tt = ROOT.TChain("btagana/ttree")
-for fn in sys.argv[1:]:
-    tt.AddFile(fn)
+class NTupleVariable:
+    def __init__(self, **kwargs):
+        self.name = kwargs.get("name")
+        self.func = kwargs.get("func")
+        self.dtype = kwargs.get("dtype", "f")
+        self.var = array(self.dtype, [0.0])
 
-for nev, ev in enumerate(tt):
-    nj = ev.nJet
-    #print nev
+    def set(self, x):
+        self.var[0] = self.func(x)
 
-    nsv = ev.nSV
-    #print "nsv", nsv
-    for i in range(nj):
-        #Simple jet variables
-        pt = ev.Jet_pt[i]
-        eta = ev.Jet_eta[i]
-        bd_jp = ev.Jet_Proba[i]
-        bd_jpb = ev.Jet_Bprob[i]
-        bd_svx = ev.Jet_Svx[i]
-        bd_csv_ivf = ev.Jet_CombIVF[i]
-        bd_csv_avf = ev.Jet_CombSvx[i]
-        fl = ev.Jet_flavour[i]
+    def create_branch(self, tree):
+        tree.Branch(
+            self.name, self.var,
+            "{0}/{1}".format(
+                self.name, self.dtype
+            )
+        )
 
-        is_b = int(abs(fl) == 5)
-        is_c = int(abs(fl) == 4)
+jet_pt = NTupleVariable(
+    name="pt",
+    func=lambda x: x.pt
+)
 
-        #Jet SV info
-        nsv_first = ev.Jet_nFirstSV[i]
-        nsv_last = ev.Jet_nLastSV[i]
-        svs = []
-        for isv in range(nsv_first, nsv_last):
-            chi2_ndf = ev.SV_chi2[isv] / ev.SV_ndf[isv]
-            vtx_mass = ev.SV_mass[isv]
-            ntrk = int(ev.SV_nTrk[isv])
-            dr1 = ev.SV_deltaR_jet[isv]
-            flight_sig = ev.SV_flight[isv] / ev.SV_flightErr[isv]
-            svs += [(flight_sig, dr1, ntrk, vtx_mass, chi2_ndf)]
-        svs = sorted(svs, key=lambda x: x[4])
-        while (len(svs) <= 2):
-            svs += [(0,0,0,0,0)]
-        verts_str = " ".join([" ".join([str(v) for v in s]) for s in svs[0:2]])
+jet_vtxCat = NTupleVariable(
+    name="vtxCat",
+    func=lambda x: x.vertexCategory
+)
 
-        #Jet class
-        cl = 0
-        if is_c:
-           cl = 1
-        if is_b:
-           cl = 2
+jet_pt_bin = NTupleVariable(
+    name="pt_bin",
+    func=lambda x: x.pt_bin
+)
 
-        #Simple printout
-        print nev, i, pt, eta, fl, bd_jp, bd_jpb, bd_svx, bd_csv_ivf, bd_csv_avf, cl, nsv_last - nsv_first, verts_str
+jet_eta = NTupleVariable(
+    name="eta",
+    func=lambda x: x.eta
+)
+
+jet_eta_bin = NTupleVariable(
+    name="eta_bin",
+    func=lambda x: x.eta_bin
+)
+
+jet_bd1 = NTupleVariable(
+    name="bd_csv1",
+    func=lambda x: x.CombSvx
+)
+
+jet_bd2 = NTupleVariable(
+    name="bd_csv2",
+    func=lambda x: x.CombIVF
+)
+
+jet_bd3 = NTupleVariable(
+    name="bd_jp",
+    func=lambda x: x.Proba
+)
+
+jet_bd4 = NTupleVariable(
+    name="bd_smu",
+    func=lambda x: x.SoftMu
+)
+
+jet_bd5 = NTupleVariable(
+    name="bd_sel",
+    func=lambda x: x.SoftEl
+)
+
+jet_flavour = NTupleVariable(
+    name="flavour",
+    func=lambda x: x.flavour
+)
+
+jet_nsvs = NTupleVariable(
+    name="nsvs",
+    func=lambda x: x.nsvs
+)
+
+jet_sv_chi2ndf = NTupleVariable(
+    name="sv_chi2ndf",
+    func=lambda x: x.sv_chi2ndf
+)
+
+jet_sv_flight3dsig = NTupleVariable(
+    name="sv_flight3dsig",
+    func=lambda x: x.sv_flight3dsig
+)
+
+jet_sv_flight2dsig = NTupleVariable(
+    name="sv_flight2dsig",
+    func=lambda x: x.sv_flight2dsig
+)
+
+
+
+if __name__ == "__main__":
+    
+    
+    INPUT = sys.argv[1]
+    OUTPUT = sys.argv[2]
+    
+    tf = ROOT.TFile(INPUT)
+    tt = tf.Get("btagana/ttree")
+    brlist = tt.GetListOfBranches()
+    #for br in sorted([b.GetName() for b in brlist]):
+    #    print br
+    
+    ofile = ROOT.TFile(OUTPUT, "RECREATE")
+    otree = ROOT.TTree("tree", "tree")
+    otree.SetDirectory(ofile)
+
+    registered_branches_jet = [
+        jet_pt, jet_eta, jet_bd1, jet_bd2, jet_bd3, jet_bd4, jet_bd5,
+        jet_vtxCat,
+        jet_pt_bin, jet_eta_bin,
+        jet_flavour,
+        jet_nsvs,
+        jet_sv_chi2ndf, jet_sv_flight3dsig, jet_sv_flight2dsig
+    ]
+
+    for br in registered_branches_jet:
+        br.create_branch(otree)
+
+    pt_bins = np.linspace(20, 520, 81)
+    eta_bins = np.linspace(0.0, 2.5, 21)
+
+    n = tt.GetEntries()
+    print "running on N entries", n
+    for i in range(n):
+        if i%1000==0:
+            print i
+        tt.GetEntry(i)
+        ev = Event(tt)
+
+        svs = ev.SV
+        for ijet, jet in enumerate(ev.Jet):
+            if jet.pt < 20:
+                continue
+            jet.pt_bin = pt_bins.searchsorted(jet.pt)
+            jet.eta_bin = eta_bins.searchsorted(abs(jet.eta))
+            jet.sv_chi2ndf = 0.0
+            jet.sv_flight3dsig = 0.0
+            jet.sv_flight2dsig = 0.0
+
+            nsv_first = jet.nFirstSV
+            nsv_last = jet.nLastSV
+
+            jet_svs = sorted(
+                svs[nsv_first:nsv_last],
+                key=lambda x: x.chi2 / x.ndf
+            )
+            jet.nsvs = len(jet_svs)
+
+            if len(jet_svs)>0:
+                jet.sv_chi2ndf = jet_svs[0].chi2 / jet_svs[0].ndf
+                jet.sv_flight3dsig = jet_svs[0].flight / jet_svs[0].flightErr
+                jet.sv_flight2dsig = jet_svs[0].flight2D / jet_svs[0].flight2DErr
+
+            for br in registered_branches_jet:
+                br.set(jet)
+
+            otree.Fill()
+
+    ofile.Write()
+    ofile.Close()
