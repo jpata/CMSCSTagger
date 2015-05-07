@@ -32,19 +32,9 @@ jet_vtxCat = NTupleVariable(
     func=lambda x: x.vertexCategory
 )
 
-jet_pt_bin = NTupleVariable(
-    name="pt_bin",
-    func=lambda x: x.pt_bin
-)
-
 jet_eta = NTupleVariable(
     name="eta",
     func=lambda x: x.eta
-)
-
-jet_eta_bin = NTupleVariable(
-    name="eta_bin",
-    func=lambda x: x.eta_bin
 )
 
 jet_bd1 = NTupleVariable(
@@ -97,38 +87,46 @@ jet_sv_flight2dsig = NTupleVariable(
     func=lambda x: x.sv_flight2dsig
 )
 
+jet_w1 = NTupleVariable(
+    name="w1",
+    func=lambda x: x.w1
+)
 
+jet_w2 = NTupleVariable(
+    name="w2",
+    func=lambda x: x.w2
+)
 
 if __name__ == "__main__":
-    
-    
+
+
     INPUT = sys.argv[1]
     OUTPUT = sys.argv[2]
-    
+
     tf = ROOT.TFile(INPUT)
     tt = tf.Get("btagana/ttree")
     brlist = tt.GetListOfBranches()
     #for br in sorted([b.GetName() for b in brlist]):
     #    print br
-    
+
     ofile = ROOT.TFile(OUTPUT, "RECREATE")
-    otree = ROOT.TTree("tree", "tree")
-    otree.SetDirectory(ofile)
+
+    otrees = {fl:ROOT.TTree("tree_"+fl, "tree_"+fl) for fl in ["l", "c", "b"]}
+    for ot in otrees.values():
+        ot.SetDirectory(ofile)
 
     registered_branches_jet = [
         jet_pt, jet_eta, jet_bd1, jet_bd2, jet_bd3, jet_bd4, jet_bd5,
         jet_vtxCat,
-        jet_pt_bin, jet_eta_bin,
         jet_flavour,
         jet_nsvs,
-        jet_sv_chi2ndf, jet_sv_flight3dsig, jet_sv_flight2dsig
+        jet_sv_chi2ndf, jet_sv_flight3dsig, jet_sv_flight2dsig,
+        jet_w1, jet_w2
     ]
 
     for br in registered_branches_jet:
-        br.create_branch(otree)
-
-    pt_bins = np.linspace(20, 520, 81)
-    eta_bins = np.linspace(0.0, 2.5, 21)
+        for ot in otrees.values():
+            br.create_branch(ot)
 
     n = tt.GetEntries()
     print "running on N entries", n
@@ -142,11 +140,12 @@ if __name__ == "__main__":
         for ijet, jet in enumerate(ev.Jet):
             if jet.pt < 20:
                 continue
-            jet.pt_bin = pt_bins.searchsorted(jet.pt)
-            jet.eta_bin = eta_bins.searchsorted(abs(jet.eta))
             jet.sv_chi2ndf = 0.0
             jet.sv_flight3dsig = 0.0
             jet.sv_flight2dsig = 0.0
+
+            jet.w1 = 0.0
+            jet.w2 = 0.0
 
             nsv_first = jet.nFirstSV
             nsv_last = jet.nLastSV
@@ -165,7 +164,13 @@ if __name__ == "__main__":
             for br in registered_branches_jet:
                 br.set(jet)
 
-            otree.Fill()
+
+            if (abs(jet.flavour) == 5):
+                otrees["b"].Fill()
+            elif (abs(jet.flavour) == 4):
+                otrees["c"].Fill()
+            else:
+                otrees["l"].Fill()
 
     ofile.Write()
     ofile.Close()
