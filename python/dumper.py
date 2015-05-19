@@ -97,7 +97,15 @@ jet_sv_flight2dsig = NTupleVariable(
     func=lambda x: x.sv_flight2dsig
 )
 
+jet_w1 = NTupleVariable(
+    name="w1",
+    func=lambda x: x.w1
+)
 
+jet_w2 = NTupleVariable(
+    name="w2",
+    func=lambda x: x.w2
+)
 
 if __name__ == "__main__":
     
@@ -147,6 +155,8 @@ if __name__ == "__main__":
             jet.sv_chi2ndf = 0.0
             jet.sv_flight3dsig = 0.0
             jet.sv_flight2dsig = 0.0
+            jet.w1 = 0.0
+            jet.w2 = 0.0
 
             nsv_first = jet.nFirstSV
             nsv_last = jet.nLastSV
