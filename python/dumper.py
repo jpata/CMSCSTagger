@@ -167,6 +167,8 @@ if __name__ == "__main__":
             jet.sv_chi2ndf = 0.0
             jet.sv_flight3dsig = 0.0
             jet.sv_flight2dsig = 0.0
+            jet.w1 = 0.0
+            jet.w2 = 0.0
 
             jet.w2 = 0.0
 
