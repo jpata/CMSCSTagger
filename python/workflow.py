@@ -1,10 +1,14 @@
-from supertagger_train import ROOTData, TMVAClassifier, array2root
+import ROOT
+ROOT.gROOT.cd()
+ROOT.gROOT.SetBatch(True)
+from supertagger_train import ROOTData, TMVABDTClassifier
+import supertagger_train
 import numpy as np
 from copy import deepcopy
-import ROOT
 import multiprocessing
 from multiprocessing import Pool
 import glob, sys, os
+from roothelpers import array2root
 
 #steps = ["project", "train", "evaluate"]
 steps = ["train", "evaluate"]
@@ -15,152 +19,87 @@ output_file = "out.root"
 
 spectators = ["flavour", "pt", "eta"]
 
-#Create a temporary file to avoid creating root ttrees in memory
-temp = ROOT.TFile(os.environ.get("MY_TMPDIR", "./") + "/tempfile.root", "RECREATE")
-temp.cd()
+#Select a subregion of the full training data
+cls1 = TMVABDTClassifier(
+    name="cls1",
+    variables=["bd_csv1", "bd_csv2"],
+    ntrees=50,
+    spectators=spectators,
+)
 
-datas = [
-    ROOTData(
-        filename=fn, treename="tree", name="f_{0}".format(fn.split(".")[0])
-        ) for ifn, fn in enumerate(sys.argv[1:])
-]
+#Select a subregion of the full training data
+cls2 = TMVABDTClassifier(
+    name="cls2",
+    variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
+    ntrees=50,
+    spectators=spectators,
+)
 
-cls = {}
-datas_cls = {}
 
-temp.cd()
+path = "/Users/joosep/Documents/btv/data/"
 
-if "train" in steps:
-    print "creating classifier"
+d1a = ROOTData(label="b", filename=path+"ttjets_b_training.root", treename="tree_b", kind=ROOT.TMVA.Types.kTraining)
+d2a = ROOTData(label="l", filename=path+"ttjets_c_training.root", treename="tree_c", kind=ROOT.TMVA.Types.kTraining)
+d3a = ROOTData(label="l", filename=path+"ttjets_l_training.root", treename="tree_l", kind=ROOT.TMVA.Types.kTraining)
 
-    #Select a subregion of the full training data
-    for data in datas:
-        _cls = [
-            TMVAClassifier(
-                name="cls1",
-                data_name=data.name,
-                variables=["csv1", "csv2"],
-                data_classes=["b", "lgc"],
-                ntrees=1000,
-                spectators=spectators,
-                max_events=100000
-            ),
-            TMVAClassifier(
-                name="cls2",
-                data_name=data.name,
-                variables=["csv1", "csv2", "sv_chi2ndf", "sv_flight3dsig"],
-                data_classes=["b", "lgc"],
-                ntrees=1000,
-                spectators=spectators,
-                max_events=100000
-            ),
-            #TMVAClassifier(
-            #    name="cls1_bag",
-            #    data_name=data.name,
-            #    variables=["csv1", "csv2"],
-            #    data_classes=["b", "c", "l", "g"],
-            #    ntrees=1000,
-            #    spectators=spectators,
-            #    use_bootstrap=True,
-            #),
-            #TMVAClassifier(
-            #    name="cls2",
-            #    data_name=data.name,
-            #    variables=["csv1", "csv2"],
-            #    data_classes=["b", "c", "l", "g"],
-            #    ntrees=200,
-            #    spectators=spectators
-            #),
+d1b = ROOTData(label="b", filename=path+"ttjets_b_testing.root", treename="tree_b", kind=ROOT.TMVA.Types.kTesting)
+d2b = ROOTData(label="l", filename=path+"ttjets_c_testing.root", treename="tree_c", kind=ROOT.TMVA.Types.kTesting)
+d3b = ROOTData(label="l", filename=path+"ttjets_l_testing.root", treename="tree_l", kind=ROOT.TMVA.Types.kTesting)
 
-            #TMVAClassifier(
-            #    name="cls3l",
-            #    data_name=data.name,
-            #    variables=["csv1", "csv2"],
-            #    data_classes=["b", "lg"],
-            #    ntrees=200,
-            #    spectators=spectators
-            #),
+for d in [d1a, d2a, d3a, d1b, d2b, d3b]:
+    cls1.add_data(d)
+    cls2.add_data(d)
+cls1.load_data()
+# 
+# for d in [d1a, d2a, d3a, d1b, d2b, d3b]:
+#     print d.filename
+#     supertagger_train.check_data(d)
+# 
+# cls1.prepare()
+# cls1.train()
+# 
+# cls2.prepare()
+# cls2.train()
+# 
+# x = np.hstack((cls1.evaluate(d1b), cls2.evaluate(d1b)))
+# y = np.hstack((cls1.evaluate(d2b), cls2.evaluate(d2b)))
+# z = np.hstack((cls1.evaluate(d3b), cls2.evaluate(d3b)))
+# array2root(x, "ttjets_b_testing.root", "tree", ["cls1", "cls2"])
+# array2root(y, "ttjets_c_testing.root", "tree", ["cls1", "cls2"])
+# array2root(z, "ttjets_l_testing.root", "tree", ["cls1", "cls2"])
 
-            #TMVAClassifier(
-            #    name="cls3c",
-            #    data_name=data.name,
-            #    variables=["csv1", "csv2"],
-            #    data_classes=["b", "c"],
-            #    ntrees=200,
-            #    spectators=spectators
-            #)
-        ]
+d1_cls = supertagger_train.ROOTData(filename="ttjets_b_testing.root", treename="tree")
+d2_cls = supertagger_train.ROOTData(filename="ttjets_c_testing.root", treename="tree")
+d3_cls = supertagger_train.ROOTData(filename="ttjets_l_testing.root", treename="tree")
 
-        #create datasets based on classes
-        print "creating training classes", data.name
-        _data = {
-            "b": data.selection(
-                selection="abs(flavour)==5"
-            ),
-            "c": data.selection(
-                selection="abs(flavour)==4"
-            ),
-            "l": data.selection(
-                selection="abs(flavour)<4"
-            ),
-            "g": data.selection(
-                selection="abs(flavour)==21"
-            ),
-            "lg": data.selection(
-                selection="(abs(flavour)<4 || abs(flavour)==21)"
-            ),
-            "lgc": data.selection(
-                selection="abs(flavour) != 5"
-            )
-        }
-        skip = False
-        for k, d in _data.items():
-            if d.tree.GetEntries() < 100:
-                skip = True
-                print "Skipping", data.name
-            d.tree.SetName("subdata_cls_{0}".format(k))
-            d.tree.SetDirectory(temp)
-            d.tree.Write("", ROOT.TObject.kOverwrite)
-        if not skip:
-            datas_cls[data.name] = _data
-            cls[data.name] = _cls
-    def train(kwargs):
-        c = kwargs.get("classifier")
-        dname = c.data_name
-        #data_dict = kwargs.get("data")
-        c.prepare()
-        for cls in c.data_classes:
-            c.add_class(cls, datas_cls[dname][cls])
-        c.train()
-        return c
+for d in [d1_cls, d2_cls, d3_cls]:
+    d.load()
 
-    def evaluate(kwargs):
-        c = kwargs.get("classifier")
-        print "evaluating", c.mva_name
-        dtest = ROOTData(filename=c.out_file, treename="TestTree")
-        dtrain = ROOTData(filename=c.out_file, treename="TrainTree")
+d1b.tree.AddFriend(d1_cls.tree)
+d2b.tree.AddFriend(d2_cls.tree)
+d3b.tree.AddFriend(d3_cls.tree)
 
-        for dn, d in [("test", dtest), ("train", dtrain)]:
-            ev = c.evaluate(d)
-            array2root(
-                ev,
-                "outputs/TMVAMulticlass_" + c.mva_name + "_" + dn + ".root",
-                "tree",
-                colnames=c.data_classes
-            )
+validation_of = ROOT.TFile("out.root", "RECREATE")
+validation_of.cd()
 
-    def run(kwargs):
-        c = train(kwargs)
-        evaluate(kwargs)
+for fn, d in [("b", d1b), ("c", d2b), ("l", d3b)]:
+    rdir = validation_of.mkdir(fn)
+    for cl, lims in [
+        ("bd_csv1", (100, 0, 1)),
+        ("bd_csv2", (100, 0, 1)),
+        ("bd_jp", (100, 0, 2)),
+        ("bd_sel", (100, 0, 1)),
+        ("bd_smu", (100, 0, 1)),
+        ("cls1", (100, -1, 1)),
+        ("cls2", (100, -1, 1))
+        ]:
+        h = d.hist(cl, lims, "1")
+        rdir.cd()
+        h = h.Clone("h_{0}".format(cl))
+        h.Write()
+        
+        hc = h.GetCumulative()
+        hc.SetName(h.GetName() + "_c")
+        hc.Write()
 
-    clss = []
-    for c in cls.values():
-        clss += c
-    ncores = min(len(clss), int(multiprocessing.cpu_count()*0.7))
-    pool = Pool(ncores)
-    cls = pool.map(run, [
-        {"classifier":clss[i]} for i in range(len(clss))
-    ])
-    pool.close()
-temp.Write()
-temp.Close()
+validation_of.Close()
