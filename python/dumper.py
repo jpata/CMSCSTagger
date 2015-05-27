@@ -4,15 +4,20 @@ import math
 import numpy as np
 from array import array
 
+def remove_nan_inf(val):
+    if val!=val or np.isnan(val) or np.isinf(val):
+        return -9999
+    return val
+
 class NTupleVariable:
     def __init__(self, **kwargs):
         self.name = kwargs.get("name")
         self.func = kwargs.get("func")
-        self.dtype = kwargs.get("dtype", "f")
+        self.dtype = kwargs.get("dtype", "d")
         self.var = array(self.dtype, [0.0])
 
     def set(self, x):
-        self.var[0] = self.func(x)
+        self.var[0] = remove_nan_inf(self.func(x))
 
     def create_branch(self, tree):
         tree.Branch(
@@ -21,6 +26,23 @@ class NTupleVariable:
                 self.name, self.dtype
             )
         )
+
+weightfile = ROOT.TFile("data/tt_weights.root")
+fhist = {}
+fhist["b"] = weightfile.Get("hb")
+fhist["c"] = weightfile.Get("hc")
+fhist["l"] = weightfile.Get("hl")
+
+def get_weight(pt, eta, fl):
+    h = fhist[fl]
+    b = h.FindBin(abs(eta), pt)
+    w = h.GetBinContent(b)
+    #print pt, eta, fl, b, w
+    if w>0:
+        w = 1.0 / w
+    if w<0:
+        w = 0.0
+    return w
 
 jet_pt = NTupleVariable(
     name="pt",
@@ -138,13 +160,14 @@ if __name__ == "__main__":
 
         svs = ev.SV
         for ijet, jet in enumerate(ev.Jet):
-            if jet.pt < 20:
+
+            if jet.pt < 30:
                 continue
+
             jet.sv_chi2ndf = 0.0
             jet.sv_flight3dsig = 0.0
             jet.sv_flight2dsig = 0.0
 
-            jet.w1 = 0.0
             jet.w2 = 0.0
 
             nsv_first = jet.nFirstSV
@@ -161,16 +184,18 @@ if __name__ == "__main__":
                 jet.sv_flight3dsig = jet_svs[0].flight / jet_svs[0].flightErr
                 jet.sv_flight2dsig = jet_svs[0].flight2D / jet_svs[0].flight2DErr
 
+            if (abs(jet.flavour) == 5):
+                flavour = "b"
+            elif (abs(jet.flavour) == 4):
+                flavour = "c"
+            else:
+                flavour = "l"
+
+            jet.w1 = get_weight(jet.pt, jet.eta, flavour)
             for br in registered_branches_jet:
                 br.set(jet)
 
-
-            if (abs(jet.flavour) == 5):
-                otrees["b"].Fill()
-            elif (abs(jet.flavour) == 4):
-                otrees["c"].Fill()
-            else:
-                otrees["l"].Fill()
+            otrees[flavour].Fill()
 
     ofile.Write()
     ofile.Close()
