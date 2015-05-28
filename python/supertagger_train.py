@@ -6,193 +6,89 @@ import ctypes
 import array
 import os
 import math
-
-def array2root(arr,
-    filename,
-    treename,
-    colnames=None,
-    command="recreate"
-    ):
-
-    of = ROOT.TFile(filename, command)
-    of.cd()
-    tree = ROOT.TTree(treename, treename)
-    if len(arr.shape)==1:
-        nevs = len(arr)
-        ncols = 1
-        arr = arr.reshape((nevs, ncols))
-    elif len(arr.shape)==2:
-        nevs, ncols = arr.shape
-
-    if not colnames:
-        colnames = ["br"+str(i) for i in range(ncols)]
-
-    branchvars = {}
-    for col in range(ncols):
-        brname = colnames[col]
-        branchvars[col] = array.array("f", [0.0])
-        tree.Branch(
-            brname,
-            branchvars[col],
-            "{0}/F".format(brname)
-        )
-
-    nf = 0
-    for i in range(nevs):
-        for col in range(ncols):
-            branchvars[col][0] = float(arr[i, col])
-        nf += tree.Fill()
-
-    tree.Write("", ROOT.TObject.kOverwrite)
-    of.Close()
-
-def root2array(
-    filename,
-    treename,
-    colnames=None,
-    ):
-
-    assert(os.path.isfile(filename))
-    of = ROOT.TFile(filename)
-    tree = of.Get(treename)
-    assert(tree != None)
-
-    nevs = tree.GetEntries()
-    ncols = len(colnames)
-
-    branchvars = {}
-    #tree.SetBranchStatus("*", False)
-
-    arr = np.zeros((nevs, ncols), dtype="f")
-
-    for col in range(ncols):
-        brname = colnames[col]
-        cn = tree.GetBranch(brname).GetListOfLeaves().At(0).GetTypeName()
-        #print cn
-        if cn == "Int_t":
-            t = "i"
-        elif cn == "Float_t":
-            t = "f"
-        branchvars[col] = array.array(t, [0])
-        tree.SetBranchAddress(
-            brname,
-            branchvars[col],
-        )
-        #tree.SetBranchStatus(brname, True)
-
-    nf = 0
-    for i in range(nevs):
-        nf += tree.GetEntry(i)
-        #if i<10:
-        #    print [branchvars[col][0] for col in range(ncols)]
-        for col in range(ncols):
-            arr[i, col] = branchvars[col][0]
-
-    #print nf
-    return arr
-
-class Data(object):
-    def __init__(self, **kwargs):
-        self.classes = kwargs.get("classes", [])
-        self.name = kwargs.get("name")
-    def selection(self, sel):
-        """
-        Applies selection on the data.
-        """
-        pass
-
-    def get_category(self, category):
-        """
-        Returns the data in a category.
-        Category is "test", "train".
-
-        Arguments:
-            category (string) - the category to get
-
-        Returns (Data): selected data
-        """
-        pass
-
-    def roc(self, class_a, class_b, classifier):
-        pass
+from mvalib import Data, Classifier
+from collections import OrderedDict
 
 class ROOTData(Data):
     def __init__(self, **kwargs):
         Data.__init__(self, **kwargs)
 
-        fname = kwargs.get("filename", None)
-        treename = kwargs.get("treename", None)
-        tree = kwargs.get("tree", None)
+        self.filename = kwargs.get("filename")
+        self.treename = kwargs.get("treename")
+        self.kind = kwargs.get("kind")
+        self.label = kwargs.get("label")
+        self.selection = "1"
+        
+        self.tree = None
+        self.tfile = None
+        self.is_loaded = False
 
-        if fname and treename:
-            self.tfile = ROOT.TFile(fname)
-            self.tree = self.tfile.Get(treename)
-        elif tree != None:
-            self.tree = tree
-
-    def selection(self, **kwargs):
-
-        selection = kwargs.get("selection", None)
-        partition = kwargs.get("partition", None)
-
-        c = deepcopy(self)
-
-        if selection:
-            tree = self.tree.CopyTree(selection)
-        elif partition:
-            low, high = min(partition), max(partition)
-            tree = self.tree.CopyTree("", "", high-low, low)
-        else:
-            tree = self.tree.CloneTree()
-        c.tree = tree
-        return c
-
+    def load(self):
+        self.tfile = ROOT.TFile(self.filename)
+        self.tree = self.tfile.Get(self.treename)
+        if not self.tree:
+            raise Exception("Could not open {0}:{1}".format(
+                self.filename, self.treename
+            ))
+        self.is_loaded = True
+    
     def __len__(self):
         return self.tree.GetEntries()
+        
+    def hist(self, func, bins, cut):
+        ROOT.gROOT.cd()
+        h = ROOT.TH1D("h", "h", *bins)
+        n = self.tree.Draw("{0} >> h".format(func), cut)
+        return h
 
-class TrainingReport:
-    pass
-
-class Classifier:
+def roc(h1, h2):
+    h1 = h1.Clone()
+    h2 = h2.Clone()
+    h1.Scale(1.0 / h1.Integral())
+    h2.Scale(1.0 / h2.Integral())
+    c1 = h1.GetCumulative()
+    c2 = h2.GetCumulative()
+    nb = c1.GetNbinsX()
+    ret = np.zeros((nb, 2))
+    err = np.zeros((nb, 2))
+    for i in range(nb):
+        ret[i,0] = c1.GetBinContent(i+1) 
+        ret[i,1] = c2.GetBinContent(i+1)
+        err[i,0] = 0.0*c1.GetBinError(i+1) 
+        err[i,1] = 0.0*c2.GetBinError(i+1)
+    return ret, err
+    
+def check_data(data):
+    brs = data.tree.GetListOfBranches()
+    for br in brs:
+        isnan = data.tree.GetEntries("{0} != {0}".format(br.GetName()))
+        isinf = data.tree.GetEntries("{0} > 99999 || {0} < -99999".format(br.GetName()))
+        print br.GetName(), isnan, isinf
+        
+    
+class TMVABDTClassifier(Classifier):
     def __init__(self, **kwargs):
-        pass
-
-    def prepare(self):
-        pass
-
-    def add_class(self):
-        pass
-
-    def train(self, data):
-        pass
-
-    def evaluate(self, data):
-        pass
-
-class TMVAClassifier:
-    def __init__(self, **kwargs):
+        Classifier.__init__(self, **kwargs)
         self.name = kwargs.get("name")
-        self.data_name = kwargs.get("data_name")
-        self.mva_name = "bdt_" + self.name + "_" + self.data_name
-
-        self.weights_file = "weights/{0}.weights.xml".format(
-            self.name + "_" + self.mva_name
+        
+        self.mva_name = "bdt_" + self.name
+        self.weights_file = "weights/tmva_{0}.weights.xml".format(
+            self.mva_name
         )
-        self.out_file = "outputs/TMVAMulticlass_{0}.root".format(self.mva_name)
+        self.out_file = "outputs/TMVA_{0}.root".format(
+            self.mva_name
+        )
 
         self.variables = kwargs.get("variables")
         self.spectators = kwargs.get("spectators", [])
 
         self.ntrees = kwargs.get("ntrees", 1200)
         self.shrinkage = kwargs.get("shrinkage", 0.1)
-        self.bag_fraction = kwargs.get("bag_fraction", 0.5)
+        self.bag_fraction = kwargs.get("bag_fraction", 1.0)
         self.ncuts = kwargs.get("ncuts", 50)
         self.max_depth = kwargs.get("max_depth", 3)
-        self.data_classes = kwargs.get("data_classes", [])
         self.use_bootstrap = kwargs.get("use_bootstrap", False)
-        self.max_events = kwargs.get("max_events", None)
-        self.ntot = 0
-        self.data = {}
+        self.data = []
 
     def prepare(self):
         self.out = ROOT.TFile(
@@ -201,36 +97,48 @@ class TMVAClassifier:
         )
         self.out.cd()
         self.factory = TMVA.Factory(
-            self.name, self.out,
+            "tmva", self.out,
             "Transformations=I;N:"+
-            "DrawProgressBar=False:"+
-            "!V:Silent=True:"+
-            "AnalysisType=Multiclass"
+            "DrawProgressBar=True:"+
+            "!V:Silent=False:"+
+            "AnalysisType=Classification"
         )
         for var in self.variables:
             self.factory.AddVariable(var, "F")
         for var in self.spectators:
             self.factory.AddSpectator(var, "F")
-    def add_class(self, class_name, data):
-        self.data[class_name] = data
-        print class_name, data.tree.GetEntries()
-        self.factory.AddTree(data.tree, class_name, 1.0)
+            
+        for data in self.data:
+            self.factory.AddTree(
+                data.tree,
+                data.label,
+                1.0,
+                ROOT.TCut(data.selection),
+                data.kind
+            )
+    
+    def load_data(self):
+        for data in self.data:
+            data.load()
+            
+    def add_data(self, data):
+        self.data += [data]
 
     def train(self):
         print "training", self.mva_name
 
         self.mva_opts = ("!H:" +
-            "!V:VerbosityLevel=Fatal:" +
+            "!V:VerbosityLevel=Verbose:" +
             "NTrees={0}:".format(self.ntrees) +
             "BoostType=Grad:" +
             "Shrinkage={0}:".format(self.shrinkage) +
-            "GradBaggingFraction={0}:".format(self.bag_fraction) +
+            #"GradBaggingFraction={0}:".format(self.bag_fraction) +
             "nCuts={0}:".format(self.ncuts) +
             "MaxDepth={0}:".format(self.max_depth)+
             "UseBaggedBoost={0}:".format(self.use_bootstrap)+
-            "DoBoostMonitor=True"
+            "DoBoostMonitor=False"
         )
-        skipped = []
+
         self.factory.BookMethod(
             TMVA.Types.kBDT,
             self.mva_name,
@@ -238,20 +146,33 @@ class TMVAClassifier:
             self.mva_opts
         )
 
-        nevents_str = []
-        for icl, cl in enumerate(self.data_classes):
-            nmax = min(self.max_events, self.data[cl].tree.GetEntries() / 2)
-            nevents_str += ["nTrain_{0}={1}".format(cl, nmax)]
-            nevents_str += ["nTest_{0}={1}".format(cl, nmax)]
-        nevents_str = ":".join(nevents_str)
+        # nevents_str = []
+        # for icl, cl in enumerate(self.data_classes):
+        #     nmax = min(self.max_events, self.data[cl].tree.GetEntries() / 2)
+        #     nevents_str += ["nTrain_{0}={1}".format(cl, nmax)]
+        #     nevents_str += ["nTest_{0}={1}".format(cl, nmax)]
+        # nevents_str = ":".join(nevents_str)
+        
+        cutstrs = []
+        for var in self.variables:
+            cutstrs += ["{0}=={0} && {0}>=-10 && {0}<100".format(var)]
+        cutstr = "&&".join(cutstrs)
+        print "cutstr", cutstr
         self.factory.PrepareTrainingAndTestTree(
-            ROOT.TCut("csv1>0 && csv1<1.0 && csv2>0 && csv2<1.0"),
-            "SplitMode=Random:MixMode=Random:NormMode=NumEvents:V:" + nevents_str
+            ROOT.TCut(cutstr),
+            "SplitMode=Block:MixMode=Block:NormMode=NumEvents:V"# + nevents_str
         )
 
         self.factory.TrainAllMethods()
         self.factory.TestAllMethods()
-        self.factory.EvaluateAllMethods()
+        #self.factory.EvaluateAllMethods() #crashes?
+        
+        # * thread #1: tid = 0x11d781, 0x000000010d40a7c8 libTMVA.so`TMVA::DataSet::GetNEvtSigTest() + 50, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x70)
+        # frame #0: 0x000000010d40a7c8 libTMVA.so`TMVA::DataSet::GetNEvtSigTest() + 50
+        # frame #1: 0x000000010d4302e7 libTMVA.so`TMVA::Factory::EvaluateAllMethods() + 11729
+        # frame #2: 0x0000000102a019c7
+    
+        #print "done evaluate"
         self.factory.DeleteAllMethods()
         #del self.factory
 
@@ -270,26 +191,36 @@ class TMVAClassifier:
         reader = TMVA.Reader("!V:Silent")
 
         vardict = {}
+        vardict_d = {}
         for var in self.variables:
             vardict[var] = array.array("f", [0])
+            vardict_d[var] = array.array("d", [0])
             reader.AddVariable(var, vardict[var])
         for var in self.spectators:
             vardict[var] = array.array("f", [0])
+            vardict_d[var] = array.array("d", [0])
             reader.AddSpectator(var, vardict[var])
         reader.BookMVA(self.mva_name, self.weights_file)
 
-        ret = np.zeros((len(data), len(self.data_classes)), dtype="f")
+        ret = np.zeros(
+            (len(data), 1),
+            #len(set([data.label for data in self.data]))),
+            dtype="f"
+        )
 
         data.tree.SetBranchStatus("*", False)
         for var in self.variables:
             data.tree.SetBranchStatus(var, True)
-            data.tree.SetBranchAddress(var, vardict[var])
+            data.tree.SetBranchAddress(var, vardict_d[var])
 
         for iev in range(len(data)):
             data.tree.GetEntry(iev)
-            x = reader.EvaluateMulticlass(self.mva_name)
-            for j in range(x.size()):
-                ret[iev, j] = x.at(j)
+            for k in vardict.keys():
+                vardict[k][0] = float(vardict_d[k][0])
+            x = reader.EvaluateMVA(self.mva_name)
+            ret[iev,0] = x
+            #for j in range(x.size()):
+            #    ret[iev, j] = x.at(j)
 
         data.tree.SetBranchStatus("*", True)
         return ret
