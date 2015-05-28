@@ -38,51 +38,54 @@ cls2 = TMVABDTClassifier(
 
 path = "/Users/joosep/Documents/btv/data/"
 
-d1a = ROOTData(label="b", filename=path+"ttjets_b_training.root", treename="tree_b", kind=ROOT.TMVA.Types.kTraining)
-d2a = ROOTData(label="l", filename=path+"ttjets_c_training.root", treename="tree_c", kind=ROOT.TMVA.Types.kTraining)
-d3a = ROOTData(label="l", filename=path+"ttjets_l_training.root", treename="tree_l", kind=ROOT.TMVA.Types.kTraining)
+ds = {}
 
-d1b = ROOTData(label="b", filename=path+"ttjets_b_testing.root", treename="tree_b", kind=ROOT.TMVA.Types.kTesting)
-d2b = ROOTData(label="l", filename=path+"ttjets_c_testing.root", treename="tree_c", kind=ROOT.TMVA.Types.kTesting)
-d3b = ROOTData(label="l", filename=path+"ttjets_l_testing.root", treename="tree_l", kind=ROOT.TMVA.Types.kTesting)
+for dt in ["ttjets"]:
+    for typ, kind in [
+        ("testing", ROOT.TMVA.Types.kTesting),
+        ("training", ROOT.TMVA.Types.kTraining)
+    ]:
+        for label, lt in [("b", "b"), ("c", "l"), ("l", "l")]:
+            ds[(dt, typ, label)] = ROOTData(
+                label=lt,
+                filename=path+"{0}_{1}_{2}.root".format(dt, label, typ),
+                treename="tree_{0}".format(label),
+                kind=kind
+            )
 
-for d in [d1a, d2a, d3a, d1b, d2b, d3b]:
+for d in ds.values():
     cls1.add_data(d)
     cls2.add_data(d)
-cls1.load_data()
-# 
-# for d in [d1a, d2a, d3a, d1b, d2b, d3b]:
-#     print d.filename
-#     supertagger_train.check_data(d)
-# 
+    d.load()
+
 # cls1.prepare()
 # cls1.train()
 # 
 # cls2.prepare()
 # cls2.train()
-# 
-# x = np.hstack((cls1.evaluate(d1b), cls2.evaluate(d1b)))
-# y = np.hstack((cls1.evaluate(d2b), cls2.evaluate(d2b)))
-# z = np.hstack((cls1.evaluate(d3b), cls2.evaluate(d3b)))
-# array2root(x, "ttjets_b_testing.root", "tree", ["cls1", "cls2"])
-# array2root(y, "ttjets_c_testing.root", "tree", ["cls1", "cls2"])
-# array2root(z, "ttjets_l_testing.root", "tree", ["cls1", "cls2"])
 
-d1_cls = supertagger_train.ROOTData(filename="ttjets_b_testing.root", treename="tree")
-d2_cls = supertagger_train.ROOTData(filename="ttjets_c_testing.root", treename="tree")
-d3_cls = supertagger_train.ROOTData(filename="ttjets_l_testing.root", treename="tree")
+ds_eval = {}
+for ((dt, typ, label), d) in ds.items():
+    print d.tree, [x.tree for x in cls1.data], [x.tree for x in cls2.data]
+    x = np.hstack((cls1.evaluate(d), cls2.evaluate(d)))
+    
+    fn = "{0}_{1}_{2}.root".format(dt, label, typ)
+    array2root(x, fn, "tree", ["cls1", "cls2"])
 
-for d in [d1_cls, d2_cls, d3_cls]:
-    d.load()
-
-d1b.tree.AddFriend(d1_cls.tree)
-d2b.tree.AddFriend(d2_cls.tree)
-d3b.tree.AddFriend(d3_cls.tree)
-
+for ((dt, typ, label), d) in ds.items():
+    fn = "{0}_{1}_{2}.root".format(dt, label, typ)
+    d2 = ROOTData(
+        filename=fn, treename="tree", label=label
+    )
+    d2.load()
+    d.tree.AddFriend(d2.tree)
+    ds_eval[(dt, typ, label)] = d2
+    
 validation_of = ROOT.TFile("out.root", "RECREATE")
 validation_of.cd()
 
-for fn, d in [("b", d1b), ("c", d2b), ("l", d3b)]:
+for ((dt, typ, label), d) in ds.items():
+    fn = "{0}_{1}_{2}".format(dt, label, typ)
     rdir = validation_of.mkdir(fn)
     for cl, lims in [
         ("bd_csv1", (100, 0, 1)),
@@ -92,14 +95,17 @@ for fn, d in [("b", d1b), ("c", d2b), ("l", d3b)]:
         ("bd_smu", (100, 0, 1)),
         ("cls1", (100, -1, 1)),
         ("cls2", (100, -1, 1))
-        ]:
+        ]:    
+        print dt, typ, label, cl
+        #discriminator distribution
         h = d.hist(cl, lims, "1")
         rdir.cd()
         h = h.Clone("h_{0}".format(cl))
         h.Write()
         
+        #cumulative
         hc = h.GetCumulative()
-        hc.SetName(h.GetName() + "_c")
+        hc = hc.Clone(h.GetName() + "_c")
         hc.Write()
 
 validation_of.Close()

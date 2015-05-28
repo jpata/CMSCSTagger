@@ -32,11 +32,16 @@ class ROOTData(Data):
             ))
         self.is_loaded = True
     
+    def unload(self):
+        self.tfile.Close()
+        self.is_loaded = False
+    
+    
     def __len__(self):
         return self.tree.GetEntries()
         
     def hist(self, func, bins, cut):
-        ROOT.gROOT.cd()
+        #ROOT.gROOT.cd()
         h = ROOT.TH1D("h", "h", *bins)
         n = self.tree.Draw("{0} >> h".format(func), cut)
         return h
@@ -153,9 +158,9 @@ class TMVABDTClassifier(Classifier):
         #     nevents_str += ["nTest_{0}={1}".format(cl, nmax)]
         # nevents_str = ":".join(nevents_str)
         
-        cutstrs = []
-        for var in self.variables:
-            cutstrs += ["{0}=={0} && {0}>=-10 && {0}<100".format(var)]
+        cutstrs = ["1"]
+        #for var in self.variables:
+        #    cutstrs += ["{0}=={0} && {0}>=-10 && {0}<100".format(var)]
         cutstr = "&&".join(cutstrs)
         print "cutstr", cutstr
         self.factory.PrepareTrainingAndTestTree(
@@ -212,7 +217,7 @@ class TMVABDTClassifier(Classifier):
         for var in self.variables:
             data.tree.SetBranchStatus(var, True)
             data.tree.SetBranchAddress(var, vardict_d[var])
-
+        
         for iev in range(len(data)):
             data.tree.GetEntry(iev)
             for k in vardict.keys():
@@ -223,4 +228,6 @@ class TMVABDTClassifier(Classifier):
             #    ret[iev, j] = x.at(j)
 
         data.tree.SetBranchStatus("*", True)
+        for var in self.variables:
+            data.tree.SetBranchAddress(var, 0)
         return ret
