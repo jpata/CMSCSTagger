@@ -39,7 +39,8 @@ def array2root(arr,
 
     tree.Write("", ROOT.TObject.kOverwrite)
     of.Close()
-
+    return
+    
 def root2array(
     filename,
     treename,
