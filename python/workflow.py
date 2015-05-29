@@ -23,7 +23,7 @@ spectators = ["flavour", "pt", "eta"]
 cls1 = TMVABDTClassifier(
     name="cls1",
     variables=["bd_csv1", "bd_csv2"],
-    ntrees=50,
+    ntrees=10,
     spectators=spectators,
 )
 
@@ -31,16 +31,26 @@ cls1 = TMVABDTClassifier(
 cls2 = TMVABDTClassifier(
     name="cls2",
     variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
-    ntrees=50,
+    ntrees=10,
     spectators=spectators,
 )
 
+#Select a subregion of the full training data
+cls3 = TMVABDTClassifier(
+    name="cls3",
+    variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
+    ntrees=10,
+    spectators=spectators,
+    weight="w1"
+)
 
-path = "/Users/joosep/Documents/btv/data/"
+
+#path = "/Users/joosep/Documents/btv/data/"
+path = "./data/"
 
 ds = {}
 
-for dt in ["ttjets"]:
+for dt in ["qcd", "ttjets"]:
     for typ, kind in [
         ("testing", ROOT.TMVA.Types.kTesting),
         ("training", ROOT.TMVA.Types.kTraining)
@@ -53,24 +63,36 @@ for dt in ["ttjets"]:
                 kind=kind
             )
 
+for dt in ["ttjets"]:
+    for typ, kind in [
+        ("testing", ROOT.TMVA.Types.kTesting),
+        ("training", ROOT.TMVA.Types.kTraining)
+    ]:
+        for label, lt in [("b", "b"), ("c", "l"), ("l", "l")]:
+            d = ds[(dt, typ, label)]
+            cls1.add_data(d)
+            cls2.add_data(d)
+            cls3.add_data(d)
+
 for d in ds.values():
-    cls1.add_data(d)
-    cls2.add_data(d)
     d.load()
 
-# cls1.prepare()
-# cls1.train()
-# 
-# cls2.prepare()
-# cls2.train()
+cls1.prepare()
+cls1.train()
+
+cls2.prepare()
+cls2.train()
+
+cls3.prepare()
+cls3.train()
 
 ds_eval = {}
 for ((dt, typ, label), d) in ds.items():
     print d.tree, [x.tree for x in cls1.data], [x.tree for x in cls2.data]
-    x = np.hstack((cls1.evaluate(d), cls2.evaluate(d)))
-    
+    x = np.hstack((cls1.evaluate(d), cls2.evaluate(d), cls3.evaluate(d)))
+
     fn = "{0}_{1}_{2}.root".format(dt, label, typ)
-    array2root(x, fn, "tree", ["cls1", "cls2"])
+    array2root(x, fn, "tree", ["cls1", "cls2", "cls3"])
 
 for ((dt, typ, label), d) in ds.items():
     fn = "{0}_{1}_{2}.root".format(dt, label, typ)
@@ -80,7 +102,7 @@ for ((dt, typ, label), d) in ds.items():
     d2.load()
     d.tree.AddFriend(d2.tree)
     ds_eval[(dt, typ, label)] = d2
-    
+
 validation_of = ROOT.TFile("out.root", "RECREATE")
 validation_of.cd()
 
@@ -94,15 +116,16 @@ for ((dt, typ, label), d) in ds.items():
         ("bd_sel", (100, 0, 1)),
         ("bd_smu", (100, 0, 1)),
         ("cls1", (100, -1, 1)),
-        ("cls2", (100, -1, 1))
-        ]:    
+        ("cls2", (100, -1, 1)),
+        ("cls3", (100, -1, 1))
+        ]:
         print dt, typ, label, cl
         #discriminator distribution
         h = d.hist(cl, lims, "1")
         rdir.cd()
         h = h.Clone("h_{0}".format(cl))
         h.Write()
-        
+
         #cumulative
         hc = h.GetCumulative()
         hc = hc.Clone(h.GetName() + "_c")

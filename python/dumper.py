@@ -40,7 +40,7 @@ def get_weight(pt, eta, fl):
     #print pt, eta, fl, b, w
     if w>0:
         w = 1.0 / w
-    if w<0:
+    elif w<=0:
         w = 0.0
     return w
 
