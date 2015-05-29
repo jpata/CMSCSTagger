@@ -10,6 +10,10 @@ from mvalib import Data, Classifier
 from collections import OrderedDict
 
 class ROOTData(Data):
+    """
+    A class that encapsulates a single table of data stored in ROOT TTrees.
+    Data are not loaded at creation to make the class easily serializable
+    """
     def __init__(self, **kwargs):
         Data.__init__(self, **kwargs)
 
@@ -17,36 +21,52 @@ class ROOTData(Data):
         self.treename = kwargs.get("treename")
         self.kind = kwargs.get("kind")
         self.label = kwargs.get("label")
-        self.selection = "1"
+        self.selection = kwargs.get("selection", "1")
 
         self.tree = None
         self.tfile = None
         self.is_loaded = False
 
     def load(self):
+        """
+        Loads the ROOT files.
+        """
         self.tfile = ROOT.TFile(self.filename)
         self.tree = self.tfile.Get(self.treename)
         if not self.tree:
-            raise Exception("Could not open {0}:{1}".format(
+            raise Exception("Could not open TTree {0}:{1}".format(
                 self.filename, self.treename
             ))
         self.is_loaded = True
 
     def unload(self):
+        """
+        Clears the ROOT files.
+        """
         self.tfile.Close()
         self.is_loaded = False
-
+        self.tfile = None
+        self.tree = None
 
     def __len__(self):
+        """
+        Returns the number of entries/rows in these data.
+        """
         return self.tree.GetEntries()
 
-    def hist(self, func, bins, cut):
+    def hist(self, func, bins, cut, hname="h"):
+        """
+        Projects a histogram from these data.
+        """
         #ROOT.gROOT.cd()
         h = ROOT.TH1D("h", "h", *bins)
         n = self.tree.Draw("{0} >> h".format(func), cut)
-        return h
+        return h.Clone(hname)
 
 def roc(h1, h2):
+    """
+    Creates a ROC curve from two histograms.
+    """
     h1 = h1.Clone()
     h2 = h2.Clone()
     h1.Scale(1.0 / h1.Integral())
@@ -63,15 +83,21 @@ def roc(h1, h2):
         err[i,1] = 0.0*c2.GetBinError(i+1)
     return ret, err
 
-def check_data(data):
-    brs = data.tree.GetListOfBranches()
-    for br in brs:
-        isnan = data.tree.GetEntries("{0} != {0}".format(br.GetName()))
-        isinf = data.tree.GetEntries("{0} > 99999 || {0} < -99999".format(br.GetName()))
-        print br.GetName(), isnan, isinf
+# def check_data(data):
+#     """
+#     Creates a ROC curve from two histograms.
+#     """
+#     brs = data.tree.GetListOfBranches()
+#     for br in brs:
+#         isnan = data.tree.GetEntries("{0} != {0}".format(br.GetName()))
+#         isinf = data.tree.GetEntries("{0} > 99999 || {0} < -99999".format(br.GetName()))
+#         print br.GetName(), isnan, isinf
 
 
 class TMVABDTClassifier(Classifier):
+    """
+    TMVA two-class classification via a gBDT.
+    """
     def __init__(self, **kwargs):
         Classifier.__init__(self, **kwargs)
         self.name = kwargs.get("name")
@@ -94,6 +120,8 @@ class TMVABDTClassifier(Classifier):
         self.max_depth = kwargs.get("max_depth", 3)
         self.use_bootstrap = kwargs.get("use_bootstrap", False)
         self.weight = kwargs.get("weight", None)
+        self.label_signal = kwargs.get("label_signal", None)
+        self.cut = kwargs.get("cut", "1")
         self.data = []
 
     def prepare(self):
@@ -104,9 +132,9 @@ class TMVABDTClassifier(Classifier):
         self.out.cd()
         self.factory = TMVA.Factory(
             "tmva", self.out,
-            #"Transformations=I;N:"+
-            #"DrawProgressBar=True:"+
-            "!V:Silent=False:"+
+            "Transformations=I;N:"+
+            "DrawProgressBar=False:"+
+            "!V:Silent=True:"+
             "AnalysisType=Classification"
         )
         for var in self.variables:
@@ -115,13 +143,19 @@ class TMVABDTClassifier(Classifier):
             self.factory.AddSpectator(var, "F")
 
         for data in self.data:
-            self.factory.AddTree(
-                data.tree,
-                data.label,
-                1.0,
-                ROOT.TCut(data.selection),
-                data.kind
-            )
+            if data.label == self.label_signal:
+                func = self.factory.AddSignalTree(data.tree, 1.0, data.kind)
+            else:
+            #elif not self.label_signal is None:
+                func = self.factory.AddBackgroundTree(data.tree, 1.0, data.kind)
+            # else:
+            #     self.factory.AddTree(
+            #         data.tree,
+            #         data.label,
+            #         1.0,
+            #         ROOT.TCut(data.selection),
+            #         data.kind
+            #     )
 
     def load_data(self):
         for data in self.data:
@@ -131,10 +165,8 @@ class TMVABDTClassifier(Classifier):
         self.data += [data]
 
     def train(self):
-        print "training", self.mva_name
-
         self.mva_opts = ("!H:" +
-            "!V:VerbosityLevel=Verbose:" +
+            "!V:VerbosityLevel=Fatal:" +
             "NTrees={0}:".format(self.ntrees) +
             "BoostType=Grad:" +
             "Shrinkage={0}:".format(self.shrinkage) +
@@ -159,13 +191,8 @@ class TMVABDTClassifier(Classifier):
         #     nevents_str += ["nTest_{0}={1}".format(cl, nmax)]
         # nevents_str = ":".join(nevents_str)
 
-        cutstrs = ["1"]
-        #for var in self.variables:
-        #    cutstrs += ["{0}=={0} && {0}>=-10 && {0}<100".format(var)]
-        cutstr = "&&".join(cutstrs)
-        print "cutstr", cutstr
         self.factory.PrepareTrainingAndTestTree(
-            ROOT.TCut(cutstr),
+            ROOT.TCut(self.cut),
             "SplitMode=Block:MixMode=Block:NormMode=None:V"# + nevents_str
         )
         if self.weight:
@@ -173,16 +200,9 @@ class TMVABDTClassifier(Classifier):
 
         self.factory.TrainAllMethods()
         self.factory.TestAllMethods()
-        #self.factory.EvaluateAllMethods() #crashes?
+        self.factory.EvaluateAllMethods() #crashes when using AnalysisMode=Classification and factory.AddTree
 
-        # * thread #1: tid = 0x11d781, 0x000000010d40a7c8 libTMVA.so`TMVA::DataSet::GetNEvtSigTest() + 50, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x70)
-        # frame #0: 0x000000010d40a7c8 libTMVA.so`TMVA::DataSet::GetNEvtSigTest() + 50
-        # frame #1: 0x000000010d4302e7 libTMVA.so`TMVA::Factory::EvaluateAllMethods() + 11729
-        # frame #2: 0x0000000102a019c7
-
-        #print "done evaluate"
         self.factory.DeleteAllMethods()
-        #del self.factory
 
         #Clean up factory
         #Necessary for serializing TMVAClassifier
@@ -191,8 +211,6 @@ class TMVABDTClassifier(Classifier):
         self.out.Write()
         self.out.Close()
         print "done training", self.mva_name
-        #del self.out
-        #self.out = None
         return self
 
     def evaluate(self, data):
