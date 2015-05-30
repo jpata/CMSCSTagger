@@ -13,7 +13,7 @@ class NTupleVariable:
     def __init__(self, **kwargs):
         self.name = kwargs.get("name")
         self.func = kwargs.get("func")
-        self.dtype = kwargs.get("dtype", "d")
+        self.dtype = kwargs.get("dtype", "f")
         self.var = array(self.dtype, [0.0])
 
     def set(self, x):
@@ -84,6 +84,16 @@ jet_bd5 = NTupleVariable(
     func=lambda x: x.SoftEl
 )
 
+jet_bd6 = NTupleVariable(
+    name="bd_cmva1",
+    func=lambda x: x.CombMVA
+)
+
+jet_bd7 = NTupleVariable(
+    name="bd_cmva2",
+    func=lambda x: x.CombMVANEW
+)
+
 jet_flavour = NTupleVariable(
     name="flavour",
     func=lambda x: x.flavour
@@ -138,7 +148,7 @@ if __name__ == "__main__":
         ot.SetDirectory(ofile)
 
     registered_branches_jet = [
-        jet_pt, jet_eta, jet_bd1, jet_bd2, jet_bd3, jet_bd4, jet_bd5,
+        jet_pt, jet_eta, jet_bd1, jet_bd2, jet_bd3, jet_bd4, jet_bd5, jet_bd6, jet_bd7,
         jet_vtxCat,
         jet_flavour,
         jet_nsvs,

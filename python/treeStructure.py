@@ -176,107 +176,111 @@ class Genquark:
 
 class Jet:
   def __init__(self, tree, i):
-    #self.CombCSVSL_P = tree.Jet_CombCSVSL_P[i]
-    #self.ProbaN = tree.Jet_ProbaN[i]
-    #self.ProbaP = tree.Jet_ProbaP[i]
+    self.trackSip2dValAboveCharm = tree.TagVarCSV_trackSip2dValAboveCharm[i]
+    self.CombMVANEW = tree.Jet_CombMVANEW[i]
+    self.ProbaN = tree.Jet_ProbaN[i]
+    self.DoubleSV = tree.Jet_DoubleSV[i]
+    self.ProbaP = tree.Jet_ProbaP[i]
     self.CombSvx = tree.Jet_CombSvx[i]
-    #self.tightID = tree.Jet_tightID[i]
+    self.tightID = tree.Jet_tightID[i]
+    self.CombIVF_P = tree.Jet_CombIVF_P[i]
     self.vertexCategory = tree.TagVarCSV_vertexCategory[i]
-    #self.flightDistance3dVal = tree.TagVarCSV_flightDistance3dVal[i]
-    #self.ntracks = tree.Jet_ntracks[i]
-    #self.ncHadrons = tree.Jet_ncHadrons[i]
-    #self.BprobN = tree.Jet_BprobN[i]
-    #self.flightDistance2dSig = tree.TagVarCSV_flightDistance2dSig[i]
-    #self.flightDistance2dVal = tree.TagVarCSV_flightDistance2dVal[i]
-    # self.RetCombSvx = tree.Jet_RetCombSvx[i]
-    # self.BprobP = tree.Jet_BprobP[i]
-    # self.RetCombSvxP = tree.Jet_RetCombSvxP[i]
-    # self.trackSumJetDeltaR = tree.TagVarCSV_trackSumJetDeltaR[i]
+    self.flightDistance3dVal = tree.TagVarCSV_flightDistance3dVal[i]
+    self.ntracks = tree.Jet_ntracks[i]
+    self.CombIVF_N = tree.Jet_CombIVF_N[i]
+    self.ncHadrons = tree.Jet_ncHadrons[i]
+    self.BprobN = tree.Jet_BprobN[i]
+    self.flightDistance2dSig = tree.TagVarCSV_flightDistance2dSig[i]
+    self.flightDistance2dVal = tree.TagVarCSV_flightDistance2dVal[i]
+    self.BprobP = tree.Jet_BprobP[i]
+    self.trackSumJetDeltaR = tree.TagVarCSV_trackSumJetDeltaR[i]
     self.Proba = tree.Jet_Proba[i]
-    # self.RetCombSvxN = tree.Jet_RetCombSvxN[i]
-    # self.nFirstTrack = tree.Jet_nFirstTrack[i]
-    # self.CombCSVSL_N = tree.Jet_CombCSVSL_N[i]
-    # self.trackSip2dValAboveCharm = tree.TagVarCSV_trackSip2dValAboveCharm[i]
+    self.nFirstTrack = tree.Jet_nFirstTrack[i]
     self.pt = tree.Jet_pt[i]
-    # self.trackSip2dSigAboveCharm = tree.TagVarCSV_trackSip2dSigAboveCharm[i]
-    # self.nLastTrkInc = tree.Jet_nLastTrkInc[i]
-    # self.SoftElP = tree.Jet_SoftElP[i]
-    # self.vertexNTracks = tree.TagVarCSV_vertexNTracks[i]
-    # self.nseltracks = tree.Jet_nseltracks[i]
-    # self.nLastTrkTagVarCSV = tree.Jet_nLastTrkTagVarCSV[i]
-    # self.vertexJetDeltaR = tree.TagVarCSV_vertexJetDeltaR[i]
-    # self.SoftMuP = tree.Jet_SoftMuP[i]
+    self.trackSip2dSigAboveCharm = tree.TagVarCSV_trackSip2dSigAboveCharm[i]
+    self.nLastTrkInc = tree.Jet_nLastTrkInc[i]
+    self.SoftElP = tree.Jet_SoftElP[i]
+    self.vertexNTracks = tree.TagVarCSV_vertexNTracks[i]
+    self.nseltracks = tree.Jet_nseltracks[i]
+    self.nLastTrkTagVarCSV = tree.Jet_nLastTrkTagVarCSV[i]
+    self.nSM = tree.Jet_nSM[i]
+    self.nSE = tree.Jet_nSE[i]
+    self.vertexJetDeltaR = tree.TagVarCSV_vertexJetDeltaR[i]
+    self.SoftMuP = tree.Jet_SoftMuP[i]
     self.Svx = tree.Jet_Svx[i]
     self.CombIVF = tree.Jet_CombIVF[i]
-    # self.nLastTrkEtaRelTagVarCSV = tree.Jet_nLastTrkEtaRelTagVarCSV[i]
+    self.nLastTrack = tree.Jet_nLastTrack[i]
+    self.CombMVA = tree.Jet_CombMVA[i]
+    self.nLastTrkEtaRelTagVarCSV = tree.Jet_nLastTrkEtaRelTagVarCSV[i]
     self.nLastSV = tree.Jet_nLastSV[i]
-    # self.SvxHP = tree.Jet_SvxHP[i]
+    self.SvxHP = tree.Jet_SvxHP[i]
+    self.nFirstSE = tree.Jet_nFirstSE[i]
+    self.nLastSM = tree.Jet_nLastSM[i]
     self.flavour = tree.Jet_flavour[i]
-    # self.CombSvxP = tree.Jet_CombSvxP[i]
-    # self.jetNTracksEtaRel = tree.TagVarCSV_jetNTracksEtaRel[i]
-    # self.CombSvxN = tree.Jet_CombSvxN[i]
-    # self.jetNTracks = tree.TagVarCSV_jetNTracks[i]
-    # self.jetNSecondaryVertices = tree.TagVarCSV_jetNSecondaryVertices[i]
-    # self.trackSumJetEtRatio = tree.TagVarCSV_trackSumJetEtRatio[i]
-    # self.trackSip3dValAboveCharm = tree.TagVarCSV_trackSip3dValAboveCharm[i]
+    self.nLastSE = tree.Jet_nLastSE[i]
+    self.CombSvxP = tree.Jet_CombSvxP[i]
+    self.jetNTracksEtaRel = tree.TagVarCSV_jetNTracksEtaRel[i]
+    self.CombSvxN = tree.Jet_CombSvxN[i]
+    self.jetNTracks = tree.TagVarCSV_jetNTracks[i]
+    self.jetNSecondaryVertices = tree.TagVarCSV_jetNSecondaryVertices[i]
+    self.trackSumJetEtRatio = tree.TagVarCSV_trackSumJetEtRatio[i]
+    self.trackSip3dValAboveCharm = tree.TagVarCSV_trackSip3dValAboveCharm[i]
     self.mass = tree.Jet_mass[i]
-    # self.CombCSVSL = tree.Jet_CombCSVSL[i]
     self.nFirstSV = tree.Jet_nFirstSV[i]
-    # self.histJet = tree.Jet_histJet[i]
-    # self.SvxNHP = tree.Jet_SvxNHP[i]
-    # self.flightDistance3dSig = tree.TagVarCSV_flightDistance3dSig[i]
-    # self.SoftMuN = tree.Jet_SoftMuN[i]
-    # self.Bprob = tree.Jet_Bprob[i]
-    # self.SV_multi = tree.Jet_SV_multi[i]
+    self.histJet = tree.Jet_histJet[i]
+    self.SvxNHP = tree.Jet_SvxNHP[i]
+    self.flightDistance3dSig = tree.TagVarCSV_flightDistance3dSig[i]
+    self.SoftMuN = tree.Jet_SoftMuN[i]
+    self.Bprob = tree.Jet_Bprob[i]
+    self.SV_multi = tree.Jet_SV_multi[i]
     self.SoftEl = tree.Jet_SoftEl[i]
-    # self.phi = tree.Jet_phi[i]
+    self.phi = tree.Jet_phi[i]
     self.SoftMu = tree.Jet_SoftMu[i]
-    # self.Ip2N = tree.Jet_Ip2N[i]
-    # self.Ip2P = tree.Jet_Ip2P[i]
-    # self.nFirstTrkEtaRelTagVarCSV = tree.Jet_nFirstTrkEtaRelTagVarCSV[i]
-    # self.looseID = tree.Jet_looseID[i]
-    # self.trackSip3dSigAboveCharm = tree.TagVarCSV_trackSip3dSigAboveCharm[i]
+    self.Ip2N = tree.Jet_Ip2N[i]
+    self.Ip2P = tree.Jet_Ip2P[i]
+    self.nFirstTrkEtaRelTagVarCSV = tree.Jet_nFirstTrkEtaRelTagVarCSV[i]
+    self.looseID = tree.Jet_looseID[i]
+    self.trackSip3dSigAboveCharm = tree.TagVarCSV_trackSip3dSigAboveCharm[i]
     self.jes = tree.Jet_jes[i]
     self.eta = tree.Jet_eta[i]
-    # self.hist2 = tree.Jet_hist2[i]
-    # self.nLastTrack = tree.Jet_nLastTrack[i]
-    # self.SoftElN = tree.Jet_SoftElN[i]
-    # self.vertexMass = tree.TagVarCSV_vertexMass[i]
-    # self.Ip3N = tree.Jet_Ip3N[i]
-    # self.vertexEnergyRatio = tree.TagVarCSV_vertexEnergyRatio[i]
-    # self.nFirstTrkInc = tree.Jet_nFirstTrkInc[i]
-    # self.nFirstTrkTagVarCSV = tree.Jet_nFirstTrkTagVarCSV[i]
-    # self.histSvx = tree.Jet_histSvx[i]
-    # self.genpt = tree.Jet_genpt[i]
-    # self.hist1 = tree.Jet_hist1[i]
-    # self.nbHadrons = tree.Jet_nbHadrons[i]
-    # self.hist3 = tree.Jet_hist3[i]
-    # self.SvxN = tree.Jet_SvxN[i]
-    # self.residual = tree.Jet_residual[i]
-    # self.trackJetPt = tree.TagVarCSV_trackJetPt[i]
-    # self.Ip3P = tree.Jet_Ip3P[i]
+    self.hist2 = tree.Jet_hist2[i]
+    self.nFirstSM = tree.Jet_nFirstSM[i]
+    self.SoftElN = tree.Jet_SoftElN[i]
+    self.vertexMass = tree.TagVarCSV_vertexMass[i]
+    self.Ip3N = tree.Jet_Ip3N[i]
+    self.vertexEnergyRatio = tree.TagVarCSV_vertexEnergyRatio[i]
+    self.nFirstTrkInc = tree.Jet_nFirstTrkInc[i]
+    self.nFirstTrkTagVarCSV = tree.Jet_nFirstTrkTagVarCSV[i]
+    self.histSvx = tree.Jet_histSvx[i]
+    self.genpt = tree.Jet_genpt[i]
+    self.hist1 = tree.Jet_hist1[i]
+    self.nbHadrons = tree.Jet_nbHadrons[i]
+    self.hist3 = tree.Jet_hist3[i]
+    self.SvxN = tree.Jet_SvxN[i]
+    self.residual = tree.Jet_residual[i]
+    self.trackJetPt = tree.TagVarCSV_trackJetPt[i]
+    self.Ip3P = tree.Jet_Ip3P[i]
   types = {
-    'CombCSVSL_P': 'Float_t',
+    'trackSip2dValAboveCharm': 'Float_t',
+    'CombMVANEW': 'Float_t',
     'ProbaN': 'Float_t',
+    'DoubleSV': 'Float_t',
     'ProbaP': 'Float_t',
     'CombSvx': 'Float_t',
     'tightID': 'Int_t',
+    'CombIVF_P': 'Float_t',
     'vertexCategory': 'Float_t',
     'flightDistance3dVal': 'Float_t',
     'ntracks': 'Int_t',
+    'CombIVF_N': 'Float_t',
     'ncHadrons': 'Int_t',
     'BprobN': 'Float_t',
     'flightDistance2dSig': 'Float_t',
     'flightDistance2dVal': 'Float_t',
-    'RetCombSvx': 'Float_t',
     'BprobP': 'Float_t',
-    'RetCombSvxP': 'Float_t',
     'trackSumJetDeltaR': 'Float_t',
     'Proba': 'Float_t',
-    'RetCombSvxN': 'Float_t',
     'nFirstTrack': 'Int_t',
-    'CombCSVSL_N': 'Float_t',
-    'trackSip2dValAboveCharm': 'Float_t',
     'pt': 'Float_t',
     'trackSip2dSigAboveCharm': 'Float_t',
     'nLastTrkInc': 'Int_t',
@@ -284,14 +288,21 @@ class Jet:
     'vertexNTracks': 'Float_t',
     'nseltracks': 'Int_t',
     'nLastTrkTagVarCSV': 'Int_t',
+    'nSM': 'Int_t',
+    'nSE': 'Int_t',
     'vertexJetDeltaR': 'Float_t',
     'SoftMuP': 'Float_t',
     'Svx': 'Float_t',
     'CombIVF': 'Float_t',
+    'nLastTrack': 'Int_t',
+    'CombMVA': 'Float_t',
     'nLastTrkEtaRelTagVarCSV': 'Int_t',
     'nLastSV': 'Int_t',
     'SvxHP': 'Float_t',
+    'nFirstSE': 'Int_t',
+    'nLastSM': 'Int_t',
     'flavour': 'Int_t',
+    'nLastSE': 'Int_t',
     'CombSvxP': 'Float_t',
     'jetNTracksEtaRel': 'Float_t',
     'CombSvxN': 'Float_t',
@@ -300,7 +311,6 @@ class Jet:
     'trackSumJetEtRatio': 'Float_t',
     'trackSip3dValAboveCharm': 'Float_t',
     'mass': 'Float_t',
-    'CombCSVSL': 'Float_t',
     'nFirstSV': 'Int_t',
     'histJet': 'Int_t',
     'SvxNHP': 'Float_t',
@@ -319,7 +329,7 @@ class Jet:
     'jes': 'Float_t',
     'eta': 'Float_t',
     'hist2': 'Int_t',
-    'nLastTrack': 'Int_t',
+    'nFirstSM': 'Int_t',
     'SoftElN': 'Float_t',
     'vertexMass': 'Float_t',
     'Ip3N': 'Float_t',
@@ -341,69 +351,12 @@ class Jet:
   def make_array(tree):
     return [Jet(tree, i) for i in range(tree.nJet)]
 
-class Muon:
-  def __init__(self, tree, i):
-    self.nTkHit = tree.Muon_nTkHit[i]
-    self.IdxJet = tree.Muon_IdxJet[i]
-    self.phi = tree.Muon_phi[i]
-    self.ratio = tree.Muon_ratio[i]
-    self.ptrel = tree.Muon_ptrel[i]
-    self.vz = tree.Muon_vz[i]
-    self.IP = tree.Muon_IP[i]
-    self.eta = tree.Muon_eta[i]
-    self.ratioRel = tree.Muon_ratioRel[i]
-    self.isGlobal = tree.Muon_isGlobal[i]
-    self.chi2Tk = tree.Muon_chi2Tk[i]
-    self.nMatched = tree.Muon_nMatched[i]
-    self.IP2D = tree.Muon_IP2D[i]
-    self.Proba = tree.Muon_Proba[i]
-    self.pt = tree.Muon_pt[i]
-    self.deltaR = tree.Muon_deltaR[i]
-    self.TrackIdx = tree.Muon_TrackIdx[i]
-    self.nMuHit = tree.Muon_nMuHit[i]
-    self.hist = tree.Muon_hist[i]
-    self.nOutHit = tree.Muon_nOutHit[i]
-    self.nPixHit = tree.Muon_nPixHit[i]
-    self.IP2Dsig = tree.Muon_IP2Dsig[i]
-    self.IPsig = tree.Muon_IPsig[i]
-    self.chi2 = tree.Muon_chi2[i]
-  types = {
-    'nTkHit': 'Int_t',
-    'IdxJet': 'Int_t',
-    'phi': 'Float_t',
-    'ratio': 'Float_t',
-    'ptrel': 'Float_t',
-    'vz': 'Float_t',
-    'IP': 'Float_t',
-    'eta': 'Float_t',
-    'ratioRel': 'Float_t',
-    'isGlobal': 'Int_t',
-    'chi2Tk': 'Float_t',
-    'nMatched': 'Int_t',
-    'IP2D': 'Float_t',
-    'Proba': 'Float_t',
-    'pt': 'Float_t',
-    'deltaR': 'Float_t',
-    'TrackIdx': 'Int_t',
-    'nMuHit': 'Int_t',
-    'hist': 'Int_t',
-    'nOutHit': 'Int_t',
-    'nPixHit': 'Int_t',
-    'IP2Dsig': 'Float_t',
-    'IPsig': 'Float_t',
-    'chi2': 'Float_t',
-  }
-
-  @staticmethod
-  def make_array(tree):
-    return [Muon(tree, i) for i in range(tree.nMuon)]
-
 class PFElectron:
   def __init__(self, tree, i):
     self.pt = tree.PFElectron_pt[i]
+    self.ratio = tree.PFElectron_ratio[i]
     self.ptrel = tree.PFElectron_ptrel[i]
     self.eta = tree.PFElectron_eta[i]
-    self.ratio = tree.PFElectron_ratio[i]
     self.IdxJet = tree.PFElectron_IdxJet[i]
     self.IP = tree.PFElectron_IP[i]
     self.IP2D = tree.PFElectron_IP2D[i]
@@ -412,9 +365,9 @@ class PFElectron:
     self.phi = tree.PFElectron_phi[i]
   types = {
     'pt': 'Float_t',
+    'ratio': 'Float_t',
     'ptrel': 'Float_t',
     'eta': 'Float_t',
-    'ratio': 'Float_t',
     'IdxJet': 'Int_t',
     'IP': 'Float_t',
     'IP2D': 'Float_t',
@@ -430,28 +383,52 @@ class PFElectron:
 class PFMuon:
   def __init__(self, tree, i):
     self.GoodQuality = tree.PFMuon_GoodQuality[i]
+    self.nTkHit = tree.PFMuon_nTkHit[i]
     self.deltaR = tree.PFMuon_deltaR[i]
-    self.eta = tree.PFMuon_eta[i]
+    self.nMuHit = tree.PFMuon_nMuHit[i]
+    self.chi2Tk = tree.PFMuon_chi2Tk[i]
+    self.nTkLwM = tree.PFMuon_nTkLwM[i]
     self.IdxJet = tree.PFMuon_IdxJet[i]
     self.ratioRel = tree.PFMuon_ratioRel[i]
     self.IP = tree.PFMuon_IP[i]
+    self.nMatched = tree.PFMuon_nMatched[i]
     self.ratio = tree.PFMuon_ratio[i]
     self.IP2D = tree.PFMuon_IP2D[i]
     self.phi = tree.PFMuon_phi[i]
     self.pt = tree.PFMuon_pt[i]
+    self.nOutHit = tree.PFMuon_nOutHit[i]
+    self.isGlobal = tree.PFMuon_isGlobal[i]
+    self.nPixLwM = tree.PFMuon_nPixLwM[i]
+    self.hist = tree.PFMuon_hist[i]
+    self.dz = tree.PFMuon_dz[i]
+    self.eta = tree.PFMuon_eta[i]
+    self.nPixHit = tree.PFMuon_nPixHit[i]
     self.ptrel = tree.PFMuon_ptrel[i]
+    self.chi2 = tree.PFMuon_chi2[i]
   types = {
     'GoodQuality': 'Int_t',
+    'nTkHit': 'Int_t',
     'deltaR': 'Float_t',
-    'eta': 'Float_t',
+    'nMuHit': 'Int_t',
+    'chi2Tk': 'Float_t',
+    'nTkLwM': 'Int_t',
     'IdxJet': 'Int_t',
     'ratioRel': 'Float_t',
     'IP': 'Float_t',
+    'nMatched': 'Int_t',
     'ratio': 'Float_t',
     'IP2D': 'Float_t',
     'phi': 'Float_t',
     'pt': 'Float_t',
+    'nOutHit': 'Int_t',
+    'isGlobal': 'Int_t',
+    'nPixLwM': 'Int_t',
+    'hist': 'Int_t',
+    'dz': 'Float_t',
+    'eta': 'Float_t',
+    'nPixHit': 'Int_t',
     'ptrel': 'Float_t',
+    'chi2': 'Float_t',
   }
 
   @staticmethod
@@ -463,15 +440,15 @@ class PU:
     self.z = tree.PU_z[i]
     self.sumpT_low = tree.PU_sumpT_low[i]
     self.sumpT_high = tree.PU_sumpT_high[i]
-    self.ntrks_low = tree.PU_ntrks_low[i]
     self.bunch = tree.PU_bunch[i]
+    self.ntrks_low = tree.PU_ntrks_low[i]
     self.ntrks_high = tree.PU_ntrks_high[i]
   types = {
     'z': 'Float_t',
     'sumpT_low': 'Float_t',
     'sumpT_high': 'Float_t',
-    'ntrks_low': 'Int_t',
     'bunch': 'Int_t',
+    'ntrks_low': 'Int_t',
     'ntrks_high': 'Int_t',
   }
 
@@ -483,7 +460,8 @@ class SV:
   def __init__(self, tree, i):
     self.z = tree.SV_z[i]
     self.flightErr = tree.SV_flightErr[i]
-    self.vtx_eta = tree.SV_vtx_eta[i]
+    self.EnergyRatio = tree.SV_EnergyRatio[i]
+    self.totCharge = tree.SV_totCharge[i]
     self.x = tree.SV_x[i]
     self.y = tree.SV_y[i]
     self.vtx_phi = tree.SV_vtx_phi[i]
@@ -491,22 +469,26 @@ class SV:
     self.mass = tree.SV_mass[i]
     self.flight2DErr = tree.SV_flight2DErr[i]
     self.chi2 = tree.SV_chi2[i]
+    self.vtx_pt = tree.SV_vtx_pt[i]
+    self.dir_y = tree.SV_dir_y[i]
     self.ndf = tree.SV_ndf[i]
-    self.totCharge = tree.SV_totCharge[i]
-    self.ex = tree.SV_ex[i]
+    self.vtx_eta = tree.SV_vtx_eta[i]
     self.flight = tree.SV_flight[i]
     self.flight2D = tree.SV_flight2D[i]
+    self.ex = tree.SV_ex[i]
     self.ey = tree.SV_ey[i]
     self.ez = tree.SV_ez[i]
     self.nTrk = tree.SV_nTrk[i]
     self.deltaR_jet = tree.SV_deltaR_jet[i]
-    self.vtx_pt = tree.SV_vtx_pt[i]
+    self.dir_z = tree.SV_dir_z[i]
+    self.dir_x = tree.SV_dir_x[i]
     self.deltaR_sum_dir = tree.SV_deltaR_sum_dir[i]
     self.deltaR_sum_jet = tree.SV_deltaR_sum_jet[i]
   types = {
     'z': 'Float_t',
     'flightErr': 'Float_t',
-    'vtx_eta': 'Float_t',
+    'EnergyRatio': 'Float_t',
+    'totCharge': 'Float_t',
     'x': 'Float_t',
     'y': 'Float_t',
     'vtx_phi': 'Float_t',
@@ -514,16 +496,19 @@ class SV:
     'mass': 'Float_t',
     'flight2DErr': 'Float_t',
     'chi2': 'Float_t',
+    'vtx_pt': 'Float_t',
+    'dir_y': 'Float_t',
     'ndf': 'Float_t',
-    'totCharge': 'Float_t',
-    'ex': 'Float_t',
+    'vtx_eta': 'Float_t',
     'flight': 'Float_t',
     'flight2D': 'Float_t',
+    'ex': 'Float_t',
     'ey': 'Float_t',
     'ez': 'Float_t',
     'nTrk': 'Int_t',
     'deltaR_jet': 'Float_t',
-    'vtx_pt': 'Float_t',
+    'dir_z': 'Float_t',
+    'dir_x': 'Float_t',
     'deltaR_sum_dir': 'Float_t',
     'deltaR_sum_jet': 'Float_t',
   }
@@ -546,15 +531,15 @@ class TrkEtaRelTagVarCSV:
 class TrkInc:
   def __init__(self, tree, i):
     self.IPsig = tree.TrkInc_IPsig[i]
-    self.IP = tree.TrkInc_IP[i]
     self.eta = tree.TrkInc_eta[i]
+    self.IP = tree.TrkInc_IP[i]
     self.pt = tree.TrkInc_pt[i]
     self.phi = tree.TrkInc_phi[i]
     self.ptrel = tree.TrkInc_ptrel[i]
   types = {
     'IPsig': 'Float_t',
-    'IP': 'Float_t',
     'eta': 'Float_t',
+    'IP': 'Float_t',
     'pt': 'Float_t',
     'phi': 'Float_t',
     'ptrel': 'Float_t',
@@ -571,34 +556,34 @@ class TrkTagVarCSV:
     self.trackPParRatio = tree.TagVarCSV_trackPParRatio[i]
     self.trackMomentum = tree.TagVarCSV_trackMomentum[i]
     self.trackJetDistSig = tree.TagVarCSV_trackJetDistSig[i]
-    self.trackSip3dVal = tree.TagVarCSV_trackSip3dVal[i]
     self.trackPhi = tree.TagVarCSV_trackPhi[i]
+    self.trackDecayLenVal = tree.TagVarCSV_trackDecayLenVal[i]
     self.trackDecayLenSig = tree.TagVarCSV_trackDecayLenSig[i]
     self.trackPtRel = tree.TagVarCSV_trackPtRel[i]
+    self.trackSip3dSig = tree.TagVarCSV_trackSip3dSig[i]
     self.trackPtRatio = tree.TagVarCSV_trackPtRatio[i]
     self.trackSip2dVal = tree.TagVarCSV_trackSip2dVal[i]
     self.trackPPar = tree.TagVarCSV_trackPPar[i]
     self.trackJetDistVal = tree.TagVarCSV_trackJetDistVal[i]
-    self.trackSip3dSig = tree.TagVarCSV_trackSip3dSig[i]
+    self.trackSip3dVal = tree.TagVarCSV_trackSip3dVal[i]
     self.trackSip2dSig = tree.TagVarCSV_trackSip2dSig[i]
-    self.trackDecayLenVal = tree.TagVarCSV_trackDecayLenVal[i]
   types = {
     'trackEta': 'Float_t',
     'trackDeltaR': 'Float_t',
     'trackPParRatio': 'Float_t',
     'trackMomentum': 'Float_t',
     'trackJetDistSig': 'Float_t',
-    'trackSip3dVal': 'Float_t',
     'trackPhi': 'Float_t',
+    'trackDecayLenVal': 'Float_t',
     'trackDecayLenSig': 'Float_t',
     'trackPtRel': 'Float_t',
+    'trackSip3dSig': 'Float_t',
     'trackPtRatio': 'Float_t',
     'trackSip2dVal': 'Float_t',
     'trackPPar': 'Float_t',
     'trackJetDistVal': 'Float_t',
-    'trackSip3dSig': 'Float_t',
+    'trackSip3dVal': 'Float_t',
     'trackSip2dSig': 'Float_t',
-    'trackDecayLenVal': 'Float_t',
   }
 
   @staticmethod
@@ -611,15 +596,15 @@ class bQuarks:
     self.fromGSP = tree.bQuark_fromGSP[i]
     self.phi = tree.bQuark_phi[i]
     self.status = tree.bQuark_status[i]
-    self.eta = tree.bQuark_eta[i]
     self.pdgID = tree.bQuark_pdgID[i]
+    self.eta = tree.bQuark_eta[i]
   types = {
     'pT': 'Float_t',
     'fromGSP': 'Int_t',
     'phi': 'Float_t',
     'status': 'Int_t',
-    'eta': 'Float_t',
     'pdgID': 'Int_t',
+    'eta': 'Float_t',
   }
 
   @staticmethod
@@ -628,18 +613,18 @@ class bQuarks:
 
 class cQuarks:
   def __init__(self, tree, i):
-    self.fromGSP = tree.cQuark_fromGSP[i]
     self.eta = tree.cQuark_eta[i]
     self.phi = tree.cQuark_phi[i]
-    self.status = tree.cQuark_status[i]
     self.pdgID = tree.cQuark_pdgID[i]
+    self.status = tree.cQuark_status[i]
+    self.fromGSP = tree.cQuark_fromGSP[i]
     self.pT = tree.cQuark_pT[i]
   types = {
-    'fromGSP': 'Int_t',
     'eta': 'Float_t',
     'phi': 'Float_t',
-    'status': 'Int_t',
     'pdgID': 'Int_t',
+    'status': 'Int_t',
+    'fromGSP': 'Int_t',
     'pT': 'Float_t',
   }
 
@@ -659,7 +644,6 @@ class Event:
     #self.Genlep = Genlep.make_array(tree)
     #self.Genquark = Genquark.make_array(tree)
     self.Jet = Jet.make_array(tree)
-    #self.Muon = Muon.make_array(tree)
     #self.PFElectron = PFElectron.make_array(tree)
     #self.PFMuon = PFMuon.make_array(tree)
     #self.PU = PU.make_array(tree)
@@ -670,31 +654,31 @@ class Event:
     #self.bQuarks = bQuarks.make_array(tree)
     #self.cQuarks = cQuarks.make_array(tree)
     #self.nGenPruned = tree.nGenPruned
-    #self.nMuon = tree.nMuon
+    #self.nPFElectron = tree.nPFElectron
     #self.ncQuarks = tree.ncQuarks
     #self.nPUtrue = tree.nPUtrue
     #self.nGenlep = tree.nGenlep
+    #self.nTrkTagVarCSV = tree.nTrkTagVarCSV
     #self.nBHadrons = tree.nBHadrons
     #self.nTrkInc = tree.nTrkInc
     #self.Run = tree.Run
     #self.nPFMuon = tree.nPFMuon
     #self.GenPVz = tree.GenPVz
     #self.nbQuarks = tree.nbQuarks
-    #self.nTrkTagVarCSV = tree.nTrkTagVarCSV
     #self.mcweight = tree.mcweight
-    #self.nBitTrigger = tree.nBitTrigger
     #self.PVz = tree.PVz
+    self.nJet = tree.nJet
     #self.nPU = tree.nPU
     #self.PVez = tree.PVez
     #self.nTrkEtaRelTagVarCSV = tree.nTrkEtaRelTagVarCSV
-    #self.nPFElectron = tree.nPFElectron
+    #self.nBitTrigger = tree.nBitTrigger
     #self.Evt = tree.Evt
     self.nSV = tree.nSV
     #self.pthat = tree.pthat
     #self.nDaughters = tree.nDaughters
-    self.nJet = tree.nJet
     #self.LumiBlock = tree.LumiBlock
     self.nPV = tree.nPV
     #self.nGenquark = tree.nGenquark
     #self.nDHadrons = tree.nDHadrons
     #self.nGenV0 = tree.nGenV0
+

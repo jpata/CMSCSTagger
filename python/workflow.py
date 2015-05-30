@@ -9,8 +9,8 @@ import multiprocessing
 from roothelpers import array2root
 from collections import OrderedDict
 
-path = "/Users/joosep/Documents/btv/data/"
-#path = "./data/"
+#path = "/Users/joosep/Documents/btv/data/"
+path = "./data/"
 ncores = 4
 spectators = ["pt", "eta", "flavour"]
 
@@ -30,9 +30,9 @@ def load_data(path):
                     kind=kind
                 )
     return data
-    
+
 def create_classifiers(ds):
-    
+
     ret = OrderedDict()
     #Select a subregion of the full training data
     cls1 = TMVABDTClassifier(
@@ -67,7 +67,7 @@ def create_classifiers(ds):
         cut="w1==w1 && w1>0 && w1<10000000 && bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
     )
     ret["cls3"] = cls3
-    
+
     #Select a subregion of the full training data
     cls4 = TMVABDTClassifier(
         name="cls4",
@@ -79,7 +79,7 @@ def create_classifiers(ds):
         cut="w1==w1 && w1>0 && w1<10000000 && bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
     )
     ret["cls4"] = cls4
-    
+
     for dt in ["ttjets"]:
         for typ, kind in [
             ("testing", ROOT.TMVA.Types.kTesting),
@@ -89,27 +89,27 @@ def create_classifiers(ds):
                 d = ds[(dt, typ, label)]
                 for cl in ret.values():
                     cl.add_data(d)
-        
+
     return ret
-    
+
 def train(args):
     data, classifier = args
     for d in data.values():
         d.load()
-    
+
     print "training {0}".format(classifier.name)
     classifier.prepare()
     classifier.train()
     print "done {0}".format(classifier.name)
     return classifier
-    
+
 def evaluate_classifiers(classifiers, data):
     ds_eval = OrderedDict()
     # for ((dt, typ, label), d) in data.items():
-    # 
+    #
     #     evals = tuple([c.evaluate(d) for c in classifiers.values()])
     #     x = np.hstack(evals)
-    #     
+    #
     #     fn = "{0}_{1}_{2}.root".format(dt, label, typ)
     #     array2root(x, fn, "tree", classifiers.keys())
 
@@ -126,9 +126,9 @@ def evaluate_classifiers(classifiers, data):
         d.tree.AddFriend(d2.tree, "t2")
         ds_eval[(dt, typ, label)] = d2
     return ds_eval
-    
+
 def validate_classifiers(data, ofname="out.root"):
-    
+
     validation_of = ROOT.TFile(ofname, "RECREATE")
     validation_of.cd()
 
@@ -171,13 +171,13 @@ def validate_classifiers(data, ofname="out.root"):
                 hc.Write()
 
     validation_of.Close()
-    
+
 def main():
 
     data = load_data(path)
-    
+
     classifiers = create_classifiers(data)
-    
+
     args = [
         (data, classifiers["cls1"]),
         (data, classifiers["cls2"]),
@@ -191,7 +191,7 @@ def main():
         res = pool.map(train, args)
     else:
         res = map(train, args)
-        
+
     resd = OrderedDict()
     for r in res:
         resd[r.name] = r
@@ -200,9 +200,9 @@ def main():
     #careful, you must keep a reference to ds_eval, otherwise any operations with
     #an AddFriend tree fail
     ds_eval = evaluate_classifiers(classifiers, data)
-    
+
     print "validating classifiers"
     validate_classifiers(data)
-    
+
 if __name__=="__main__":
     main()
