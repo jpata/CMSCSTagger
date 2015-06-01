@@ -133,7 +133,9 @@ if __name__ == "__main__":
 
 
     INPUT = sys.argv[1]
+    print "in", INPUT
     OUTPUT = sys.argv[2]
+    print "out", OUTPUT
 
     tf = ROOT.TFile(INPUT)
     tt = tf.Get("btagana/ttree")

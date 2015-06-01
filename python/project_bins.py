@@ -42,7 +42,7 @@ for ptbin in range(0, 10):
         cut_str += " && abs(eta) >= {0} && abs(eta) < {1}".format(eta_low, eta_high)
         #cut = ROOT.TCut(cut_str)
         n = tt.GetEntries(cut_str)
-        upto = min(20000, n/2)
+        upto = min(10000, n/2)
         print ptbin, etabin, n, upto
         save_tree(
             tt,

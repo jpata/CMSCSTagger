@@ -12,12 +12,12 @@ from collections import OrderedDict
 #path = "/Users/joosep/Documents/btv/data/"
 path = "./data/"
 ncores = 4
-spectators = ["pt", "eta", "flavour"]
+spectators = ["bd_cmva1", "bd_cmva2", "pt", "eta", "flavour"]
 
 def load_data(path):
     data = OrderedDict()
 
-    for dt in ["qcd", "ttjets"]:
+    for dt in ["qcd", "ttjets", "ttjets2"]:
         for typ, kind in [
             ("testing", ROOT.TMVA.Types.kTesting),
             ("training", ROOT.TMVA.Types.kTraining)
@@ -38,7 +38,7 @@ def create_classifiers(ds):
     cls1 = TMVABDTClassifier(
         name="cls1",
         variables=["bd_csv1", "bd_csv2"],
-        ntrees=1000,
+        ntrees=2000,
         spectators=spectators,
         label_signal="b",
         cut="bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=0 && bd_csv1<1 && bd_csv2>=0 && bd_csv2<1"
@@ -49,7 +49,7 @@ def create_classifiers(ds):
     cls2 = TMVABDTClassifier(
         name="cls2",
         variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
-        ntrees=1000,
+        ntrees=2000,
         spectators=spectators,
         label_signal="b",
         cut="bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
@@ -60,7 +60,7 @@ def create_classifiers(ds):
     cls3 = TMVABDTClassifier(
         name="cls3",
         variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
-        ntrees=1000,
+        ntrees=2000,
         spectators=spectators,
         weight="w1",
         label_signal="b",
@@ -71,8 +71,8 @@ def create_classifiers(ds):
     #Select a subregion of the full training data
     cls4 = TMVABDTClassifier(
         name="cls4",
-        variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu", "pt"],
-        ntrees=1000,
+        variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu", "pt", "eta"],
+        ntrees=2000,
         spectators=spectators,
         weight="w1",
         label_signal="b",
@@ -80,7 +80,7 @@ def create_classifiers(ds):
     )
     ret["cls4"] = cls4
 
-    for dt in ["ttjets"]:
+    for dt in ["ttjets2"]:
         for typ, kind in [
             ("testing", ROOT.TMVA.Types.kTesting),
             ("training", ROOT.TMVA.Types.kTraining)
@@ -105,13 +105,14 @@ def train(args):
 
 def evaluate_classifiers(classifiers, data):
     ds_eval = OrderedDict()
-    # for ((dt, typ, label), d) in data.items():
-    #
-    #     evals = tuple([c.evaluate(d) for c in classifiers.values()])
-    #     x = np.hstack(evals)
-    #
-    #     fn = "{0}_{1}_{2}.root".format(dt, label, typ)
-    #     array2root(x, fn, "tree", classifiers.keys())
+    for ((dt, typ, label), d) in data.items():
+        if not d.is_loaded:
+            d.load()
+        evals = tuple([c.evaluate(d) for c in classifiers.values()])
+        x = np.hstack(evals)
+
+        fn = "{0}_{1}_{2}.root".format(dt, label, typ)
+        array2root(x, fn, "tree", classifiers.keys())
 
     for ((dt, typ, label), d) in data.items():
         fn = "{0}_{1}_{2}.root".format(dt, label, typ)
@@ -119,8 +120,6 @@ def evaluate_classifiers(classifiers, data):
             filename=fn, treename="tree", label=label
         )
         print fn
-        if not d.is_loaded:
-            d.load()
         d2.load()
         assert(d.tree.GetEntries() == d2.tree.GetEntries())
         d.tree.AddFriend(d2.tree, "t2")
@@ -153,10 +152,12 @@ def validate_classifiers(data, ofname="out.root"):
                 ("bd_jp", (100, 0, 2)),
                 ("bd_sel", (100, 0, 1)),
                 ("bd_smu", (100, 0, 1)),
+                ("bd_cmva1", (100, 0, 1)),
+                ("bd_cmva2", (100, 0, 1)),
                 ("cls1", (100, -1, 1)),
                 ("cls2", (100, -1, 1)),
-                ("cls3", (100, -1, 1))
-                ("cls4", (100, -1, 1))
+                ("cls3", (100, -1, 1)),
+                ("cls4", (100, -1, 1)),
                 ]:
                 print dt, typ, label, cl
                 #discriminator distribution
