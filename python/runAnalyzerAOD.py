@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 process = cms.Process("BTagAna")
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:///shome/jpata/btv/CMSSW_7_4_0_b/src/RecoBTag/000470E0-3B75-E411-8B90-00266CFFA604_ttjets_aod.root')
+    fileNames = cms.untracked.vstring('file://./000470E0-3B75-E411-8B90-00266CFFA604_ttjets_aod.root')
 )
 process.PFJetsCHS = cms.EDProducer("FastjetJetProducer",
     Active_Area_Repeats = cms.int32(1),
@@ -195,19 +195,19 @@ process.RecoTauCleanerPFlow = cms.EDProducer("RecoTauCleaner",
         selection = cms.string('signalPFChargedHadrCands().size() = 3'),
         selectionFailValue = cms.double(0),
         selectionPassFunction = cms.string('abs(charge())-1')
-    ), 
+    ),
         cms.PSet(
             name = cms.string('leadStripPtLt2_5'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
             selection = cms.string('signalPiZeroCandidates().size() = 0 | signalPiZeroCandidates()[0].pt() > 2.5'),
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('0')
-        ), 
+        ),
         cms.PSet(
             name = cms.string('HPS_Select'),
             plugin = cms.string('RecoTauDiscriminantCleanerPlugin'),
             src = cms.InputTag("hpsSelectionDiscriminatorPFlow")
-        ), 
+        ),
         cms.PSet(
             name = cms.string('Pt'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
@@ -215,14 +215,14 @@ process.RecoTauCleanerPFlow = cms.EDProducer("RecoTauCleaner",
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('-pt()'),
             tolerance = cms.double(0.01)
-        ), 
+        ),
         cms.PSet(
             name = cms.string('StripMultiplicity'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
             selection = cms.string('leadPFCand().isNonnull()'),
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('-signalPiZeroCandidates().size()')
-        ), 
+        ),
         cms.PSet(
             name = cms.string('CombinedIsolation'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
@@ -847,7 +847,7 @@ process.ak4PFJetsRecoTauChargedHadronsPFlow = cms.EDProducer("PFRecoTauChargedHa
                 minTrackVertexWeight = cms.double(-1.0)
             )
         )
-    ), 
+    ),
         cms.PSet(
             dRcone = cms.double(0.5),
             dRconeLimitedToJetArea = cms.bool(False),
@@ -896,7 +896,7 @@ process.ak4PFJetsRecoTauChargedHadronsPFlow = cms.EDProducer("PFRecoTauChargedHa
                 )
             ),
             srcTracks = cms.InputTag("generalTracks")
-        ), 
+        ),
         cms.PSet(
             chargedHadronCandidatesParticleIds = cms.vint32(5),
             dRmergeNeutralHadronWrtChargedHadron = cms.double(0.005),
@@ -963,14 +963,14 @@ process.ak4PFJetsRecoTauChargedHadronsPFlow = cms.EDProducer("PFRecoTauChargedHa
         selection = cms.string("algoIs(\'kChargedPFCandidate\')"),
         selectionFailValue = cms.double(1000.0),
         selectionPassFunction = cms.string('-pt')
-    ), 
+    ),
         cms.PSet(
             name = cms.string('ChargedPFCandidate'),
             plugin = cms.string('PFRecoTauChargedHadronStringQuality'),
             selection = cms.string("algoIs(\'kTrack\')"),
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('-pt')
-        ), 
+        ),
         cms.PSet(
             name = cms.string('ChargedPFCandidate'),
             plugin = cms.string('PFRecoTauChargedHadronStringQuality'),
@@ -1497,31 +1497,31 @@ process.combinatoricRecoTausPFlow = cms.EDProducer("RecoTauProducer",
             maxTracks = cms.uint32(6),
             nCharged = cms.uint32(1),
             nPiZeros = cms.uint32(0)
-        ), 
+        ),
             cms.PSet(
                 maxPiZeros = cms.uint32(6),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(1),
                 nPiZeros = cms.uint32(1)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(5),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(1),
                 nPiZeros = cms.uint32(2)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(0),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(2),
                 nPiZeros = cms.uint32(0)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(3),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(2),
                 nPiZeros = cms.uint32(1)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(0),
                 maxTracks = cms.uint32(6),
@@ -1615,7 +1615,7 @@ process.combinatoricRecoTausPFlow = cms.EDProducer("RecoTauProducer",
                 minTrackVertexWeight = cms.double(-1.0)
             )
         )
-    ), 
+    ),
         cms.PSet(
             DataType = cms.string('AOD'),
             EcalStripSumE_deltaEta = cms.double(0.03),
@@ -1627,7 +1627,7 @@ process.combinatoricRecoTausPFlow = cms.EDProducer("RecoTauProducer",
             maximumForElectrionPreIDOutput = cms.double(-0.1),
             name = cms.string('elec_rej'),
             plugin = cms.string('RecoTauElectronRejectionPlugin')
-        ), 
+        ),
         cms.PSet(
             dRaddNeutralHadron = cms.double(0.12),
             dRaddPhoton = cms.double(-1.0),
@@ -1636,7 +1636,7 @@ process.combinatoricRecoTausPFlow = cms.EDProducer("RecoTauProducer",
             name = cms.string('tau_en_reconstruction'),
             plugin = cms.string('PFRecoTauEnergyAlgorithmPlugin'),
             verbosity = cms.int32(0)
-        ), 
+        ),
         cms.PSet(
             name = cms.string('TTIworkaround'),
             pfTauTagInfoSrc = cms.InputTag("pfRecoTauTagInfoProducerPFlow"),
@@ -3920,9 +3920,9 @@ process.genJetsNoNuSoftDrop = cms.EDProducer("FastjetJetProducer",
 process.genParticlesForJetsNoNuPFlow = cms.EDProducer("InputGenJetsParticleSelector",
     excludeFromResonancePids = cms.vuint32(12, 13, 14, 16),
     excludeResonances = cms.bool(False),
-    ignoreParticleIDs = cms.vuint32(1000022, 1000012, 1000014, 1000016, 2000012, 
-        2000014, 2000016, 1000039, 5100039, 4000012, 
-        4000014, 4000016, 9900012, 9900014, 9900016, 
+    ignoreParticleIDs = cms.vuint32(1000022, 1000012, 1000014, 1000016, 2000012,
+        2000014, 2000016, 1000039, 5100039, 4000012,
+        4000014, 4000016, 9900012, 9900014, 9900016,
         39, 12, 14, 16),
     partonicFinalState = cms.bool(False),
     src = cms.InputTag("genParticles"),
@@ -4048,7 +4048,7 @@ process.hpsPFTauDiscriminationByDecayModeFinding = cms.EDProducer("PFRecoTauDisc
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -4057,7 +4057,7 @@ process.hpsPFTauDiscriminationByDecayModeFinding = cms.EDProducer("PFRecoTauDisc
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -4068,7 +4068,7 @@ process.hpsPFTauDiscriminationByDecayModeFinding = cms.EDProducer("PFRecoTauDisc
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -4096,7 +4096,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMs = cms.EDProducer("PFRecoT
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -4105,7 +4105,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMs = cms.EDProducer("PFRecoT
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -4116,7 +4116,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMs = cms.EDProducer("PFRecoT
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.2'),
             minMass = cms.double(0.0),
@@ -4124,7 +4124,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMs = cms.EDProducer("PFRecoT
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(0),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
             minMass = cms.double(0.0),
@@ -4132,7 +4132,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMs = cms.EDProducer("PFRecoT
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -4160,7 +4160,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMsPFlow = cms.EDProducer("PF
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -4169,7 +4169,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMsPFlow = cms.EDProducer("PF
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -4180,7 +4180,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMsPFlow = cms.EDProducer("PF
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.2'),
             minMass = cms.double(0.0),
@@ -4188,7 +4188,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMsPFlow = cms.EDProducer("PF
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(0),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
             minMass = cms.double(0.0),
@@ -4196,7 +4196,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingNewDMsPFlow = cms.EDProducer("PF
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -4224,7 +4224,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingOldDMs = cms.EDProducer("PFRecoT
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -4233,7 +4233,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingOldDMs = cms.EDProducer("PFRecoT
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -4244,7 +4244,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingOldDMs = cms.EDProducer("PFRecoT
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -4272,7 +4272,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingOldDMsPFlow = cms.EDProducer("PF
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -4281,7 +4281,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingOldDMsPFlow = cms.EDProducer("PF
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -4292,7 +4292,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingOldDMsPFlow = cms.EDProducer("PF
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -4320,7 +4320,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFRecoTa
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -4329,7 +4329,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFRecoTa
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -4340,7 +4340,7 @@ process.hpsPFTauDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFRecoTa
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -5622,77 +5622,77 @@ process.hpsPFTauDiscriminationByMVA5LooseElectronRejection = cms.EDProducer("Rec
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff96'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff96'),
@@ -5717,77 +5717,77 @@ process.hpsPFTauDiscriminationByMVA5LooseElectronRejectionPFlow = cms.EDProducer
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff96'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff96'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff96'),
@@ -5812,77 +5812,77 @@ process.hpsPFTauDiscriminationByMVA5MediumElectronRejection = cms.EDProducer("Re
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff91'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff91'),
@@ -5907,77 +5907,77 @@ process.hpsPFTauDiscriminationByMVA5MediumElectronRejectionPFlow = cms.EDProduce
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff91'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff91'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff91'),
@@ -6002,77 +6002,77 @@ process.hpsPFTauDiscriminationByMVA5TightElectronRejection = cms.EDProducer("Rec
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff85'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff85'),
@@ -6097,77 +6097,77 @@ process.hpsPFTauDiscriminationByMVA5TightElectronRejectionPFlow = cms.EDProducer
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff85'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff85'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff85'),
@@ -6192,77 +6192,77 @@ process.hpsPFTauDiscriminationByMVA5VLooseElectronRejection = cms.EDProducer("Re
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff99'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff99'),
@@ -6287,77 +6287,77 @@ process.hpsPFTauDiscriminationByMVA5VLooseElectronRejectionPFlow = cms.EDProduce
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff99'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff99'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff99'),
@@ -6382,77 +6382,77 @@ process.hpsPFTauDiscriminationByMVA5VTightElectronRejection = cms.EDProducer("Re
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff79'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff79'),
@@ -6477,77 +6477,77 @@ process.hpsPFTauDiscriminationByMVA5VTightElectronRejectionPFlow = cms.EDProduce
         category = cms.uint32(0),
         cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff79'),
         variable = cms.string('pt')
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(2),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(3),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(4),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(5),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(6),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(7),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(8),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(9),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(10),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(11),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(12),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(13),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(14),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff79'),
             variable = cms.string('pt')
-        ), 
+        ),
         cms.PSet(
             category = cms.uint32(15),
             cut = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff79'),
@@ -10992,19 +10992,19 @@ process.hpsPFTauProducerSansRefsPFlow = cms.EDProducer("RecoTauCleaner",
         selection = cms.string('signalPFChargedHadrCands().size() = 3'),
         selectionFailValue = cms.double(0),
         selectionPassFunction = cms.string('abs(charge())-1')
-    ), 
+    ),
         cms.PSet(
             name = cms.string('leadStripPtLt2_5'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
             selection = cms.string('signalPiZeroCandidates().size() = 0 | signalPiZeroCandidates()[0].pt() > 2.5'),
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('0')
-        ), 
+        ),
         cms.PSet(
             name = cms.string('HPS_Select'),
             plugin = cms.string('RecoTauDiscriminantCleanerPlugin'),
             src = cms.InputTag("hpsSelectionDiscriminatorPFlow")
-        ), 
+        ),
         cms.PSet(
             name = cms.string('Pt'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
@@ -11012,14 +11012,14 @@ process.hpsPFTauProducerSansRefsPFlow = cms.EDProducer("RecoTauCleaner",
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('-pt()'),
             tolerance = cms.double(0.01)
-        ), 
+        ),
         cms.PSet(
             name = cms.string('StripMultiplicity'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
             selection = cms.string('leadPFCand().isNonnull()'),
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('-signalPiZeroCandidates().size()')
-        ), 
+        ),
         cms.PSet(
             name = cms.string('CombinedIsolation'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
@@ -11057,7 +11057,7 @@ process.hpsSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscrimination
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -11066,7 +11066,7 @@ process.hpsSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscrimination
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -11077,7 +11077,7 @@ process.hpsSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscrimination
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.2'),
             minMass = cms.double(0.0),
@@ -11085,7 +11085,7 @@ process.hpsSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscrimination
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(0),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
             minMass = cms.double(0.0),
@@ -11093,7 +11093,7 @@ process.hpsSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscrimination
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -11963,7 +11963,7 @@ process.muPFIsoValueCharged03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -11976,7 +11976,7 @@ process.muPFIsoValueCharged03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -11989,7 +11989,7 @@ process.muPFIsoValueCharged03PATPFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12002,7 +12002,7 @@ process.muPFIsoValueCharged03PFBRECO = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12015,7 +12015,7 @@ process.muPFIsoValueCharged03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12028,7 +12028,7 @@ process.muPFIsoValueCharged03PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12041,7 +12041,7 @@ process.muPFIsoValueCharged04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12054,7 +12054,7 @@ process.muPFIsoValueCharged04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12067,7 +12067,7 @@ process.muPFIsoValueCharged04PATPFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12080,7 +12080,7 @@ process.muPFIsoValueCharged04PFBRECO = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12093,7 +12093,7 @@ process.muPFIsoValueCharged04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12106,7 +12106,7 @@ process.muPFIsoValueCharged04PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12119,7 +12119,7 @@ process.muPFIsoValueChargedAll03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12132,7 +12132,7 @@ process.muPFIsoValueChargedAll03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12145,7 +12145,7 @@ process.muPFIsoValueChargedAll03PATPFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12158,7 +12158,7 @@ process.muPFIsoValueChargedAll03PFBRECO = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12171,7 +12171,7 @@ process.muPFIsoValueChargedAll03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromD
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12184,7 +12184,7 @@ process.muPFIsoValueChargedAll03PFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12197,7 +12197,7 @@ process.muPFIsoValueChargedAll04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12210,7 +12210,7 @@ process.muPFIsoValueChargedAll04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12223,7 +12223,7 @@ process.muPFIsoValueChargedAll04PATPFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12236,7 +12236,7 @@ process.muPFIsoValueChargedAll04PFBRECO = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12249,7 +12249,7 @@ process.muPFIsoValueChargedAll04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromD
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12262,7 +12262,7 @@ process.muPFIsoValueChargedAll04PFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -12275,7 +12275,7 @@ process.muPFIsoValueGamma03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12288,7 +12288,7 @@ process.muPFIsoValueGamma03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12301,7 +12301,7 @@ process.muPFIsoValueGamma03PATPFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12314,7 +12314,7 @@ process.muPFIsoValueGamma03PFBRECO = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12327,7 +12327,7 @@ process.muPFIsoValueGamma03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12340,7 +12340,7 @@ process.muPFIsoValueGamma03PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12353,7 +12353,7 @@ process.muPFIsoValueGamma04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12366,7 +12366,7 @@ process.muPFIsoValueGamma04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12379,7 +12379,7 @@ process.muPFIsoValueGamma04PATPFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12392,7 +12392,7 @@ process.muPFIsoValueGamma04PFBRECO = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12405,7 +12405,7 @@ process.muPFIsoValueGamma04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12418,7 +12418,7 @@ process.muPFIsoValueGamma04PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12431,7 +12431,7 @@ process.muPFIsoValueGammaHighThreshold03 = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12444,7 +12444,7 @@ process.muPFIsoValueGammaHighThreshold03PAT = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12457,7 +12457,7 @@ process.muPFIsoValueGammaHighThreshold03PATPFlow = cms.EDProducer("CandIsolatorF
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12470,7 +12470,7 @@ process.muPFIsoValueGammaHighThreshold03PFBRECO = cms.EDProducer("CandIsolatorFr
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12483,7 +12483,7 @@ process.muPFIsoValueGammaHighThreshold03PFBRECOPFlow = cms.EDProducer("CandIsola
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12496,7 +12496,7 @@ process.muPFIsoValueGammaHighThreshold03PFlow = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12509,7 +12509,7 @@ process.muPFIsoValueGammaHighThreshold04 = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12522,7 +12522,7 @@ process.muPFIsoValueGammaHighThreshold04PAT = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12535,7 +12535,7 @@ process.muPFIsoValueGammaHighThreshold04PATPFlow = cms.EDProducer("CandIsolatorF
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12548,7 +12548,7 @@ process.muPFIsoValueGammaHighThreshold04PFBRECO = cms.EDProducer("CandIsolatorFr
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12561,7 +12561,7 @@ process.muPFIsoValueGammaHighThreshold04PFBRECOPFlow = cms.EDProducer("CandIsola
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12574,7 +12574,7 @@ process.muPFIsoValueGammaHighThreshold04PFlow = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12587,7 +12587,7 @@ process.muPFIsoValueNeutral03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12600,7 +12600,7 @@ process.muPFIsoValueNeutral03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12613,7 +12613,7 @@ process.muPFIsoValueNeutral03PATPFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12626,7 +12626,7 @@ process.muPFIsoValueNeutral03PFBRECO = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12639,7 +12639,7 @@ process.muPFIsoValueNeutral03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12652,7 +12652,7 @@ process.muPFIsoValueNeutral03PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12665,7 +12665,7 @@ process.muPFIsoValueNeutral04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12678,7 +12678,7 @@ process.muPFIsoValueNeutral04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12691,7 +12691,7 @@ process.muPFIsoValueNeutral04PATPFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12704,7 +12704,7 @@ process.muPFIsoValueNeutral04PFBRECO = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12717,7 +12717,7 @@ process.muPFIsoValueNeutral04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12730,7 +12730,7 @@ process.muPFIsoValueNeutral04PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12743,7 +12743,7 @@ process.muPFIsoValueNeutralHighThreshold03 = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12756,7 +12756,7 @@ process.muPFIsoValueNeutralHighThreshold03PAT = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12769,7 +12769,7 @@ process.muPFIsoValueNeutralHighThreshold03PATPFlow = cms.EDProducer("CandIsolato
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12782,7 +12782,7 @@ process.muPFIsoValueNeutralHighThreshold03PFBRECO = cms.EDProducer("CandIsolator
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12795,7 +12795,7 @@ process.muPFIsoValueNeutralHighThreshold03PFBRECOPFlow = cms.EDProducer("CandIso
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12808,7 +12808,7 @@ process.muPFIsoValueNeutralHighThreshold03PFlow = cms.EDProducer("CandIsolatorFr
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12821,7 +12821,7 @@ process.muPFIsoValueNeutralHighThreshold04 = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12834,7 +12834,7 @@ process.muPFIsoValueNeutralHighThreshold04PAT = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12847,7 +12847,7 @@ process.muPFIsoValueNeutralHighThreshold04PATPFlow = cms.EDProducer("CandIsolato
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12860,7 +12860,7 @@ process.muPFIsoValueNeutralHighThreshold04PFBRECO = cms.EDProducer("CandIsolator
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12873,7 +12873,7 @@ process.muPFIsoValueNeutralHighThreshold04PFBRECOPFlow = cms.EDProducer("CandIso
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12886,7 +12886,7 @@ process.muPFIsoValueNeutralHighThreshold04PFlow = cms.EDProducer("CandIsolatorFr
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -12899,7 +12899,7 @@ process.muPFIsoValuePU03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12912,7 +12912,7 @@ process.muPFIsoValuePU03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12925,7 +12925,7 @@ process.muPFIsoValuePU03PATPFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12938,7 +12938,7 @@ process.muPFIsoValuePU03PFBRECO = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12951,7 +12951,7 @@ process.muPFIsoValuePU03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12964,7 +12964,7 @@ process.muPFIsoValuePU03PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12977,7 +12977,7 @@ process.muPFIsoValuePU04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -12990,7 +12990,7 @@ process.muPFIsoValuePU04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13003,7 +13003,7 @@ process.muPFIsoValuePU04PATPFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13016,7 +13016,7 @@ process.muPFIsoValuePU04PFBRECO = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13029,7 +13029,7 @@ process.muPFIsoValuePU04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13042,7 +13042,7 @@ process.muPFIsoValuePU04PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sum'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13055,7 +13055,7 @@ process.muPFMeanDRIsoValueCharged03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13068,7 +13068,7 @@ process.muPFMeanDRIsoValueCharged03PAT = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13081,7 +13081,7 @@ process.muPFMeanDRIsoValueCharged03PATPFlow = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13094,7 +13094,7 @@ process.muPFMeanDRIsoValueCharged03PFBRECO = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13107,7 +13107,7 @@ process.muPFMeanDRIsoValueCharged03PFBRECOPFlow = cms.EDProducer("CandIsolatorFr
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13120,7 +13120,7 @@ process.muPFMeanDRIsoValueCharged03PFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13133,7 +13133,7 @@ process.muPFMeanDRIsoValueCharged04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13146,7 +13146,7 @@ process.muPFMeanDRIsoValueCharged04PAT = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13159,7 +13159,7 @@ process.muPFMeanDRIsoValueCharged04PATPFlow = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13172,7 +13172,7 @@ process.muPFMeanDRIsoValueCharged04PFBRECO = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13185,7 +13185,7 @@ process.muPFMeanDRIsoValueCharged04PFBRECOPFlow = cms.EDProducer("CandIsolatorFr
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13198,7 +13198,7 @@ process.muPFMeanDRIsoValueCharged04PFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13211,7 +13211,7 @@ process.muPFMeanDRIsoValueChargedAll03 = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13224,7 +13224,7 @@ process.muPFMeanDRIsoValueChargedAll03PAT = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13237,7 +13237,7 @@ process.muPFMeanDRIsoValueChargedAll03PATPFlow = cms.EDProducer("CandIsolatorFro
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13250,7 +13250,7 @@ process.muPFMeanDRIsoValueChargedAll03PFBRECO = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13263,7 +13263,7 @@ process.muPFMeanDRIsoValueChargedAll03PFBRECOPFlow = cms.EDProducer("CandIsolato
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13276,7 +13276,7 @@ process.muPFMeanDRIsoValueChargedAll03PFlow = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13289,7 +13289,7 @@ process.muPFMeanDRIsoValueChargedAll04 = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13302,7 +13302,7 @@ process.muPFMeanDRIsoValueChargedAll04PAT = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13315,7 +13315,7 @@ process.muPFMeanDRIsoValueChargedAll04PATPFlow = cms.EDProducer("CandIsolatorFro
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13328,7 +13328,7 @@ process.muPFMeanDRIsoValueChargedAll04PFBRECO = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13341,7 +13341,7 @@ process.muPFMeanDRIsoValueChargedAll04PFBRECOPFlow = cms.EDProducer("CandIsolato
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13354,7 +13354,7 @@ process.muPFMeanDRIsoValueChargedAll04PFlow = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -13367,7 +13367,7 @@ process.muPFMeanDRIsoValueGamma03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13380,7 +13380,7 @@ process.muPFMeanDRIsoValueGamma03PAT = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13393,7 +13393,7 @@ process.muPFMeanDRIsoValueGamma03PATPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13406,7 +13406,7 @@ process.muPFMeanDRIsoValueGamma03PFBRECO = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13419,7 +13419,7 @@ process.muPFMeanDRIsoValueGamma03PFBRECOPFlow = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13432,7 +13432,7 @@ process.muPFMeanDRIsoValueGamma03PFlow = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13445,7 +13445,7 @@ process.muPFMeanDRIsoValueGamma04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13458,7 +13458,7 @@ process.muPFMeanDRIsoValueGamma04PAT = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13471,7 +13471,7 @@ process.muPFMeanDRIsoValueGamma04PATPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13484,7 +13484,7 @@ process.muPFMeanDRIsoValueGamma04PFBRECO = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13497,7 +13497,7 @@ process.muPFMeanDRIsoValueGamma04PFBRECOPFlow = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13510,7 +13510,7 @@ process.muPFMeanDRIsoValueGamma04PFlow = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13523,7 +13523,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold03 = cms.EDProducer("CandIsolatorFro
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13536,7 +13536,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold03PAT = cms.EDProducer("CandIsolator
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13549,7 +13549,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold03PATPFlow = cms.EDProducer("CandIso
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13562,7 +13562,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold03PFBRECO = cms.EDProducer("CandIsol
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13575,7 +13575,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold03PFBRECOPFlow = cms.EDProducer("Can
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13588,7 +13588,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold03PFlow = cms.EDProducer("CandIsolat
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13601,7 +13601,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold04 = cms.EDProducer("CandIsolatorFro
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13614,7 +13614,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold04PAT = cms.EDProducer("CandIsolator
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13627,7 +13627,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold04PATPFlow = cms.EDProducer("CandIso
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13640,7 +13640,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold04PFBRECO = cms.EDProducer("CandIsol
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13653,7 +13653,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold04PFBRECOPFlow = cms.EDProducer("Can
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13666,7 +13666,7 @@ process.muPFMeanDRIsoValueGammaHighThreshold04PFlow = cms.EDProducer("CandIsolat
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13679,7 +13679,7 @@ process.muPFMeanDRIsoValueNeutral03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13692,7 +13692,7 @@ process.muPFMeanDRIsoValueNeutral03PAT = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13705,7 +13705,7 @@ process.muPFMeanDRIsoValueNeutral03PATPFlow = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13718,7 +13718,7 @@ process.muPFMeanDRIsoValueNeutral03PFBRECO = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13731,7 +13731,7 @@ process.muPFMeanDRIsoValueNeutral03PFBRECOPFlow = cms.EDProducer("CandIsolatorFr
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13744,7 +13744,7 @@ process.muPFMeanDRIsoValueNeutral03PFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13757,7 +13757,7 @@ process.muPFMeanDRIsoValueNeutral04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13770,7 +13770,7 @@ process.muPFMeanDRIsoValueNeutral04PAT = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13783,7 +13783,7 @@ process.muPFMeanDRIsoValueNeutral04PATPFlow = cms.EDProducer("CandIsolatorFromDe
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13796,7 +13796,7 @@ process.muPFMeanDRIsoValueNeutral04PFBRECO = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13809,7 +13809,7 @@ process.muPFMeanDRIsoValueNeutral04PFBRECOPFlow = cms.EDProducer("CandIsolatorFr
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13822,7 +13822,7 @@ process.muPFMeanDRIsoValueNeutral04PFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -13835,7 +13835,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold03 = cms.EDProducer("CandIsolatorF
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13848,7 +13848,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold03PAT = cms.EDProducer("CandIsolat
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13861,7 +13861,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold03PATPFlow = cms.EDProducer("CandI
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13874,7 +13874,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold03PFBRECO = cms.EDProducer("CandIs
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13887,7 +13887,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold03PFBRECOPFlow = cms.EDProducer("C
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13900,7 +13900,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold03PFlow = cms.EDProducer("CandIsol
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13913,7 +13913,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold04 = cms.EDProducer("CandIsolatorF
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13926,7 +13926,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold04PAT = cms.EDProducer("CandIsolat
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13939,7 +13939,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold04PATPFlow = cms.EDProducer("CandI
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13952,7 +13952,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold04PFBRECO = cms.EDProducer("CandIs
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13965,7 +13965,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold04PFBRECOPFlow = cms.EDProducer("C
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13978,7 +13978,7 @@ process.muPFMeanDRIsoValueNeutralHighThreshold04PFlow = cms.EDProducer("CandIsol
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -13991,7 +13991,7 @@ process.muPFMeanDRIsoValuePU03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14004,7 +14004,7 @@ process.muPFMeanDRIsoValuePU03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14017,7 +14017,7 @@ process.muPFMeanDRIsoValuePU03PATPFlow = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14030,7 +14030,7 @@ process.muPFMeanDRIsoValuePU03PFBRECO = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14043,7 +14043,7 @@ process.muPFMeanDRIsoValuePU03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14056,7 +14056,7 @@ process.muPFMeanDRIsoValuePU03PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14069,7 +14069,7 @@ process.muPFMeanDRIsoValuePU04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14082,7 +14082,7 @@ process.muPFMeanDRIsoValuePU04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14095,7 +14095,7 @@ process.muPFMeanDRIsoValuePU04PATPFlow = cms.EDProducer("CandIsolatorFromDeposit
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14108,7 +14108,7 @@ process.muPFMeanDRIsoValuePU04PFBRECO = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14121,7 +14121,7 @@ process.muPFMeanDRIsoValuePU04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14134,7 +14134,7 @@ process.muPFMeanDRIsoValuePU04PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('meanDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14147,7 +14147,7 @@ process.muPFSumDRIsoValueCharged03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14160,7 +14160,7 @@ process.muPFSumDRIsoValueCharged03PAT = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14173,7 +14173,7 @@ process.muPFSumDRIsoValueCharged03PATPFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14186,7 +14186,7 @@ process.muPFSumDRIsoValueCharged03PFBRECO = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14199,7 +14199,7 @@ process.muPFSumDRIsoValueCharged03PFBRECOPFlow = cms.EDProducer("CandIsolatorFro
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14212,7 +14212,7 @@ process.muPFSumDRIsoValueCharged03PFlow = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14225,7 +14225,7 @@ process.muPFSumDRIsoValueCharged04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14238,7 +14238,7 @@ process.muPFSumDRIsoValueCharged04PAT = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14251,7 +14251,7 @@ process.muPFSumDRIsoValueCharged04PATPFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14264,7 +14264,7 @@ process.muPFSumDRIsoValueCharged04PFBRECO = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14277,7 +14277,7 @@ process.muPFSumDRIsoValueCharged04PFBRECOPFlow = cms.EDProducer("CandIsolatorFro
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14290,7 +14290,7 @@ process.muPFSumDRIsoValueCharged04PFlow = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositCharged"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14303,7 +14303,7 @@ process.muPFSumDRIsoValueChargedAll03 = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14316,7 +14316,7 @@ process.muPFSumDRIsoValueChargedAll03PAT = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14329,7 +14329,7 @@ process.muPFSumDRIsoValueChargedAll03PATPFlow = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14342,7 +14342,7 @@ process.muPFSumDRIsoValueChargedAll03PFBRECO = cms.EDProducer("CandIsolatorFromD
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14355,7 +14355,7 @@ process.muPFSumDRIsoValueChargedAll03PFBRECOPFlow = cms.EDProducer("CandIsolator
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14368,7 +14368,7 @@ process.muPFSumDRIsoValueChargedAll03PFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14381,7 +14381,7 @@ process.muPFSumDRIsoValueChargedAll04 = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14394,7 +14394,7 @@ process.muPFSumDRIsoValueChargedAll04PAT = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPAT"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14407,7 +14407,7 @@ process.muPFSumDRIsoValueChargedAll04PATPFlow = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPATPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14420,7 +14420,7 @@ process.muPFSumDRIsoValueChargedAll04PFBRECO = cms.EDProducer("CandIsolatorFromD
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECO"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14433,7 +14433,7 @@ process.muPFSumDRIsoValueChargedAll04PFBRECOPFlow = cms.EDProducer("CandIsolator
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAllPFBRECOPFlow"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14446,7 +14446,7 @@ process.muPFSumDRIsoValueChargedAll04PFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositChargedAll"),
-        vetos = cms.vstring('0.0001', 
+        vetos = cms.vstring('0.0001',
             'Threshold(0.0)'),
         weight = cms.string('1')
     ))
@@ -14459,7 +14459,7 @@ process.muPFSumDRIsoValueGamma03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14472,7 +14472,7 @@ process.muPFSumDRIsoValueGamma03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14485,7 +14485,7 @@ process.muPFSumDRIsoValueGamma03PATPFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14498,7 +14498,7 @@ process.muPFSumDRIsoValueGamma03PFBRECO = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14511,7 +14511,7 @@ process.muPFSumDRIsoValueGamma03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromD
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14524,7 +14524,7 @@ process.muPFSumDRIsoValueGamma03PFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14537,7 +14537,7 @@ process.muPFSumDRIsoValueGamma04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14550,7 +14550,7 @@ process.muPFSumDRIsoValueGamma04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14563,7 +14563,7 @@ process.muPFSumDRIsoValueGamma04PATPFlow = cms.EDProducer("CandIsolatorFromDepos
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14576,7 +14576,7 @@ process.muPFSumDRIsoValueGamma04PFBRECO = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14589,7 +14589,7 @@ process.muPFSumDRIsoValueGamma04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromD
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14602,7 +14602,7 @@ process.muPFSumDRIsoValueGamma04PFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14615,7 +14615,7 @@ process.muPFSumDRIsoValueGammaHighThreshold03 = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14628,7 +14628,7 @@ process.muPFSumDRIsoValueGammaHighThreshold03PAT = cms.EDProducer("CandIsolatorF
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14641,7 +14641,7 @@ process.muPFSumDRIsoValueGammaHighThreshold03PATPFlow = cms.EDProducer("CandIsol
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14654,7 +14654,7 @@ process.muPFSumDRIsoValueGammaHighThreshold03PFBRECO = cms.EDProducer("CandIsola
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14667,7 +14667,7 @@ process.muPFSumDRIsoValueGammaHighThreshold03PFBRECOPFlow = cms.EDProducer("Cand
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14680,7 +14680,7 @@ process.muPFSumDRIsoValueGammaHighThreshold03PFlow = cms.EDProducer("CandIsolato
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14693,7 +14693,7 @@ process.muPFSumDRIsoValueGammaHighThreshold04 = cms.EDProducer("CandIsolatorFrom
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14706,7 +14706,7 @@ process.muPFSumDRIsoValueGammaHighThreshold04PAT = cms.EDProducer("CandIsolatorF
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14719,7 +14719,7 @@ process.muPFSumDRIsoValueGammaHighThreshold04PATPFlow = cms.EDProducer("CandIsol
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14732,7 +14732,7 @@ process.muPFSumDRIsoValueGammaHighThreshold04PFBRECO = cms.EDProducer("CandIsola
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14745,7 +14745,7 @@ process.muPFSumDRIsoValueGammaHighThreshold04PFBRECOPFlow = cms.EDProducer("Cand
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGammaPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14758,7 +14758,7 @@ process.muPFSumDRIsoValueGammaHighThreshold04PFlow = cms.EDProducer("CandIsolato
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositGamma"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14771,7 +14771,7 @@ process.muPFSumDRIsoValueNeutral03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14784,7 +14784,7 @@ process.muPFSumDRIsoValueNeutral03PAT = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14797,7 +14797,7 @@ process.muPFSumDRIsoValueNeutral03PATPFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14810,7 +14810,7 @@ process.muPFSumDRIsoValueNeutral03PFBRECO = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14823,7 +14823,7 @@ process.muPFSumDRIsoValueNeutral03PFBRECOPFlow = cms.EDProducer("CandIsolatorFro
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14836,7 +14836,7 @@ process.muPFSumDRIsoValueNeutral03PFlow = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14849,7 +14849,7 @@ process.muPFSumDRIsoValueNeutral04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14862,7 +14862,7 @@ process.muPFSumDRIsoValueNeutral04PAT = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14875,7 +14875,7 @@ process.muPFSumDRIsoValueNeutral04PATPFlow = cms.EDProducer("CandIsolatorFromDep
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14888,7 +14888,7 @@ process.muPFSumDRIsoValueNeutral04PFBRECO = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14901,7 +14901,7 @@ process.muPFSumDRIsoValueNeutral04PFBRECOPFlow = cms.EDProducer("CandIsolatorFro
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14914,7 +14914,7 @@ process.muPFSumDRIsoValueNeutral04PFlow = cms.EDProducer("CandIsolatorFromDeposi
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -14927,7 +14927,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold03 = cms.EDProducer("CandIsolatorFr
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14940,7 +14940,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold03PAT = cms.EDProducer("CandIsolato
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14953,7 +14953,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold03PATPFlow = cms.EDProducer("CandIs
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14966,7 +14966,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold03PFBRECO = cms.EDProducer("CandIso
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14979,7 +14979,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold03PFBRECOPFlow = cms.EDProducer("Ca
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -14992,7 +14992,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold03PFlow = cms.EDProducer("CandIsola
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -15005,7 +15005,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold04 = cms.EDProducer("CandIsolatorFr
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -15018,7 +15018,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold04PAT = cms.EDProducer("CandIsolato
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -15031,7 +15031,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold04PATPFlow = cms.EDProducer("CandIs
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -15044,7 +15044,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold04PFBRECO = cms.EDProducer("CandIso
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -15057,7 +15057,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold04PFBRECOPFlow = cms.EDProducer("Ca
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutralPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -15070,7 +15070,7 @@ process.muPFSumDRIsoValueNeutralHighThreshold04PFlow = cms.EDProducer("CandIsola
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositNeutral"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(1.0)'),
         weight = cms.string('1')
     ))
@@ -15083,7 +15083,7 @@ process.muPFSumDRIsoValuePU03 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15096,7 +15096,7 @@ process.muPFSumDRIsoValuePU03PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15109,7 +15109,7 @@ process.muPFSumDRIsoValuePU03PATPFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15122,7 +15122,7 @@ process.muPFSumDRIsoValuePU03PFBRECO = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15135,7 +15135,7 @@ process.muPFSumDRIsoValuePU03PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15148,7 +15148,7 @@ process.muPFSumDRIsoValuePU03PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15161,7 +15161,7 @@ process.muPFSumDRIsoValuePU04 = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15174,7 +15174,7 @@ process.muPFSumDRIsoValuePU04PAT = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPAT"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15187,7 +15187,7 @@ process.muPFSumDRIsoValuePU04PATPFlow = cms.EDProducer("CandIsolatorFromDeposits
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPATPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15200,7 +15200,7 @@ process.muPFSumDRIsoValuePU04PFBRECO = cms.EDProducer("CandIsolatorFromDeposits"
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECO"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15213,7 +15213,7 @@ process.muPFSumDRIsoValuePU04PFBRECOPFlow = cms.EDProducer("CandIsolatorFromDepo
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPUPFBRECOPFlow"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15226,7 +15226,7 @@ process.muPFSumDRIsoValuePU04PFlow = cms.EDProducer("CandIsolatorFromDeposits",
         mode = cms.string('sumDR'),
         skipDefaultVeto = cms.bool(True),
         src = cms.InputTag("muPFIsoDepositPU"),
-        vetos = cms.vstring('0.01', 
+        vetos = cms.vstring('0.01',
             'Threshold(0.5)'),
         weight = cms.string('1')
     ))
@@ -15690,8 +15690,8 @@ process.patJetCorrFactors = cms.EDProducer("JetCorrFactorsProducer",
     emf = cms.bool(False),
     extraJPTOffset = cms.string('L1FastJet'),
     flavorType = cms.string('J'),
-    levels = cms.vstring('L1FastJet', 
-        'L2Relative', 
+    levels = cms.vstring('L1FastJet',
+        'L2Relative',
         'L3Absolute'),
     payload = cms.string('AK4PFchs'),
     primaryVertices = cms.InputTag("offlinePrimaryVertices"),
@@ -15706,8 +15706,8 @@ process.patJetCorrFactorsPFlow = cms.EDProducer("JetCorrFactorsProducer",
     emf = cms.bool(False),
     extraJPTOffset = cms.string('L1FastJet'),
     flavorType = cms.string('J'),
-    levels = cms.vstring('L1FastJet', 
-        'L2Relative', 
+    levels = cms.vstring('L1FastJet',
+        'L2Relative',
         'L3Absolute'),
     payload = cms.string('AK4PFchs'),
     primaryVertices = cms.InputTag("offlinePrimaryVertices"),
@@ -15797,7 +15797,7 @@ process.patJetPartonMatch = cms.EDProducer("MCMatcher",
     matched = cms.InputTag("genParticles"),
     maxDPtRel = cms.double(3.0),
     maxDeltaR = cms.double(0.4),
-    mcPdgId = cms.vint32(1, 2, 3, 4, 5, 
+    mcPdgId = cms.vint32(1, 2, 3, 4, 5,
         21),
     mcStatus = cms.vint32(3),
     resolveAmbiguities = cms.bool(True),
@@ -15811,7 +15811,7 @@ process.patJetPartonMatchPFlow = cms.EDProducer("MCMatcher",
     matched = cms.InputTag("genParticles"),
     maxDPtRel = cms.double(3.0),
     maxDeltaR = cms.double(0.4),
-    mcPdgId = cms.vint32(1, 2, 3, 4, 5, 
+    mcPdgId = cms.vint32(1, 2, 3, 4, 5,
         21),
     mcStatus = cms.vint32(3),
     resolveAmbiguities = cms.bool(True),
@@ -15862,8 +15862,8 @@ process.patJets = cms.EDProducer("PATJetProducer",
     addPartonJetMatch = cms.bool(False),
     addResolutions = cms.bool(False),
     addTagInfos = cms.bool(False),
-    discriminatorSources = cms.VInputTag(cms.InputTag("combinedSecondaryVertexBJetTags"), cms.InputTag("pfJetBProbabilityBJetTags"), cms.InputTag("pfJetProbabilityBJetTags"), cms.InputTag("pfTrackCountingHighPurBJetTags"), cms.InputTag("pfTrackCountingHighEffBJetTags"), 
-        cms.InputTag("pfSimpleSecondaryVertexHighEffBJetTags"), cms.InputTag("pfSimpleSecondaryVertexHighPurBJetTags"), cms.InputTag("pfCombinedSecondaryVertexV2BJetTags"), cms.InputTag("pfCombinedInclusiveSecondaryVertexV2BJetTags"), cms.InputTag("pfCombinedSecondaryVertexSoftLeptonBJetTags"), 
+    discriminatorSources = cms.VInputTag(cms.InputTag("combinedSecondaryVertexBJetTags"), cms.InputTag("pfJetBProbabilityBJetTags"), cms.InputTag("pfJetProbabilityBJetTags"), cms.InputTag("pfTrackCountingHighPurBJetTags"), cms.InputTag("pfTrackCountingHighEffBJetTags"),
+        cms.InputTag("pfSimpleSecondaryVertexHighEffBJetTags"), cms.InputTag("pfSimpleSecondaryVertexHighPurBJetTags"), cms.InputTag("pfCombinedSecondaryVertexV2BJetTags"), cms.InputTag("pfCombinedInclusiveSecondaryVertexV2BJetTags"), cms.InputTag("pfCombinedSecondaryVertexSoftLeptonBJetTags"),
         cms.InputTag("pfCombinedMVABJetTags")),
     efficiencies = cms.PSet(
 
@@ -15920,11 +15920,11 @@ process.patJetsPFlow = cms.EDProducer("PATJetProducer",
     addPartonJetMatch = cms.bool(False),
     addResolutions = cms.bool(False),
     addTagInfos = cms.bool(True),
-    discriminatorSources = cms.VInputTag(cms.InputTag("pfJetBProbabilityBJetTagsPFlow"), cms.InputTag("pfJetProbabilityBJetTagsPFlow"), cms.InputTag("pfPositiveOnlyJetBProbabilityBJetTagsPFlow"), cms.InputTag("pfPositiveOnlyJetProbabilityBJetTagsPFlow"), cms.InputTag("pfNegativeOnlyJetBProbabilityBJetTagsPFlow"), 
-        cms.InputTag("pfNegativeOnlyJetProbabilityBJetTagsPFlow"), cms.InputTag("pfTrackCountingHighPurBJetTagsPFlow"), cms.InputTag("pfTrackCountingHighEffBJetTagsPFlow"), cms.InputTag("pfNegativeTrackCountingHighPurBJetTagsPFlow"), cms.InputTag("pfNegativeTrackCountingHighEffBJetTagsPFlow"), 
-        cms.InputTag("pfSimpleSecondaryVertexHighEffBJetTagsPFlow"), cms.InputTag("pfSimpleSecondaryVertexHighPurBJetTagsPFlow"), cms.InputTag("pfNegativeSimpleSecondaryVertexHighEffBJetTagsPFlow"), cms.InputTag("pfNegativeSimpleSecondaryVertexHighPurBJetTagsPFlow"), cms.InputTag("pfCombinedSecondaryVertexV2BJetTagsPFlow"), 
-        cms.InputTag("pfPositiveCombinedSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfNegativeCombinedSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfCombinedInclusiveSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfPositiveCombinedInclusiveSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfNegativeCombinedInclusiveSecondaryVertexV2BJetTagsPFlow"), 
-        cms.InputTag("softPFMuonBJetTagsPFlow"), cms.InputTag("positiveSoftPFMuonBJetTagsPFlow"), cms.InputTag("negativeSoftPFMuonBJetTagsPFlow"), cms.InputTag("softPFElectronBJetTagsPFlow"), cms.InputTag("positiveSoftPFElectronBJetTagsPFlow"), 
+    discriminatorSources = cms.VInputTag(cms.InputTag("pfJetBProbabilityBJetTagsPFlow"), cms.InputTag("pfJetProbabilityBJetTagsPFlow"), cms.InputTag("pfPositiveOnlyJetBProbabilityBJetTagsPFlow"), cms.InputTag("pfPositiveOnlyJetProbabilityBJetTagsPFlow"), cms.InputTag("pfNegativeOnlyJetBProbabilityBJetTagsPFlow"),
+        cms.InputTag("pfNegativeOnlyJetProbabilityBJetTagsPFlow"), cms.InputTag("pfTrackCountingHighPurBJetTagsPFlow"), cms.InputTag("pfTrackCountingHighEffBJetTagsPFlow"), cms.InputTag("pfNegativeTrackCountingHighPurBJetTagsPFlow"), cms.InputTag("pfNegativeTrackCountingHighEffBJetTagsPFlow"),
+        cms.InputTag("pfSimpleSecondaryVertexHighEffBJetTagsPFlow"), cms.InputTag("pfSimpleSecondaryVertexHighPurBJetTagsPFlow"), cms.InputTag("pfNegativeSimpleSecondaryVertexHighEffBJetTagsPFlow"), cms.InputTag("pfNegativeSimpleSecondaryVertexHighPurBJetTagsPFlow"), cms.InputTag("pfCombinedSecondaryVertexV2BJetTagsPFlow"),
+        cms.InputTag("pfPositiveCombinedSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfNegativeCombinedSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfCombinedInclusiveSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfPositiveCombinedInclusiveSecondaryVertexV2BJetTagsPFlow"), cms.InputTag("pfNegativeCombinedInclusiveSecondaryVertexV2BJetTagsPFlow"),
+        cms.InputTag("softPFMuonBJetTagsPFlow"), cms.InputTag("positiveSoftPFMuonBJetTagsPFlow"), cms.InputTag("negativeSoftPFMuonBJetTagsPFlow"), cms.InputTag("softPFElectronBJetTagsPFlow"), cms.InputTag("positiveSoftPFElectronBJetTagsPFlow"),
         cms.InputTag("negativeSoftPFElectronBJetTagsPFlow"), cms.InputTag("pfCombinedMVABJetTagsPFlow"), cms.InputTag("pfCombinedMVANEWBJetTagsPFlow")),
     efficiencies = cms.PSet(
 
@@ -15943,7 +15943,7 @@ process.patJetsPFlow = cms.EDProducer("PATJetProducer",
     resolutions = cms.PSet(
 
     ),
-    tagInfoSources = cms.VInputTag(cms.InputTag("pfImpactParameterTagInfosPFlow"), cms.InputTag("pfSecondaryVertexTagInfosPFlow"), cms.InputTag("pfInclusiveSecondaryVertexFinderTagInfosPFlow"), cms.InputTag("softPFMuonsTagInfosPFlow"), cms.InputTag("softPFElectronsTagInfosPFlow"), 
+    tagInfoSources = cms.VInputTag(cms.InputTag("pfImpactParameterTagInfosPFlow"), cms.InputTag("pfSecondaryVertexTagInfosPFlow"), cms.InputTag("pfInclusiveSecondaryVertexFinderTagInfosPFlow"), cms.InputTag("softPFMuonsTagInfosPFlow"), cms.InputTag("softPFElectronsTagInfosPFlow"),
         cms.InputTag("pfSecondaryVertexNegativeTagInfosPFlow"), cms.InputTag("pfInclusiveSecondaryVertexFinderNegativeTagInfosPFlow")),
     trackAssociationSource = cms.InputTag(""),
     useLegacyJetMCFlavour = cms.bool(False),
@@ -19146,7 +19146,7 @@ process.pfTauPFJetsRecoTauChargedHadronsPFlow = cms.EDProducer("PFRecoTauCharged
                 minTrackVertexWeight = cms.double(-1.0)
             )
         )
-    ), 
+    ),
         cms.PSet(
             dRcone = cms.double(0.5),
             dRconeLimitedToJetArea = cms.bool(False),
@@ -19195,7 +19195,7 @@ process.pfTauPFJetsRecoTauChargedHadronsPFlow = cms.EDProducer("PFRecoTauCharged
                 )
             ),
             srcTracks = cms.InputTag("generalTracks")
-        ), 
+        ),
         cms.PSet(
             chargedHadronCandidatesParticleIds = cms.vint32(5),
             dRmergeNeutralHadronWrtChargedHadron = cms.double(0.005),
@@ -19262,14 +19262,14 @@ process.pfTauPFJetsRecoTauChargedHadronsPFlow = cms.EDProducer("PFRecoTauCharged
         selection = cms.string("algoIs(\'kChargedPFCandidate\')"),
         selectionFailValue = cms.double(1000.0),
         selectionPassFunction = cms.string('-pt')
-    ), 
+    ),
         cms.PSet(
             name = cms.string('ChargedPFCandidate'),
             plugin = cms.string('PFRecoTauChargedHadronStringQuality'),
             selection = cms.string("algoIs(\'kTrack\')"),
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('-pt')
-        ), 
+        ),
         cms.PSet(
             name = cms.string('ChargedPFCandidate'),
             plugin = cms.string('PFRecoTauChargedHadronStringQuality'),
@@ -19319,7 +19319,7 @@ process.pfTausBaseDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFReco
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -19328,7 +19328,7 @@ process.pfTausBaseDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFReco
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -19339,7 +19339,7 @@ process.pfTausBaseDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFReco
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -19362,31 +19362,31 @@ process.pfTausBasePFlow = cms.EDProducer("RecoTauProducer",
             maxTracks = cms.uint32(6),
             nCharged = cms.uint32(1),
             nPiZeros = cms.uint32(0)
-        ), 
+        ),
             cms.PSet(
                 maxPiZeros = cms.uint32(6),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(1),
                 nPiZeros = cms.uint32(1)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(5),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(1),
                 nPiZeros = cms.uint32(2)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(0),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(2),
                 nPiZeros = cms.uint32(0)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(3),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(2),
                 nPiZeros = cms.uint32(1)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(0),
                 maxTracks = cms.uint32(6),
@@ -19480,7 +19480,7 @@ process.pfTausBasePFlow = cms.EDProducer("RecoTauProducer",
                 minTrackVertexWeight = cms.double(-1.0)
             )
         )
-    ), 
+    ),
         cms.PSet(
             DataType = cms.string('AOD'),
             EcalStripSumE_deltaEta = cms.double(0.03),
@@ -19492,7 +19492,7 @@ process.pfTausBasePFlow = cms.EDProducer("RecoTauProducer",
             maximumForElectrionPreIDOutput = cms.double(-0.1),
             name = cms.string('elec_rej'),
             plugin = cms.string('RecoTauElectronRejectionPlugin')
-        ), 
+        ),
         cms.PSet(
             dRaddNeutralHadron = cms.double(0.12),
             dRaddPhoton = cms.double(-1.0),
@@ -19501,7 +19501,7 @@ process.pfTausBasePFlow = cms.EDProducer("RecoTauProducer",
             name = cms.string('tau_en_reconstruction'),
             plugin = cms.string('PFRecoTauEnergyAlgorithmPlugin'),
             verbosity = cms.int32(0)
-        ), 
+        ),
         cms.PSet(
             name = cms.string('pfTauTTIworkaroundPFlow'),
             pfTauTagInfoSrc = cms.InputTag("pfTauTagInfoProducerPFlow"),
@@ -19519,31 +19519,31 @@ process.pfTausCombinerPFlow = cms.EDProducer("RecoTauProducer",
             maxTracks = cms.uint32(6),
             nCharged = cms.uint32(1),
             nPiZeros = cms.uint32(0)
-        ), 
+        ),
             cms.PSet(
                 maxPiZeros = cms.uint32(6),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(1),
                 nPiZeros = cms.uint32(1)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(5),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(1),
                 nPiZeros = cms.uint32(2)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(0),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(2),
                 nPiZeros = cms.uint32(0)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(3),
                 maxTracks = cms.uint32(6),
                 nCharged = cms.uint32(2),
                 nPiZeros = cms.uint32(1)
-            ), 
+            ),
             cms.PSet(
                 maxPiZeros = cms.uint32(0),
                 maxTracks = cms.uint32(6),
@@ -19637,7 +19637,7 @@ process.pfTausCombinerPFlow = cms.EDProducer("RecoTauProducer",
                 minTrackVertexWeight = cms.double(-1.0)
             )
         )
-    ), 
+    ),
         cms.PSet(
             DataType = cms.string('AOD'),
             EcalStripSumE_deltaEta = cms.double(0.03),
@@ -19649,7 +19649,7 @@ process.pfTausCombinerPFlow = cms.EDProducer("RecoTauProducer",
             maximumForElectrionPreIDOutput = cms.double(-0.1),
             name = cms.string('elec_rej'),
             plugin = cms.string('RecoTauElectronRejectionPlugin')
-        ), 
+        ),
         cms.PSet(
             dRaddNeutralHadron = cms.double(0.12),
             dRaddPhoton = cms.double(-1.0),
@@ -19658,7 +19658,7 @@ process.pfTausCombinerPFlow = cms.EDProducer("RecoTauProducer",
             name = cms.string('tau_en_reconstruction'),
             plugin = cms.string('PFRecoTauEnergyAlgorithmPlugin'),
             verbosity = cms.int32(0)
-        ), 
+        ),
         cms.PSet(
             name = cms.string('TTIworkaround'),
             pfTauTagInfoSrc = cms.InputTag("pfTauTagInfoProducerPFlow"),
@@ -19681,7 +19681,7 @@ process.pfTausDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFRecoTauD
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -19690,7 +19690,7 @@ process.pfTausDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFRecoTauD
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -19701,7 +19701,7 @@ process.pfTausDiscriminationByDecayModeFindingPFlow = cms.EDProducer("PFRecoTauD
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -19799,19 +19799,19 @@ process.pfTausProducerSansRefsPFlow = cms.EDProducer("RecoTauCleaner",
         selection = cms.string('signalPFChargedHadrCands().size() = 3'),
         selectionFailValue = cms.double(0),
         selectionPassFunction = cms.string('abs(charge())-1')
-    ), 
+    ),
         cms.PSet(
             name = cms.string('leadStripPtLt2_5'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
             selection = cms.string('signalPiZeroCandidates().size() = 0 | signalPiZeroCandidates()[0].pt > 2.5'),
             selectionFailValue = cms.double(1000.0),
             selectionPassFunction = cms.string('0')
-        ), 
+        ),
         cms.PSet(
             name = cms.string('HPS_Select'),
             plugin = cms.string('RecoTauDiscriminantCleanerPlugin'),
             src = cms.InputTag("pfTausSelectionDiscriminatorPFlow")
-        ), 
+        ),
         cms.PSet(
             name = cms.string('CombinedIsolation'),
             plugin = cms.string('RecoTauStringCleanerPlugin'),
@@ -19841,7 +19841,7 @@ process.pfTausSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscriminat
         nChargedPFCandsMin = cms.uint32(1),
         nPiZeros = cms.uint32(0),
         nTracksMin = cms.uint32(1)
-    ), 
+    ),
         cms.PSet(
             assumeStripMass = cms.double(0.1349),
             maxMass = cms.string('max(1.3, min(1.3*sqrt(pt/100.), 4.2))'),
@@ -19850,7 +19850,7 @@ process.pfTausSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscriminat
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             assumeStripMass = cms.double(0.0),
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
@@ -19861,7 +19861,7 @@ process.pfTausSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscriminat
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(2),
             nTracksMin = cms.uint32(1)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.2'),
             minMass = cms.double(0.0),
@@ -19869,7 +19869,7 @@ process.pfTausSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscriminat
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(0),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('max(1.2, min(1.2*sqrt(pt/100.), 4.0))'),
             minMass = cms.double(0.0),
@@ -19877,7 +19877,7 @@ process.pfTausSelectionDiscriminatorPFlow = cms.EDProducer("PFRecoTauDiscriminat
             nChargedPFCandsMin = cms.uint32(1),
             nPiZeros = cms.uint32(1),
             nTracksMin = cms.uint32(2)
-        ), 
+        ),
         cms.PSet(
             maxMass = cms.string('1.5'),
             minMass = cms.double(0.8),
@@ -21153,8 +21153,8 @@ process.positiveSoftPFMuonByPtBJetTags = cms.EDProducer("JetTagProducer",
 
 
 process.prunedGenParticlesBoost = cms.EDProducer("GenParticlePruner",
-    select = cms.vstring('drop  *  ', 
-        'keep ( status = 3 || (status>=21 && status<=29) )', 
+    select = cms.vstring('drop  *  ',
+        'keep ( status = 3 || (status>=21 && status<=29) )',
         'keep abs(pdgId) = 13 || abs(pdgId) = 15'),
     src = cms.InputTag("genParticles")
 )
@@ -21255,7 +21255,7 @@ process.recoTauDiscriminantCutMultiplexerPFlow = cms.EDProducer("RecoTauDiscrimi
     mapping = cms.VPSet(cms.PSet(
         category = cms.uint32(0),
         cut = cms.double(0.5)
-    ), 
+    ),
         cms.PSet(
             category = cms.uint32(1),
             cut = cms.double(0.2)
@@ -21814,17 +21814,17 @@ process.trackAssociatorByHits = cms.EDProducer("TrackAssociatorByHitsProducer",
     Cut_RecoToSim = cms.double(0.75),
     Purity_SimToReco = cms.double(0.75),
     Quality_SimToReco = cms.double(0.5),
-    ROUList = cms.vstring('TrackerHitsTIBLowTof', 
-        'TrackerHitsTIBHighTof', 
-        'TrackerHitsTIDLowTof', 
-        'TrackerHitsTIDHighTof', 
-        'TrackerHitsTOBLowTof', 
-        'TrackerHitsTOBHighTof', 
-        'TrackerHitsTECLowTof', 
-        'TrackerHitsTECHighTof', 
-        'TrackerHitsPixelBarrelLowTof', 
-        'TrackerHitsPixelBarrelHighTof', 
-        'TrackerHitsPixelEndcapLowTof', 
+    ROUList = cms.vstring('TrackerHitsTIBLowTof',
+        'TrackerHitsTIBHighTof',
+        'TrackerHitsTIDLowTof',
+        'TrackerHitsTIDHighTof',
+        'TrackerHitsTOBLowTof',
+        'TrackerHitsTOBHighTof',
+        'TrackerHitsTECLowTof',
+        'TrackerHitsTECHighTof',
+        'TrackerHitsPixelBarrelLowTof',
+        'TrackerHitsPixelBarrelHighTof',
+        'TrackerHitsPixelEndcapLowTof',
         'TrackerHitsPixelEndcapHighTof'),
     SimToRecoDenominator = cms.string('sim'),
     ThreeHitTracksAreSpecial = cms.bool(True),
@@ -22000,7 +22000,7 @@ process.noscraping = cms.EDFilter("FilterOutScraping",
 
 process.pfAllChargedHadronsPFBRECO = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
         2212, -2212),
     src = cms.InputTag("pfNoPileUpIsoPFBRECO")
 )
@@ -22008,7 +22008,7 @@ process.pfAllChargedHadronsPFBRECO = cms.EDFilter("PFCandidateFwdPtrCollectionPd
 
 process.pfAllChargedHadronsPFBRECOPFlow = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
         2212, -2212),
     src = cms.InputTag("pfNoPileUpIsoPFBRECOPFlow")
 )
@@ -22016,7 +22016,7 @@ process.pfAllChargedHadronsPFBRECOPFlow = cms.EDFilter("PFCandidateFwdPtrCollect
 
 process.pfAllChargedHadronsPFlow = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
         2212, -2212),
     src = cms.InputTag("pfNoPileUpIso")
 )
@@ -22024,8 +22024,8 @@ process.pfAllChargedHadronsPFlow = cms.EDFilter("PFCandidateFwdPtrCollectionPdgI
 
 process.pfAllChargedParticlesPFBRECO = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
-        2212, -2212, 11, -11, 13, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
+        2212, -2212, 11, -11, 13,
         -13),
     src = cms.InputTag("pfNoPileUpIsoPFBRECO")
 )
@@ -22033,8 +22033,8 @@ process.pfAllChargedParticlesPFBRECO = cms.EDFilter("PFCandidateFwdPtrCollection
 
 process.pfAllChargedParticlesPFBRECOPFlow = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
-        2212, -2212, 11, -11, 13, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
+        2212, -2212, 11, -11, 13,
         -13),
     src = cms.InputTag("pfNoPileUpIsoPFBRECOPFlow")
 )
@@ -22042,8 +22042,8 @@ process.pfAllChargedParticlesPFBRECOPFlow = cms.EDFilter("PFCandidateFwdPtrColle
 
 process.pfAllChargedParticlesPFlow = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
-        2212, -2212, 11, -11, 13, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
+        2212, -2212, 11, -11, 13,
         -13),
     src = cms.InputTag("pfNoPileUpIso")
 )
@@ -22248,8 +22248,8 @@ process.pfMuonsPFBRECOPFlow = cms.EDFilter("PFCandidateFwdPtrCollectionStringFil
 
 process.pfPileUpAllChargedParticlesPFBRECO = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
-        2212, -2212, 11, -11, 13, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
+        2212, -2212, 11, -11, 13,
         -13),
     src = cms.InputTag("pfPileUpIsoPFBRECO")
 )
@@ -22257,8 +22257,8 @@ process.pfPileUpAllChargedParticlesPFBRECO = cms.EDFilter("PFCandidateFwdPtrColl
 
 process.pfPileUpAllChargedParticlesPFBRECOPFlow = cms.EDFilter("PFCandidateFwdPtrCollectionPdgIdFilter",
     makeClones = cms.bool(True),
-    pdgId = cms.vint32(211, -211, 321, -321, 999211, 
-        2212, -2212, 11, -11, 13, 
+    pdgId = cms.vint32(211, -211, 321, -321, 999211,
+        2212, -2212, 11, -11, 13,
         -13),
     src = cms.InputTag("pfPileUpIsoPFBRECOPFlow")
 )
@@ -22386,13 +22386,13 @@ process.selectedPatTausPFlow = cms.EDFilter("PATTauSelector",
 
 process.tauGenJetsSelectorAllHadrons = cms.EDFilter("TauGenJetDecayModeSelector",
     filter = cms.bool(False),
-    select = cms.vstring('oneProng0Pi0', 
-        'oneProng1Pi0', 
-        'oneProng2Pi0', 
-        'oneProngOther', 
-        'threeProng0Pi0', 
-        'threeProng1Pi0', 
-        'threeProngOther', 
+    select = cms.vstring('oneProng0Pi0',
+        'oneProng1Pi0',
+        'oneProng2Pi0',
+        'oneProngOther',
+        'threeProng0Pi0',
+        'threeProng1Pi0',
+        'threeProngOther',
         'rare'),
     src = cms.InputTag("tauGenJets")
 )
@@ -22400,13 +22400,13 @@ process.tauGenJetsSelectorAllHadrons = cms.EDFilter("TauGenJetDecayModeSelector"
 
 process.tauGenJetsSelectorAllHadronsPFlow = cms.EDFilter("TauGenJetDecayModeSelector",
     filter = cms.bool(False),
-    select = cms.vstring('oneProng0Pi0', 
-        'oneProng1Pi0', 
-        'oneProng2Pi0', 
-        'oneProngOther', 
-        'threeProng0Pi0', 
-        'threeProng1Pi0', 
-        'threeProngOther', 
+    select = cms.vstring('oneProng0Pi0',
+        'oneProng1Pi0',
+        'oneProng2Pi0',
+        'oneProngOther',
+        'threeProng0Pi0',
+        'threeProng1Pi0',
+        'threeProngOther',
         'rare'),
     src = cms.InputTag("tauGenJetsPFlow")
 )
@@ -22424,97 +22424,97 @@ process.btagana = cms.EDAnalyzer("BTagAnalyzer",
     R0 = cms.double(0.8),
     SubJetLabels = cms.vstring(),
     SubJets = cms.VInputTag(),
-    TTbarTriggerPathNames = cms.vstring('HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v*', 
-        'HLT_Mu17_Mu8_v*', 
-        'HLT_Mu17_TkMu8_v*', 
-        'HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v*', 
+    TTbarTriggerPathNames = cms.vstring('HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v*',
+        'HLT_Mu17_Mu8_v*',
+        'HLT_Mu17_TkMu8_v*',
+        'HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v*',
         'HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v*'),
-    TriggerPathNames = cms.vstring('HLT_Jet15U*', 
-        'HLT_Jet30_v*', 
-        'HLT_PFJet40_v*', 
-        'HLT_Jet30U*', 
-        'HLT_Jet60_v*', 
-        'HLT_Jet50U*', 
-        'HLT_Jet80_v*', 
-        'HLT_PFJet80_v*', 
-        'HLT_Jet70U*', 
-        'HLT_Jet110_v*', 
-        'HLT_Jet100U*', 
-        'HLT_Jet150_v*', 
-        'HLT_PFJet140_v*', 
-        'HLT_Jet140U*', 
-        'HLT_Jet190_v*', 
-        'HLT_PFJet200_v*', 
-        'HLT_Jet240_v*', 
-        'HLT_PFJet260_v*', 
-        'HLT_Jet300_v*', 
-        'HLT_PFJet320_v*', 
-        'HLT_DiPFJetAve320_v*', 
-        'HLT_PFJet400_v*', 
-        'HLT_DiJetAve15U*', 
-        'HLT_DiJetAve30_v*', 
-        'HLT_DiPFJetAve40_v*', 
-        'HLT_DiJetAve30U*', 
-        'HLT_DiJetAve60_v*', 
-        'HLT_DiPFJetAve80_v*', 
-        'HLT_DiJetAve50U*', 
-        'HLT_DiJetAve80_v*', 
-        'HLT_DiPFJetAve140_v*', 
-        'HLT_BTagMu_Jet10U*', 
-        'HLT_BTagMu_Jet20U*', 
-        'HLT_BTagMu_DiJet20U*', 
-        'HLT_BTagMu_DiJet20U_Mu5*', 
-        'HLT_BTagMu_DiJet20_Mu5*', 
-        'HLT_BTagMu_DiJet20_L1FastJet_Mu5_v*', 
-        'HLT_BTagMu_DiJet30U', 
-        'HLT_BTagMu_DiJet30U_v*', 
-        'HLT_BTagMu_DiJet30U_Mu5*', 
-        'HLT_BTagMu_DiJet60_Mu7*', 
-        'HLT_BTagMu_DiJet40_Mu5*', 
-        'HLT_BTagMu_DiJet20_L1FastJet_Mu5*', 
-        'HLT_BTagMu_DiJet80_Mu9*', 
-        'HLT_BTagMu_DiJet70_Mu5*', 
-        'HLT_BTagMu_DiJet70_L1FastJet_Mu5*', 
-        'HLT_BTagMu_DiJet100_Mu9_v*', 
-        'HLT_BTagMu_DiJet110_Mu5*', 
-        'HLT_BTagMu_DiJet110_L1FastJet_Mu5*', 
-        'HLT_BTagMu_Jet300_L1FastJet_Mu5*', 
-        'HLT_BTagMu_Jet300_Mu5*', 
-        'HLT_HT200', 
-        'HLT_HT240', 
-        'HLT_HT100U', 
-        'HLT_HT120U', 
-        'HLT_HT140U', 
-        'HLT_HT50U_v*', 
-        'HLT_HT100U_v*', 
-        'HLT_HT130U_v*', 
-        'HLT_HT140U_Eta3_v*', 
-        'HLT_HT140U_J30U_Eta3_v*', 
-        'HLT_HT150U_Eta3_v*', 
-        'HLT_HT150U_v*', 
-        'HLT_HT160U_Eta3_v*', 
-        'HLT_HT160U_v*', 
-        'HLT_HT200U_v*', 
-        'HLT_HT150_v*', 
-        'HLT_HT160_v*', 
-        'HLT_HT200_v*', 
-        'HLT_HT240_v*', 
-        'HLT_HT250_v*', 
-        'HLT_HT260_v*', 
-        'HLT_HT300_v*', 
-        'HLT_HT350_v*', 
-        'HLT_HT360_v*', 
-        'HLT_HT400_v*', 
-        'HLT_HT440_v*', 
-        'HLT_HT450_v*', 
-        'HLT_HT500_v*', 
-        'HLT_HT520_v*', 
-        'HLT_HT550_v*', 
-        'HLT_HT600_v*', 
-        'HLT_HT650_v*', 
-        'HLT_HT700_v*', 
-        'HLT_HT750_L1FastJet_v*', 
-        'HLT_HT750_v*', 
+    TriggerPathNames = cms.vstring('HLT_Jet15U*',
+        'HLT_Jet30_v*',
+        'HLT_PFJet40_v*',
+        'HLT_Jet30U*',
+        'HLT_Jet60_v*',
+        'HLT_Jet50U*',
+        'HLT_Jet80_v*',
+        'HLT_PFJet80_v*',
+        'HLT_Jet70U*',
+        'HLT_Jet110_v*',
+        'HLT_Jet100U*',
+        'HLT_Jet150_v*',
+        'HLT_PFJet140_v*',
+        'HLT_Jet140U*',
+        'HLT_Jet190_v*',
+        'HLT_PFJet200_v*',
+        'HLT_Jet240_v*',
+        'HLT_PFJet260_v*',
+        'HLT_Jet300_v*',
+        'HLT_PFJet320_v*',
+        'HLT_DiPFJetAve320_v*',
+        'HLT_PFJet400_v*',
+        'HLT_DiJetAve15U*',
+        'HLT_DiJetAve30_v*',
+        'HLT_DiPFJetAve40_v*',
+        'HLT_DiJetAve30U*',
+        'HLT_DiJetAve60_v*',
+        'HLT_DiPFJetAve80_v*',
+        'HLT_DiJetAve50U*',
+        'HLT_DiJetAve80_v*',
+        'HLT_DiPFJetAve140_v*',
+        'HLT_BTagMu_Jet10U*',
+        'HLT_BTagMu_Jet20U*',
+        'HLT_BTagMu_DiJet20U*',
+        'HLT_BTagMu_DiJet20U_Mu5*',
+        'HLT_BTagMu_DiJet20_Mu5*',
+        'HLT_BTagMu_DiJet20_L1FastJet_Mu5_v*',
+        'HLT_BTagMu_DiJet30U',
+        'HLT_BTagMu_DiJet30U_v*',
+        'HLT_BTagMu_DiJet30U_Mu5*',
+        'HLT_BTagMu_DiJet60_Mu7*',
+        'HLT_BTagMu_DiJet40_Mu5*',
+        'HLT_BTagMu_DiJet20_L1FastJet_Mu5*',
+        'HLT_BTagMu_DiJet80_Mu9*',
+        'HLT_BTagMu_DiJet70_Mu5*',
+        'HLT_BTagMu_DiJet70_L1FastJet_Mu5*',
+        'HLT_BTagMu_DiJet100_Mu9_v*',
+        'HLT_BTagMu_DiJet110_Mu5*',
+        'HLT_BTagMu_DiJet110_L1FastJet_Mu5*',
+        'HLT_BTagMu_Jet300_L1FastJet_Mu5*',
+        'HLT_BTagMu_Jet300_Mu5*',
+        'HLT_HT200',
+        'HLT_HT240',
+        'HLT_HT100U',
+        'HLT_HT120U',
+        'HLT_HT140U',
+        'HLT_HT50U_v*',
+        'HLT_HT100U_v*',
+        'HLT_HT130U_v*',
+        'HLT_HT140U_Eta3_v*',
+        'HLT_HT140U_J30U_Eta3_v*',
+        'HLT_HT150U_Eta3_v*',
+        'HLT_HT150U_v*',
+        'HLT_HT160U_Eta3_v*',
+        'HLT_HT160U_v*',
+        'HLT_HT200U_v*',
+        'HLT_HT150_v*',
+        'HLT_HT160_v*',
+        'HLT_HT200_v*',
+        'HLT_HT240_v*',
+        'HLT_HT250_v*',
+        'HLT_HT260_v*',
+        'HLT_HT300_v*',
+        'HLT_HT350_v*',
+        'HLT_HT360_v*',
+        'HLT_HT400_v*',
+        'HLT_HT440_v*',
+        'HLT_HT450_v*',
+        'HLT_HT500_v*',
+        'HLT_HT520_v*',
+        'HLT_HT550_v*',
+        'HLT_HT600_v*',
+        'HLT_HT650_v*',
+        'HLT_HT700_v*',
+        'HLT_HT750_L1FastJet_v*',
+        'HLT_HT750_v*',
         'HLT_HT2000_v*'),
     allowJetSkipping = cms.bool(True),
     badPull = cms.untracked.double(3.0),
@@ -22538,17 +22538,17 @@ process.btagana = cms.EDAnalyzer("BTagAnalyzer",
     genParticles = cms.InputTag("genParticles"),
     hepMC = cms.untracked.InputTag("generator"),
     hitAssociator = cms.PSet(
-        ROUList = cms.vstring('TrackerHitsTIBLowTof', 
-            'TrackerHitsTIBHighTof', 
-            'TrackerHitsTIDLowTof', 
-            'TrackerHitsTIDHighTof', 
-            'TrackerHitsTOBLowTof', 
-            'TrackerHitsTOBHighTof', 
-            'TrackerHitsTECLowTof', 
-            'TrackerHitsTECHighTof', 
-            'TrackerHitsPixelBarrelLowTof', 
-            'TrackerHitsPixelBarrelHighTof', 
-            'TrackerHitsPixelEndcapLowTof', 
+        ROUList = cms.vstring('TrackerHitsTIBLowTof',
+            'TrackerHitsTIBHighTof',
+            'TrackerHitsTIDLowTof',
+            'TrackerHitsTIDHighTof',
+            'TrackerHitsTOBLowTof',
+            'TrackerHitsTOBHighTof',
+            'TrackerHitsTECLowTof',
+            'TrackerHitsTECHighTof',
+            'TrackerHitsPixelBarrelLowTof',
+            'TrackerHitsPixelBarrelHighTof',
+            'TrackerHitsPixelEndcapLowTof',
             'TrackerHitsPixelEndcapHighTof'),
         associatePixel = cms.bool(True),
         associateRecoTracks = cms.bool(True),
@@ -22619,14 +22619,14 @@ process.cleanPatCandidateSummaryPFlow = cms.EDAnalyzer("CandidateSummaryTable",
 
 
 process.patCandidateSummary = cms.EDAnalyzer("CandidateSummaryTable",
-    candidates = cms.VInputTag(cms.InputTag("patElectrons"), cms.InputTag("patMuons"), cms.InputTag("patTaus"), cms.InputTag("patPhotons"), cms.InputTag("patJets"), 
+    candidates = cms.VInputTag(cms.InputTag("patElectrons"), cms.InputTag("patMuons"), cms.InputTag("patTaus"), cms.InputTag("patPhotons"), cms.InputTag("patJets"),
         cms.InputTag("patMETs")),
     logName = cms.untracked.string('patCandidates|PATSummaryTables')
 )
 
 
 process.patCandidateSummaryPFlow = cms.EDAnalyzer("CandidateSummaryTable",
-    candidates = cms.VInputTag(cms.InputTag("patElectronsPFlow"), cms.InputTag("patMuonsPFlow"), cms.InputTag("patTausPFlow"), cms.InputTag("patPhotonsPFlow"), cms.InputTag("patJetsPFlow"), 
+    candidates = cms.VInputTag(cms.InputTag("patElectronsPFlow"), cms.InputTag("patMuonsPFlow"), cms.InputTag("patTausPFlow"), cms.InputTag("patPhotonsPFlow"), cms.InputTag("patJetsPFlow"),
         cms.InputTag("patMETsPFlow"), cms.InputTag("patPFParticlesPFlow")),
     logName = cms.untracked.string('patCandidates|PATSummaryTables')
 )
@@ -22642,7 +22642,7 @@ process.selectedPatCandidateSummary = cms.EDAnalyzer("CandidateSummaryTable",
 
 
 process.selectedPatCandidateSummaryPFlow = cms.EDAnalyzer("CandidateSummaryTable",
-    candidates = cms.VInputTag(cms.InputTag("selectedPatElectronsPFlow"), cms.InputTag("selectedPatMuonsPFlow"), cms.InputTag("selectedPatTausPFlow"), cms.InputTag("selectedPatPhotonsPFlow"), cms.InputTag("selectedPatJetsPFlow"), 
+    candidates = cms.VInputTag(cms.InputTag("selectedPatElectronsPFlow"), cms.InputTag("selectedPatMuonsPFlow"), cms.InputTag("selectedPatTausPFlow"), cms.InputTag("selectedPatPhotonsPFlow"), cms.InputTag("selectedPatJetsPFlow"),
         cms.InputTag("selectedPatPFParticlesPFlow")),
     logName = cms.untracked.string('selectedPatCanddiates|PATSummaryTables')
 )
@@ -22887,9 +22887,9 @@ process.MessageLogger = cms.Service("MessageLogger",
         ),
         optionalPSet = cms.untracked.bool(True)
     ),
-    categories = cms.untracked.vstring('FwkJob', 
-        'FwkReport', 
-        'FwkSummary', 
+    categories = cms.untracked.vstring('FwkJob',
+        'FwkReport',
+        'FwkSummary',
         'Root_NoDictionary'),
     cerr = cms.untracked.PSet(
         FwkJob = cms.untracked.PSet(
@@ -22935,11 +22935,11 @@ process.MessageLogger = cms.Service("MessageLogger",
     default = cms.untracked.PSet(
 
     ),
-    destinations = cms.untracked.vstring('warnings', 
-        'errors', 
-        'infos', 
-        'debugs', 
-        'cout', 
+    destinations = cms.untracked.vstring('warnings',
+        'errors',
+        'infos',
+        'debugs',
+        'cout',
         'cerr'),
     errors = cms.untracked.PSet(
         placeholder = cms.untracked.bool(True)
@@ -22982,12 +22982,12 @@ process.CSCGeometryESModule = cms.ESProducer("CSCGeometryESModule",
 
 
 process.CaloGeometryBuilder = cms.ESProducer("CaloGeometryBuilder",
-    SelectedCalos = cms.vstring('HCAL', 
-        'ZDC', 
-        'CASTOR', 
-        'EcalBarrel', 
-        'EcalEndcap', 
-        'EcalPreshower', 
+    SelectedCalos = cms.vstring('HCAL',
+        'ZDC',
+        'CASTOR',
+        'EcalBarrel',
+        'EcalEndcap',
+        'EcalPreshower',
         'TOWER')
 )
 
@@ -23132,17 +23132,17 @@ process.TrackAssociatorByHits = cms.ESProducer("TrackAssociatorByHitsESProducer"
     Cut_RecoToSim = cms.double(0.75),
     Purity_SimToReco = cms.double(0.75),
     Quality_SimToReco = cms.double(0.5),
-    ROUList = cms.vstring('TrackerHitsTIBLowTof', 
-        'TrackerHitsTIBHighTof', 
-        'TrackerHitsTIDLowTof', 
-        'TrackerHitsTIDHighTof', 
-        'TrackerHitsTOBLowTof', 
-        'TrackerHitsTOBHighTof', 
-        'TrackerHitsTECLowTof', 
-        'TrackerHitsTECHighTof', 
-        'TrackerHitsPixelBarrelLowTof', 
-        'TrackerHitsPixelBarrelHighTof', 
-        'TrackerHitsPixelEndcapLowTof', 
+    ROUList = cms.vstring('TrackerHitsTIBLowTof',
+        'TrackerHitsTIBHighTof',
+        'TrackerHitsTIDLowTof',
+        'TrackerHitsTIDHighTof',
+        'TrackerHitsTOBLowTof',
+        'TrackerHitsTOBHighTof',
+        'TrackerHitsTECLowTof',
+        'TrackerHitsTECHighTof',
+        'TrackerHitsPixelBarrelLowTof',
+        'TrackerHitsPixelBarrelHighTof',
+        'TrackerHitsPixelEndcapLowTof',
         'TrackerHitsPixelEndcapHighTof'),
     SimToRecoDenominator = cms.string('sim'),
     ThreeHitTracksAreSpecial = cms.bool(True),
@@ -23173,31 +23173,31 @@ process.VolumeBasedMagneticFieldESProducer = cms.ESProducer("VolumeBasedMagnetic
         path = cms.string('grid.[v].bin'),
         sectors = cms.string('0'),
         volumes = cms.string('1-312')
-    ), 
+    ),
         cms.PSet(
             master = cms.int32(3),
             path = cms.string('S3/grid.[v].bin'),
             sectors = cms.string('3'),
             volumes = cms.string('176-186,231-241,286-296')
-        ), 
+        ),
         cms.PSet(
             master = cms.int32(4),
             path = cms.string('S4/grid.[v].bin'),
             sectors = cms.string('4'),
             volumes = cms.string('176-186,231-241,286-296')
-        ), 
+        ),
         cms.PSet(
             master = cms.int32(9),
             path = cms.string('S9/grid.[v].bin'),
             sectors = cms.string('9'),
             volumes = cms.string('14,15,20,21,24-27,32,33,40,41,48,49,56,57,62,63,70,71,286-296')
-        ), 
+        ),
         cms.PSet(
             master = cms.int32(10),
             path = cms.string('S10/grid.[v].bin'),
             sectors = cms.string('10'),
             volumes = cms.string('14,15,20,21,24-27,32,33,40,41,48,49,56,57,62,63,70,71,286-296')
-        ), 
+        ),
         cms.PSet(
             master = cms.int32(11),
             path = cms.string('S11/grid.[v].bin'),
@@ -23206,23 +23206,23 @@ process.VolumeBasedMagneticFieldESProducer = cms.ESProducer("VolumeBasedMagnetic
         )),
     label = cms.untracked.string(''),
     paramLabel = cms.string('parametrizedField'),
-    scalingFactors = cms.vdouble(1, 1, 0.994, 1.004, 1.004, 
-        1.005, 1.004, 1.004, 0.994, 0.965, 
-        0.958, 0.958, 0.953, 0.958, 0.958, 
-        0.965, 0.918, 0.924, 0.924, 0.906, 
-        0.924, 0.924, 0.918, 0.991, 0.998, 
-        0.998, 0.978, 0.998, 0.998, 0.991, 
-        0.991, 0.998, 0.998, 0.978, 0.998, 
-        0.998, 0.991, 0.991, 0.998, 0.998, 
+    scalingFactors = cms.vdouble(1, 1, 0.994, 1.004, 1.004,
+        1.005, 1.004, 1.004, 0.994, 0.965,
+        0.958, 0.958, 0.953, 0.958, 0.958,
+        0.965, 0.918, 0.924, 0.924, 0.906,
+        0.924, 0.924, 0.918, 0.991, 0.998,
+        0.998, 0.978, 0.998, 0.998, 0.991,
+        0.991, 0.998, 0.998, 0.978, 0.998,
+        0.998, 0.991, 0.991, 0.998, 0.998,
         0.978, 0.998, 0.998, 0.991),
-    scalingVolumes = cms.vint32(14100, 14200, 17600, 17800, 17900, 
-        18100, 18300, 18400, 18600, 23100, 
-        23300, 23400, 23600, 23800, 23900, 
-        24100, 28600, 28800, 28900, 29100, 
-        29300, 29400, 29600, 28609, 28809, 
-        28909, 29109, 29309, 29409, 29609, 
-        28610, 28810, 28910, 29110, 29310, 
-        29410, 29610, 28611, 28811, 28911, 
+    scalingVolumes = cms.vint32(14100, 14200, 17600, 17800, 17900,
+        18100, 18300, 18400, 18600, 23100,
+        23300, 23400, 23600, 23800, 23900,
+        24100, 28600, 28800, 28900, 29100,
+        29300, 29400, 29600, 28609, 28809,
+        28909, 29109, 29309, 29409, 29609,
+        28610, 28810, 28910, 29110, 29310,
+        29410, 29610, 28611, 28811, 28911,
         29111, 29311, 29411, 29611),
     useParametrizedTrackerField = cms.bool(True),
     version = cms.string('grid_1103l_090322_3_8t')
@@ -23242,17 +23242,17 @@ process.ak10PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak10PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFCHSL1Fastjet', 
-        'ak10PFCHSL2Relative', 
-        'ak10PFCHSL3Absolute', 
+    correctors = cms.vstring('ak10PFCHSL1Fastjet',
+        'ak10PFCHSL2Relative',
+        'ak10PFCHSL3Absolute',
         'ak10PFCHSResidual')
 )
 
 
 process.ak10PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFCHSL1Offset', 
-        'ak10PFCHSL2Relative', 
-        'ak10PFCHSL3Absolute', 
+    correctors = cms.vstring('ak10PFCHSL1Offset',
+        'ak10PFCHSL2Relative',
+        'ak10PFCHSL3Absolute',
         'ak10PFCHSResidual')
 )
 
@@ -23266,14 +23266,14 @@ process.ak10PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak10PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFCHSL2Relative', 
+    correctors = cms.vstring('ak10PFCHSL2Relative',
         'ak10PFCHSL3Absolute')
 )
 
 
 process.ak10PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFCHSL2Relative', 
-        'ak10PFCHSL3Absolute', 
+    correctors = cms.vstring('ak10PFCHSL2Relative',
+        'ak10PFCHSL3Absolute',
         'ak10PFCHSResidual')
 )
 
@@ -23304,17 +23304,17 @@ process.ak10PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak10PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFL1Fastjet', 
-        'ak10PFL2Relative', 
-        'ak10PFL3Absolute', 
+    correctors = cms.vstring('ak10PFL1Fastjet',
+        'ak10PFL2Relative',
+        'ak10PFL3Absolute',
         'ak10PFResidual')
 )
 
 
 process.ak10PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFL1Offset', 
-        'ak10PFL2Relative', 
-        'ak10PFL3Absolute', 
+    correctors = cms.vstring('ak10PFL1Offset',
+        'ak10PFL2Relative',
+        'ak10PFL3Absolute',
         'ak10PFResidual')
 )
 
@@ -23328,14 +23328,14 @@ process.ak10PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak10PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFL2Relative', 
+    correctors = cms.vstring('ak10PFL2Relative',
         'ak10PFL3Absolute')
 )
 
 
 process.ak10PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak10PFL2Relative', 
-        'ak10PFL3Absolute', 
+    correctors = cms.vstring('ak10PFL2Relative',
+        'ak10PFL3Absolute',
         'ak10PFResidual')
 )
 
@@ -23366,17 +23366,17 @@ process.ak1PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak1PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFCHSL1Fastjet', 
-        'ak1PFCHSL2Relative', 
-        'ak1PFCHSL3Absolute', 
+    correctors = cms.vstring('ak1PFCHSL1Fastjet',
+        'ak1PFCHSL2Relative',
+        'ak1PFCHSL3Absolute',
         'ak1PFCHSResidual')
 )
 
 
 process.ak1PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFCHSL1Offset', 
-        'ak1PFCHSL2Relative', 
-        'ak1PFCHSL3Absolute', 
+    correctors = cms.vstring('ak1PFCHSL1Offset',
+        'ak1PFCHSL2Relative',
+        'ak1PFCHSL3Absolute',
         'ak1PFCHSResidual')
 )
 
@@ -23390,14 +23390,14 @@ process.ak1PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak1PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFCHSL2Relative', 
+    correctors = cms.vstring('ak1PFCHSL2Relative',
         'ak1PFCHSL3Absolute')
 )
 
 
 process.ak1PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFCHSL2Relative', 
-        'ak1PFCHSL3Absolute', 
+    correctors = cms.vstring('ak1PFCHSL2Relative',
+        'ak1PFCHSL3Absolute',
         'ak1PFCHSResidual')
 )
 
@@ -23428,17 +23428,17 @@ process.ak1PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak1PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFL1Fastjet', 
-        'ak1PFL2Relative', 
-        'ak1PFL3Absolute', 
+    correctors = cms.vstring('ak1PFL1Fastjet',
+        'ak1PFL2Relative',
+        'ak1PFL3Absolute',
         'ak1PFResidual')
 )
 
 
 process.ak1PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFL1Offset', 
-        'ak1PFL2Relative', 
-        'ak1PFL3Absolute', 
+    correctors = cms.vstring('ak1PFL1Offset',
+        'ak1PFL2Relative',
+        'ak1PFL3Absolute',
         'ak1PFResidual')
 )
 
@@ -23452,14 +23452,14 @@ process.ak1PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak1PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFL2Relative', 
+    correctors = cms.vstring('ak1PFL2Relative',
         'ak1PFL3Absolute')
 )
 
 
 process.ak1PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak1PFL2Relative', 
-        'ak1PFL3Absolute', 
+    correctors = cms.vstring('ak1PFL2Relative',
+        'ak1PFL3Absolute',
         'ak1PFResidual')
 )
 
@@ -23490,17 +23490,17 @@ process.ak2PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak2PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFCHSL1Fastjet', 
-        'ak2PFCHSL2Relative', 
-        'ak2PFCHSL3Absolute', 
+    correctors = cms.vstring('ak2PFCHSL1Fastjet',
+        'ak2PFCHSL2Relative',
+        'ak2PFCHSL3Absolute',
         'ak2PFCHSResidual')
 )
 
 
 process.ak2PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFCHSL1Offset', 
-        'ak2PFCHSL2Relative', 
-        'ak2PFCHSL3Absolute', 
+    correctors = cms.vstring('ak2PFCHSL1Offset',
+        'ak2PFCHSL2Relative',
+        'ak2PFCHSL3Absolute',
         'ak2PFCHSResidual')
 )
 
@@ -23514,14 +23514,14 @@ process.ak2PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak2PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFCHSL2Relative', 
+    correctors = cms.vstring('ak2PFCHSL2Relative',
         'ak2PFCHSL3Absolute')
 )
 
 
 process.ak2PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFCHSL2Relative', 
-        'ak2PFCHSL3Absolute', 
+    correctors = cms.vstring('ak2PFCHSL2Relative',
+        'ak2PFCHSL3Absolute',
         'ak2PFCHSResidual')
 )
 
@@ -23552,17 +23552,17 @@ process.ak2PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak2PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFL1Fastjet', 
-        'ak2PFL2Relative', 
-        'ak2PFL3Absolute', 
+    correctors = cms.vstring('ak2PFL1Fastjet',
+        'ak2PFL2Relative',
+        'ak2PFL3Absolute',
         'ak2PFResidual')
 )
 
 
 process.ak2PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFL1Offset', 
-        'ak2PFL2Relative', 
-        'ak2PFL3Absolute', 
+    correctors = cms.vstring('ak2PFL1Offset',
+        'ak2PFL2Relative',
+        'ak2PFL3Absolute',
         'ak2PFResidual')
 )
 
@@ -23576,14 +23576,14 @@ process.ak2PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak2PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFL2Relative', 
+    correctors = cms.vstring('ak2PFL2Relative',
         'ak2PFL3Absolute')
 )
 
 
 process.ak2PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak2PFL2Relative', 
-        'ak2PFL3Absolute', 
+    correctors = cms.vstring('ak2PFL2Relative',
+        'ak2PFL3Absolute',
         'ak2PFResidual')
 )
 
@@ -23614,17 +23614,17 @@ process.ak3PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak3PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFCHSL1Fastjet', 
-        'ak3PFCHSL2Relative', 
-        'ak3PFCHSL3Absolute', 
+    correctors = cms.vstring('ak3PFCHSL1Fastjet',
+        'ak3PFCHSL2Relative',
+        'ak3PFCHSL3Absolute',
         'ak3PFCHSResidual')
 )
 
 
 process.ak3PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFCHSL1Offset', 
-        'ak3PFCHSL2Relative', 
-        'ak3PFCHSL3Absolute', 
+    correctors = cms.vstring('ak3PFCHSL1Offset',
+        'ak3PFCHSL2Relative',
+        'ak3PFCHSL3Absolute',
         'ak3PFCHSResidual')
 )
 
@@ -23638,14 +23638,14 @@ process.ak3PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak3PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFCHSL2Relative', 
+    correctors = cms.vstring('ak3PFCHSL2Relative',
         'ak3PFCHSL3Absolute')
 )
 
 
 process.ak3PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFCHSL2Relative', 
-        'ak3PFCHSL3Absolute', 
+    correctors = cms.vstring('ak3PFCHSL2Relative',
+        'ak3PFCHSL3Absolute',
         'ak3PFCHSResidual')
 )
 
@@ -23676,17 +23676,17 @@ process.ak3PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak3PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFL1Fastjet', 
-        'ak3PFL2Relative', 
-        'ak3PFL3Absolute', 
+    correctors = cms.vstring('ak3PFL1Fastjet',
+        'ak3PFL2Relative',
+        'ak3PFL3Absolute',
         'ak3PFResidual')
 )
 
 
 process.ak3PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFL1Offset', 
-        'ak3PFL2Relative', 
-        'ak3PFL3Absolute', 
+    correctors = cms.vstring('ak3PFL1Offset',
+        'ak3PFL2Relative',
+        'ak3PFL3Absolute',
         'ak3PFResidual')
 )
 
@@ -23700,14 +23700,14 @@ process.ak3PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak3PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFL2Relative', 
+    correctors = cms.vstring('ak3PFL2Relative',
         'ak3PFL3Absolute')
 )
 
 
 process.ak3PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak3PFL2Relative', 
-        'ak3PFL3Absolute', 
+    correctors = cms.vstring('ak3PFL2Relative',
+        'ak3PFL3Absolute',
         'ak3PFResidual')
 )
 
@@ -23731,24 +23731,24 @@ process.ak3PFResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ak4CaloL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'ak4CaloL2Relative', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'ak4CaloL2Relative',
         'ak4CaloL3Absolute')
 )
 
 
 process.ak4CaloL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'ak4CaloL2Relative', 
-        'ak4CaloL3Absolute', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'ak4CaloL2Relative',
+        'ak4CaloL3Absolute',
         'ak4CaloL6SLB')
 )
 
 
 process.ak4CaloL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'ak4CaloL2Relative', 
-        'ak4CaloL3Absolute', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'ak4CaloL2Relative',
+        'ak4CaloL3Absolute',
         'ak4CaloResidual')
 )
 
@@ -23761,16 +23761,16 @@ process.ak4CaloL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak4CaloL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Offset', 
-        'ak4CaloL2Relative', 
+    correctors = cms.vstring('ak4CaloL1Offset',
+        'ak4CaloL2Relative',
         'ak4CaloL3Absolute')
 )
 
 
 process.ak4CaloL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Offset', 
-        'ak4CaloL2Relative', 
-        'ak4CaloL3Absolute', 
+    correctors = cms.vstring('ak4CaloL1Offset',
+        'ak4CaloL2Relative',
+        'ak4CaloL3Absolute',
         'ak4CaloResidual')
 )
 
@@ -23784,21 +23784,21 @@ process.ak4CaloL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak4CaloL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL2Relative', 
+    correctors = cms.vstring('ak4CaloL2Relative',
         'ak4CaloL3Absolute')
 )
 
 
 process.ak4CaloL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL2Relative', 
-        'ak4CaloL3Absolute', 
+    correctors = cms.vstring('ak4CaloL2Relative',
+        'ak4CaloL3Absolute',
         'ak4CaloL6SLB')
 )
 
 
 process.ak4CaloL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL2Relative', 
-        'ak4CaloL3Absolute', 
+    correctors = cms.vstring('ak4CaloL2Relative',
+        'ak4CaloL3Absolute',
         'ak4CaloResidual')
 )
 
@@ -23831,16 +23831,16 @@ process.ak4CaloResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ak4JPTL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4JPTL1Fastjet', 
-        'ak4JPTL2Relative', 
+    correctors = cms.vstring('ak4JPTL1Fastjet',
+        'ak4JPTL2Relative',
         'ak4JPTL3Absolute')
 )
 
 
 process.ak4JPTL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4JPTL1Fastjet', 
-        'ak4JPTL2Relative', 
-        'ak4JPTL3Absolute', 
+    correctors = cms.vstring('ak4JPTL1Fastjet',
+        'ak4JPTL2Relative',
+        'ak4JPTL3Absolute',
         'ak4JPTResidual')
 )
 
@@ -23853,16 +23853,16 @@ process.ak4JPTL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak4JPTL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4L1JPTOffset', 
-        'ak4JPTL2Relative', 
+    correctors = cms.vstring('ak4L1JPTOffset',
+        'ak4JPTL2Relative',
         'ak4JPTL3Absolute')
 )
 
 
 process.ak4JPTL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4L1JPTOffset', 
-        'ak4JPTL2Relative', 
-        'ak4JPTL3Absolute', 
+    correctors = cms.vstring('ak4L1JPTOffset',
+        'ak4JPTL2Relative',
+        'ak4JPTL3Absolute',
         'ak4JPTResidual')
 )
 
@@ -23876,16 +23876,16 @@ process.ak4JPTL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak4JPTL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4L1JPTOffset', 
-        'ak4JPTL2Relative', 
+    correctors = cms.vstring('ak4L1JPTOffset',
+        'ak4JPTL2Relative',
         'ak4JPTL3Absolute')
 )
 
 
 process.ak4JPTL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4L1JPTOffset', 
-        'ak4JPTL2Relative', 
-        'ak4JPTL3Absolute', 
+    correctors = cms.vstring('ak4L1JPTOffset',
+        'ak4JPTL2Relative',
+        'ak4JPTL3Absolute',
         'ak4JPTResidual')
 )
 
@@ -23916,16 +23916,16 @@ process.ak4L1JPTOffset = cms.ESProducer("L1JPTOffsetCorrectionESProducer",
 
 
 process.ak4PFCHSL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFCHSL1Fastjet', 
-        'ak4PFCHSL2Relative', 
+    correctors = cms.vstring('ak4PFCHSL1Fastjet',
+        'ak4PFCHSL2Relative',
         'ak4PFCHSL3Absolute')
 )
 
 
 process.ak4PFCHSL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFCHSL1Fastjet', 
-        'ak4PFCHSL2Relative', 
-        'ak4PFCHSL3Absolute', 
+    correctors = cms.vstring('ak4PFCHSL1Fastjet',
+        'ak4PFCHSL2Relative',
+        'ak4PFCHSL3Absolute',
         'ak4PFCHSResidual')
 )
 
@@ -23938,16 +23938,16 @@ process.ak4PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak4PFCHSL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFCHSL1Offset', 
-        'ak4PFCHSL2Relative', 
+    correctors = cms.vstring('ak4PFCHSL1Offset',
+        'ak4PFCHSL2Relative',
         'ak4PFCHSL3Absolute')
 )
 
 
 process.ak4PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFCHSL1Offset', 
-        'ak4PFCHSL2Relative', 
-        'ak4PFCHSL3Absolute', 
+    correctors = cms.vstring('ak4PFCHSL1Offset',
+        'ak4PFCHSL2Relative',
+        'ak4PFCHSL3Absolute',
         'ak4PFCHSResidual')
 )
 
@@ -23961,14 +23961,14 @@ process.ak4PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak4PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFCHSL2Relative', 
+    correctors = cms.vstring('ak4PFCHSL2Relative',
         'ak4PFCHSL3Absolute')
 )
 
 
 process.ak4PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFCHSL2Relative', 
-        'ak4PFCHSL3Absolute', 
+    correctors = cms.vstring('ak4PFCHSL2Relative',
+        'ak4PFCHSL3Absolute',
         'ak4PFCHSResidual')
 )
 
@@ -23992,24 +23992,24 @@ process.ak4PFCHSResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ak4PFL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'ak4PFL2Relative', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'ak4PFL2Relative',
         'ak4PFL3Absolute')
 )
 
 
 process.ak4PFL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'ak4PFL2Relative', 
-        'ak4PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'ak4PFL2Relative',
+        'ak4PFL3Absolute',
         'ak4PFL6SLB')
 )
 
 
 process.ak4PFL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'ak4PFL2Relative', 
-        'ak4PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'ak4PFL2Relative',
+        'ak4PFL3Absolute',
         'ak4PFResidual')
 )
 
@@ -24022,16 +24022,16 @@ process.ak4PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak4PFL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Offset', 
-        'ak4PFL2Relative', 
+    correctors = cms.vstring('ak4PFL1Offset',
+        'ak4PFL2Relative',
         'ak4PFL3Absolute')
 )
 
 
 process.ak4PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Offset', 
-        'ak4PFL2Relative', 
-        'ak4PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL1Offset',
+        'ak4PFL2Relative',
+        'ak4PFL3Absolute',
         'ak4PFResidual')
 )
 
@@ -24045,21 +24045,21 @@ process.ak4PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak4PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL2Relative', 
+    correctors = cms.vstring('ak4PFL2Relative',
         'ak4PFL3Absolute')
 )
 
 
 process.ak4PFL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL2Relative', 
-        'ak4PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL2Relative',
+        'ak4PFL3Absolute',
         'ak4PFL6SLB')
 )
 
 
 process.ak4PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL2Relative', 
-        'ak4PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL2Relative',
+        'ak4PFL3Absolute',
         'ak4PFResidual')
 )
 
@@ -24092,14 +24092,14 @@ process.ak4PFResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ak4TrackL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'ak4TrackL2Relative', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'ak4TrackL2Relative',
         'ak4TrackL3Absolute')
 )
 
 
 process.ak4TrackL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4TrackL2Relative', 
+    correctors = cms.vstring('ak4TrackL2Relative',
         'ak4TrackL3Absolute')
 )
 
@@ -24124,17 +24124,17 @@ process.ak5PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak5PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFCHSL1Fastjet', 
-        'ak5PFCHSL2Relative', 
-        'ak5PFCHSL3Absolute', 
+    correctors = cms.vstring('ak5PFCHSL1Fastjet',
+        'ak5PFCHSL2Relative',
+        'ak5PFCHSL3Absolute',
         'ak5PFCHSResidual')
 )
 
 
 process.ak5PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFCHSL1Offset', 
-        'ak5PFCHSL2Relative', 
-        'ak5PFCHSL3Absolute', 
+    correctors = cms.vstring('ak5PFCHSL1Offset',
+        'ak5PFCHSL2Relative',
+        'ak5PFCHSL3Absolute',
         'ak5PFCHSResidual')
 )
 
@@ -24148,14 +24148,14 @@ process.ak5PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak5PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFCHSL2Relative', 
+    correctors = cms.vstring('ak5PFCHSL2Relative',
         'ak5PFCHSL3Absolute')
 )
 
 
 process.ak5PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFCHSL2Relative', 
-        'ak5PFCHSL3Absolute', 
+    correctors = cms.vstring('ak5PFCHSL2Relative',
+        'ak5PFCHSL3Absolute',
         'ak5PFCHSResidual')
 )
 
@@ -24186,17 +24186,17 @@ process.ak5PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak5PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFL1Fastjet', 
-        'ak5PFL2Relative', 
-        'ak5PFL3Absolute', 
+    correctors = cms.vstring('ak5PFL1Fastjet',
+        'ak5PFL2Relative',
+        'ak5PFL3Absolute',
         'ak5PFResidual')
 )
 
 
 process.ak5PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFL1Offset', 
-        'ak5PFL2Relative', 
-        'ak5PFL3Absolute', 
+    correctors = cms.vstring('ak5PFL1Offset',
+        'ak5PFL2Relative',
+        'ak5PFL3Absolute',
         'ak5PFResidual')
 )
 
@@ -24210,14 +24210,14 @@ process.ak5PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak5PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFL2Relative', 
+    correctors = cms.vstring('ak5PFL2Relative',
         'ak5PFL3Absolute')
 )
 
 
 process.ak5PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak5PFL2Relative', 
-        'ak5PFL3Absolute', 
+    correctors = cms.vstring('ak5PFL2Relative',
+        'ak5PFL3Absolute',
         'ak5PFResidual')
 )
 
@@ -24248,17 +24248,17 @@ process.ak6PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak6PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFCHSL1Fastjet', 
-        'ak6PFCHSL2Relative', 
-        'ak6PFCHSL3Absolute', 
+    correctors = cms.vstring('ak6PFCHSL1Fastjet',
+        'ak6PFCHSL2Relative',
+        'ak6PFCHSL3Absolute',
         'ak6PFCHSResidual')
 )
 
 
 process.ak6PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFCHSL1Offset', 
-        'ak6PFCHSL2Relative', 
-        'ak6PFCHSL3Absolute', 
+    correctors = cms.vstring('ak6PFCHSL1Offset',
+        'ak6PFCHSL2Relative',
+        'ak6PFCHSL3Absolute',
         'ak6PFCHSResidual')
 )
 
@@ -24272,14 +24272,14 @@ process.ak6PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak6PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFCHSL2Relative', 
+    correctors = cms.vstring('ak6PFCHSL2Relative',
         'ak6PFCHSL3Absolute')
 )
 
 
 process.ak6PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFCHSL2Relative', 
-        'ak6PFCHSL3Absolute', 
+    correctors = cms.vstring('ak6PFCHSL2Relative',
+        'ak6PFCHSL3Absolute',
         'ak6PFCHSResidual')
 )
 
@@ -24310,17 +24310,17 @@ process.ak6PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak6PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFL1Fastjet', 
-        'ak6PFL2Relative', 
-        'ak6PFL3Absolute', 
+    correctors = cms.vstring('ak6PFL1Fastjet',
+        'ak6PFL2Relative',
+        'ak6PFL3Absolute',
         'ak6PFResidual')
 )
 
 
 process.ak6PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFL1Offset', 
-        'ak6PFL2Relative', 
-        'ak6PFL3Absolute', 
+    correctors = cms.vstring('ak6PFL1Offset',
+        'ak6PFL2Relative',
+        'ak6PFL3Absolute',
         'ak6PFResidual')
 )
 
@@ -24334,14 +24334,14 @@ process.ak6PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak6PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFL2Relative', 
+    correctors = cms.vstring('ak6PFL2Relative',
         'ak6PFL3Absolute')
 )
 
 
 process.ak6PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak6PFL2Relative', 
-        'ak6PFL3Absolute', 
+    correctors = cms.vstring('ak6PFL2Relative',
+        'ak6PFL3Absolute',
         'ak6PFResidual')
 )
 
@@ -24365,24 +24365,24 @@ process.ak6PFResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ak7CaloL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'ak7CaloL2Relative', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'ak7CaloL2Relative',
         'ak7CaloL3Absolute')
 )
 
 
 process.ak7CaloL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7CaloL1Offset', 
-        'ak7CaloL2Relative', 
-        'ak7CaloL3Absolute', 
+    correctors = cms.vstring('ak7CaloL1Offset',
+        'ak7CaloL2Relative',
+        'ak7CaloL3Absolute',
         'ak7CaloL6SLB')
 )
 
 
 process.ak7CaloL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7CaloL1Fastjet', 
-        'ak7CaloL2Relative', 
-        'ak7CaloL3Absolute', 
+    correctors = cms.vstring('ak7CaloL1Fastjet',
+        'ak7CaloL2Relative',
+        'ak7CaloL3Absolute',
         'ak7CaloResidual')
 )
 
@@ -24395,16 +24395,16 @@ process.ak7CaloL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak7CaloL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7CaloL1Offset', 
-        'ak7CaloL2Relative', 
+    correctors = cms.vstring('ak7CaloL1Offset',
+        'ak7CaloL2Relative',
         'ak7CaloL3Absolute')
 )
 
 
 process.ak7CaloL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7CaloL1Offset', 
-        'ak7CaloL2Relative', 
-        'ak7CaloL3Absolute', 
+    correctors = cms.vstring('ak7CaloL1Offset',
+        'ak7CaloL2Relative',
+        'ak7CaloL3Absolute',
         'ak7CaloResidual')
 )
 
@@ -24418,21 +24418,21 @@ process.ak7CaloL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak7CaloL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7CaloL2Relative', 
+    correctors = cms.vstring('ak7CaloL2Relative',
         'ak7CaloL3Absolute')
 )
 
 
 process.ak7CaloL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7CaloL2Relative', 
-        'ak7CaloL3Absolute', 
+    correctors = cms.vstring('ak7CaloL2Relative',
+        'ak7CaloL3Absolute',
         'ak7CaloL6SLB')
 )
 
 
 process.ak7CaloL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7CaloL2Relative', 
-        'ak7CaloL3Absolute', 
+    correctors = cms.vstring('ak7CaloL2Relative',
+        'ak7CaloL3Absolute',
         'ak7CaloResidual')
 )
 
@@ -24465,10 +24465,10 @@ process.ak7CaloResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ak7JPTL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7JPTL1Fastjet', 
-        'ak7L1JPTOffset', 
-        'ak7JPTL2Relative', 
-        'ak7JPTL3Absolute', 
+    correctors = cms.vstring('ak7JPTL1Fastjet',
+        'ak7L1JPTOffset',
+        'ak7JPTL2Relative',
+        'ak7JPTL3Absolute',
         'ak7JPTResidual')
 )
 
@@ -24481,18 +24481,18 @@ process.ak7JPTL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak7JPTL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7JPTL1Offset', 
-        'ak7L1JPTOffset', 
-        'ak7JPTL2Relative', 
+    correctors = cms.vstring('ak7JPTL1Offset',
+        'ak7L1JPTOffset',
+        'ak7JPTL2Relative',
         'ak7JPTL3Absolute')
 )
 
 
 process.ak7JPTL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7JPTL1Offset', 
-        'ak7L1JPTOffset', 
-        'ak7JPTL2Relative', 
-        'ak7JPTL3Absolute', 
+    correctors = cms.vstring('ak7JPTL1Offset',
+        'ak7L1JPTOffset',
+        'ak7JPTL2Relative',
+        'ak7JPTL3Absolute',
         'ak7JPTResidual')
 )
 
@@ -24506,8 +24506,8 @@ process.ak7JPTL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak7JPTL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7L1JPTOffset', 
-        'ak7JPTL2Relative', 
+    correctors = cms.vstring('ak7L1JPTOffset',
+        'ak7JPTL2Relative',
         'ak7JPTL3Absolute')
 )
 
@@ -24520,8 +24520,8 @@ process.ak7L1JPTOffset = cms.ESProducer("L1JPTOffsetCorrectionESProducer",
 
 
 process.ak7PFCHSL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFCHSL1Fastjet', 
-        'ak7PFCHSL2Relative', 
+    correctors = cms.vstring('ak4PFCHSL1Fastjet',
+        'ak7PFCHSL2Relative',
         'ak7PFCHSL3Absolute')
 )
 
@@ -24534,17 +24534,17 @@ process.ak7PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak7PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFCHSL1Fastjet', 
-        'ak7PFCHSL2Relative', 
-        'ak7PFCHSL3Absolute', 
+    correctors = cms.vstring('ak7PFCHSL1Fastjet',
+        'ak7PFCHSL2Relative',
+        'ak7PFCHSL3Absolute',
         'ak7PFCHSResidual')
 )
 
 
 process.ak7PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFCHSL1Offset', 
-        'ak7PFCHSL2Relative', 
-        'ak7PFCHSL3Absolute', 
+    correctors = cms.vstring('ak7PFCHSL1Offset',
+        'ak7PFCHSL2Relative',
+        'ak7PFCHSL3Absolute',
         'ak7PFCHSResidual')
 )
 
@@ -24558,14 +24558,14 @@ process.ak7PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak7PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFCHSL2Relative', 
+    correctors = cms.vstring('ak7PFCHSL2Relative',
         'ak7PFCHSL3Absolute')
 )
 
 
 process.ak7PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFCHSL2Relative', 
-        'ak7PFCHSL3Absolute', 
+    correctors = cms.vstring('ak7PFCHSL2Relative',
+        'ak7PFCHSL3Absolute',
         'ak7PFCHSResidual')
 )
 
@@ -24589,16 +24589,16 @@ process.ak7PFCHSResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ak7PFL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'ak7PFL2Relative', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'ak7PFL2Relative',
         'ak7PFL3Absolute')
 )
 
 
 process.ak7PFL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'ak7PFL2Relative', 
-        'ak7PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'ak7PFL2Relative',
+        'ak7PFL3Absolute',
         'ak7PFL6SLB')
 )
 
@@ -24611,24 +24611,24 @@ process.ak7PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak7PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFL1Fastjet', 
-        'ak7PFL2Relative', 
-        'ak7PFL3Absolute', 
+    correctors = cms.vstring('ak7PFL1Fastjet',
+        'ak7PFL2Relative',
+        'ak7PFL3Absolute',
         'ak7PFResidual')
 )
 
 
 process.ak7PFL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFL1Offset', 
-        'ak7PFL2Relative', 
+    correctors = cms.vstring('ak7PFL1Offset',
+        'ak7PFL2Relative',
         'ak7PFL3Absolute')
 )
 
 
 process.ak7PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFL1Offset', 
-        'ak7PFL2Relative', 
-        'ak7PFL3Absolute', 
+    correctors = cms.vstring('ak7PFL1Offset',
+        'ak7PFL2Relative',
+        'ak7PFL3Absolute',
         'ak7PFResidual')
 )
 
@@ -24642,21 +24642,21 @@ process.ak7PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak7PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFL2Relative', 
+    correctors = cms.vstring('ak7PFL2Relative',
         'ak7PFL3Absolute')
 )
 
 
 process.ak7PFL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFL2Relative', 
-        'ak7PFL3Absolute', 
+    correctors = cms.vstring('ak7PFL2Relative',
+        'ak7PFL3Absolute',
         'ak7PFL6SLB')
 )
 
 
 process.ak7PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak7PFL2Relative', 
-        'ak7PFL3Absolute', 
+    correctors = cms.vstring('ak7PFL2Relative',
+        'ak7PFL3Absolute',
         'ak7PFResidual')
 )
 
@@ -24696,17 +24696,17 @@ process.ak8PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak8PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFCHSL1Fastjet', 
-        'ak8PFCHSL2Relative', 
-        'ak8PFCHSL3Absolute', 
+    correctors = cms.vstring('ak8PFCHSL1Fastjet',
+        'ak8PFCHSL2Relative',
+        'ak8PFCHSL3Absolute',
         'ak8PFCHSResidual')
 )
 
 
 process.ak8PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFCHSL1Offset', 
-        'ak8PFCHSL2Relative', 
-        'ak8PFCHSL3Absolute', 
+    correctors = cms.vstring('ak8PFCHSL1Offset',
+        'ak8PFCHSL2Relative',
+        'ak8PFCHSL3Absolute',
         'ak8PFCHSResidual')
 )
 
@@ -24720,14 +24720,14 @@ process.ak8PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak8PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFCHSL2Relative', 
+    correctors = cms.vstring('ak8PFCHSL2Relative',
         'ak8PFCHSL3Absolute')
 )
 
 
 process.ak8PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFCHSL2Relative', 
-        'ak8PFCHSL3Absolute', 
+    correctors = cms.vstring('ak8PFCHSL2Relative',
+        'ak8PFCHSL3Absolute',
         'ak8PFCHSResidual')
 )
 
@@ -24758,17 +24758,17 @@ process.ak8PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak8PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFL1Fastjet', 
-        'ak8PFL2Relative', 
-        'ak8PFL3Absolute', 
+    correctors = cms.vstring('ak8PFL1Fastjet',
+        'ak8PFL2Relative',
+        'ak8PFL3Absolute',
         'ak8PFResidual')
 )
 
 
 process.ak8PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFL1Offset', 
-        'ak8PFL2Relative', 
-        'ak8PFL3Absolute', 
+    correctors = cms.vstring('ak8PFL1Offset',
+        'ak8PFL2Relative',
+        'ak8PFL3Absolute',
         'ak8PFResidual')
 )
 
@@ -24782,14 +24782,14 @@ process.ak8PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak8PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFL2Relative', 
+    correctors = cms.vstring('ak8PFL2Relative',
         'ak8PFL3Absolute')
 )
 
 
 process.ak8PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak8PFL2Relative', 
-        'ak8PFL3Absolute', 
+    correctors = cms.vstring('ak8PFL2Relative',
+        'ak8PFL3Absolute',
         'ak8PFResidual')
 )
 
@@ -24820,17 +24820,17 @@ process.ak9PFCHSL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak9PFCHSL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFCHSL1Fastjet', 
-        'ak9PFCHSL2Relative', 
-        'ak9PFCHSL3Absolute', 
+    correctors = cms.vstring('ak9PFCHSL1Fastjet',
+        'ak9PFCHSL2Relative',
+        'ak9PFCHSL3Absolute',
         'ak9PFCHSResidual')
 )
 
 
 process.ak9PFCHSL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFCHSL1Offset', 
-        'ak9PFCHSL2Relative', 
-        'ak9PFCHSL3Absolute', 
+    correctors = cms.vstring('ak9PFCHSL1Offset',
+        'ak9PFCHSL2Relative',
+        'ak9PFCHSL3Absolute',
         'ak9PFCHSResidual')
 )
 
@@ -24844,14 +24844,14 @@ process.ak9PFCHSL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak9PFCHSL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFCHSL2Relative', 
+    correctors = cms.vstring('ak9PFCHSL2Relative',
         'ak9PFCHSL3Absolute')
 )
 
 
 process.ak9PFCHSL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFCHSL2Relative', 
-        'ak9PFCHSL3Absolute', 
+    correctors = cms.vstring('ak9PFCHSL2Relative',
+        'ak9PFCHSL3Absolute',
         'ak9PFCHSResidual')
 )
 
@@ -24882,17 +24882,17 @@ process.ak9PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ak9PFL1FastjetL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFL1Fastjet', 
-        'ak9PFL2Relative', 
-        'ak9PFL3Absolute', 
+    correctors = cms.vstring('ak9PFL1Fastjet',
+        'ak9PFL2Relative',
+        'ak9PFL3Absolute',
         'ak9PFResidual')
 )
 
 
 process.ak9PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFL1Offset', 
-        'ak9PFL2Relative', 
-        'ak9PFL3Absolute', 
+    correctors = cms.vstring('ak9PFL1Offset',
+        'ak9PFL2Relative',
+        'ak9PFL3Absolute',
         'ak9PFResidual')
 )
 
@@ -24906,14 +24906,14 @@ process.ak9PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ak9PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFL2Relative', 
+    correctors = cms.vstring('ak9PFL2Relative',
         'ak9PFL3Absolute')
 )
 
 
 process.ak9PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak9PFL2Relative', 
-        'ak9PFL3Absolute', 
+    correctors = cms.vstring('ak9PFL2Relative',
+        'ak9PFL3Absolute',
         'ak9PFResidual')
 )
 
@@ -24958,17 +24958,17 @@ process.candidateCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTagESProduc
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('candidateJetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('candidateCombinedSecondaryVertexComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFElectronComputer'),
@@ -24984,17 +24984,17 @@ process.candidateCombinedMVAComputerNEW = cms.ESProducer("CombinedMVAJetTagESPro
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('candidateJetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('candidateCombinedSecondaryVertexV2Computer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFElectronComputer'),
@@ -25005,8 +25005,8 @@ process.candidateCombinedMVAComputerNEW = cms.ESProducer("CombinedMVAJetTagESPro
 
 
 process.candidateCombinedSecondaryVertexComputer = cms.ESProducer("CandidateCombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertex', 
-        'CombinedSVPseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertex',
+        'CombinedSVPseudoVertex',
         'CombinedSVNoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -25085,14 +25085,14 @@ process.candidateCombinedSecondaryVertexComputer = cms.ESProducer("CandidateComb
 
 
 process.candidateCombinedSecondaryVertexSoftLeptonComputer = cms.ESProducer("CandidateCombinedSecondaryVertexSoftLeptonESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton', 
-        'CombinedSVPseudoVertexNoSoftLepton', 
-        'CombinedSVNoVertexNoSoftLepton', 
-        'CombinedSVRecoVertexSoftMuon', 
-        'CombinedSVPseudoVertexSoftMuon', 
-        'CombinedSVNoVertexSoftMuon', 
-        'CombinedSVRecoVertexSoftElectron', 
-        'CombinedSVPseudoVertexSoftElectron', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton',
+        'CombinedSVPseudoVertexNoSoftLepton',
+        'CombinedSVNoVertexNoSoftLepton',
+        'CombinedSVRecoVertexSoftMuon',
+        'CombinedSVPseudoVertexSoftMuon',
+        'CombinedSVNoVertexSoftMuon',
+        'CombinedSVRecoVertexSoftElectron',
+        'CombinedSVPseudoVertexSoftElectron',
         'CombinedSVNoVertexSoftElectron'),
     categoryVariableName = cms.string('vertexLeptonCategory'),
     charmCut = cms.double(1.5),
@@ -25171,14 +25171,14 @@ process.candidateCombinedSecondaryVertexSoftLeptonComputer = cms.ESProducer("Can
 
 
 process.candidateCombinedSecondaryVertexSoftLeptonCtagLComputer = cms.ESProducer("CandidateCombinedSecondaryVertexSoftLeptonCtagLESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLeptonCtagL', 
-        'CombinedSVPseudoVertexNoSoftLeptonCtagL', 
-        'CombinedSVNoVertexNoSoftLeptonCtagL', 
-        'CombinedSVRecoVertexSoftMuonCtagL', 
-        'CombinedSVPseudoVertexSoftMuonCtagL', 
-        'CombinedSVNoVertexSoftMuonCtagL', 
-        'CombinedSVRecoVertexSoftElectronCtagL', 
-        'CombinedSVPseudoVertexSoftElectronCtagL', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLeptonCtagL',
+        'CombinedSVPseudoVertexNoSoftLeptonCtagL',
+        'CombinedSVNoVertexNoSoftLeptonCtagL',
+        'CombinedSVRecoVertexSoftMuonCtagL',
+        'CombinedSVPseudoVertexSoftMuonCtagL',
+        'CombinedSVNoVertexSoftMuonCtagL',
+        'CombinedSVRecoVertexSoftElectronCtagL',
+        'CombinedSVPseudoVertexSoftElectronCtagL',
         'CombinedSVNoVertexSoftElectronCtagL'),
     categoryVariableName = cms.string('vertexLeptonCategory'),
     charmCut = cms.double(1.5),
@@ -25257,8 +25257,8 @@ process.candidateCombinedSecondaryVertexSoftLeptonCtagLComputer = cms.ESProducer
 
 
 process.candidateCombinedSecondaryVertexV2Computer = cms.ESProducer("CandidateCombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex', 
-        'CombinedSVIVFV2PseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex',
+        'CombinedSVIVFV2PseudoVertex',
         'CombinedSVIVFV2NoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -25385,17 +25385,17 @@ process.candidateNegativeCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTag
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('candidateNegativeOnlyJetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('candidateNegativeCombinedSecondaryVertexComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('negativeSoftPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('negativeSoftPFElectronComputer'),
@@ -25406,8 +25406,8 @@ process.candidateNegativeCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTag
 
 
 process.candidateNegativeCombinedSecondaryVertexComputer = cms.ESProducer("CandidateCombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertex', 
-        'CombinedSVPseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertex',
+        'CombinedSVPseudoVertex',
         'CombinedSVNoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -25486,14 +25486,14 @@ process.candidateNegativeCombinedSecondaryVertexComputer = cms.ESProducer("Candi
 
 
 process.candidateNegativeCombinedSecondaryVertexSoftLeptonComputer = cms.ESProducer("CandidateCombinedSecondaryVertexSoftLeptonESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton', 
-        'CombinedSVPseudoVertexNoSoftLepton', 
-        'CombinedSVNoVertexNoSoftLepton', 
-        'CombinedSVRecoVertexSoftMuon', 
-        'CombinedSVPseudoVertexSoftMuon', 
-        'CombinedSVNoVertexSoftMuon', 
-        'CombinedSVRecoVertexSoftElectron', 
-        'CombinedSVPseudoVertexSoftElectron', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton',
+        'CombinedSVPseudoVertexNoSoftLepton',
+        'CombinedSVNoVertexNoSoftLepton',
+        'CombinedSVRecoVertexSoftMuon',
+        'CombinedSVPseudoVertexSoftMuon',
+        'CombinedSVNoVertexSoftMuon',
+        'CombinedSVRecoVertexSoftElectron',
+        'CombinedSVPseudoVertexSoftElectron',
         'CombinedSVNoVertexSoftElectron'),
     categoryVariableName = cms.string('vertexLeptonCategory'),
     charmCut = cms.double(1.5),
@@ -25572,14 +25572,14 @@ process.candidateNegativeCombinedSecondaryVertexSoftLeptonComputer = cms.ESProdu
 
 
 process.candidateNegativeCombinedSecondaryVertexSoftLeptonCtagLComputer = cms.ESProducer("CandidateCombinedSecondaryVertexSoftLeptonCtagLESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLeptonCtagL', 
-        'CombinedSVPseudoVertexNoSoftLeptonCtagL', 
-        'CombinedSVNoVertexNoSoftLeptonCtagL', 
-        'CombinedSVRecoVertexSoftMuonCtagL', 
-        'CombinedSVPseudoVertexSoftMuonCtagL', 
-        'CombinedSVNoVertexSoftMuonCtagL', 
-        'CombinedSVRecoVertexSoftElectronCtagL', 
-        'CombinedSVPseudoVertexSoftElectronCtagL', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLeptonCtagL',
+        'CombinedSVPseudoVertexNoSoftLeptonCtagL',
+        'CombinedSVNoVertexNoSoftLeptonCtagL',
+        'CombinedSVRecoVertexSoftMuonCtagL',
+        'CombinedSVPseudoVertexSoftMuonCtagL',
+        'CombinedSVNoVertexSoftMuonCtagL',
+        'CombinedSVRecoVertexSoftElectronCtagL',
+        'CombinedSVPseudoVertexSoftElectronCtagL',
         'CombinedSVNoVertexSoftElectronCtagL'),
     categoryVariableName = cms.string('vertexLeptonCategory'),
     charmCut = cms.double(1.5),
@@ -25658,8 +25658,8 @@ process.candidateNegativeCombinedSecondaryVertexSoftLeptonCtagLComputer = cms.ES
 
 
 process.candidateNegativeCombinedSecondaryVertexV2Computer = cms.ESProducer("CandidateCombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex', 
-        'CombinedSVIVFV2PseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex',
+        'CombinedSVIVFV2PseudoVertex',
         'CombinedSVIVFV2NoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -25830,17 +25830,17 @@ process.candidatePositiveCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTag
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('candidatePositiveOnlyJetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('candidatePositiveCombinedSecondaryVertexComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('positiveSoftPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('positiveSoftPFElectronComputer'),
@@ -25851,8 +25851,8 @@ process.candidatePositiveCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTag
 
 
 process.candidatePositiveCombinedSecondaryVertexComputer = cms.ESProducer("CandidateCombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertex', 
-        'CombinedSVPseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertex',
+        'CombinedSVPseudoVertex',
         'CombinedSVNoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -25931,14 +25931,14 @@ process.candidatePositiveCombinedSecondaryVertexComputer = cms.ESProducer("Candi
 
 
 process.candidatePositiveCombinedSecondaryVertexSoftLeptonComputer = cms.ESProducer("CandidateCombinedSecondaryVertexSoftLeptonESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton', 
-        'CombinedSVPseudoVertexNoSoftLepton', 
-        'CombinedSVNoVertexNoSoftLepton', 
-        'CombinedSVRecoVertexSoftMuon', 
-        'CombinedSVPseudoVertexSoftMuon', 
-        'CombinedSVNoVertexSoftMuon', 
-        'CombinedSVRecoVertexSoftElectron', 
-        'CombinedSVPseudoVertexSoftElectron', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton',
+        'CombinedSVPseudoVertexNoSoftLepton',
+        'CombinedSVNoVertexNoSoftLepton',
+        'CombinedSVRecoVertexSoftMuon',
+        'CombinedSVPseudoVertexSoftMuon',
+        'CombinedSVNoVertexSoftMuon',
+        'CombinedSVRecoVertexSoftElectron',
+        'CombinedSVPseudoVertexSoftElectron',
         'CombinedSVNoVertexSoftElectron'),
     categoryVariableName = cms.string('vertexLeptonCategory'),
     charmCut = cms.double(1.5),
@@ -26017,14 +26017,14 @@ process.candidatePositiveCombinedSecondaryVertexSoftLeptonComputer = cms.ESProdu
 
 
 process.candidatePositiveCombinedSecondaryVertexSoftLeptonCtagLComputer = cms.ESProducer("CandidateCombinedSecondaryVertexSoftLeptonCtagLESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLeptonCtagL', 
-        'CombinedSVPseudoVertexNoSoftLeptonCtagL', 
-        'CombinedSVNoVertexNoSoftLeptonCtagL', 
-        'CombinedSVRecoVertexSoftMuonCtagL', 
-        'CombinedSVPseudoVertexSoftMuonCtagL', 
-        'CombinedSVNoVertexSoftMuonCtagL', 
-        'CombinedSVRecoVertexSoftElectronCtagL', 
-        'CombinedSVPseudoVertexSoftElectronCtagL', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLeptonCtagL',
+        'CombinedSVPseudoVertexNoSoftLeptonCtagL',
+        'CombinedSVNoVertexNoSoftLeptonCtagL',
+        'CombinedSVRecoVertexSoftMuonCtagL',
+        'CombinedSVPseudoVertexSoftMuonCtagL',
+        'CombinedSVNoVertexSoftMuonCtagL',
+        'CombinedSVRecoVertexSoftElectronCtagL',
+        'CombinedSVPseudoVertexSoftElectronCtagL',
         'CombinedSVNoVertexSoftElectronCtagL'),
     categoryVariableName = cms.string('vertexLeptonCategory'),
     charmCut = cms.double(1.5),
@@ -26103,8 +26103,8 @@ process.candidatePositiveCombinedSecondaryVertexSoftLeptonCtagLComputer = cms.ES
 
 
 process.candidatePositiveCombinedSecondaryVertexV2Computer = cms.ESProducer("CandidateCombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex', 
-        'CombinedSVIVFV2PseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex',
+        'CombinedSVIVFV2PseudoVertex',
         'CombinedSVIVFV2NoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -26291,17 +26291,17 @@ process.combinedMVAComputer = cms.ESProducer("CombinedMVAJetTagESProducer",
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('jetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('combinedSecondaryVertexComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFElectronComputer'),
@@ -26317,17 +26317,17 @@ process.combinedMVAComputerNEW = cms.ESProducer("CombinedMVAJetTagESProducer",
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('jetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('combinedSecondaryVertexV2Computer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('softPFElectronComputer'),
@@ -26338,8 +26338,8 @@ process.combinedMVAComputerNEW = cms.ESProducer("CombinedMVAJetTagESProducer",
 
 
 process.combinedSecondaryVertexComputer = cms.ESProducer("CombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertex', 
-        'CombinedSVPseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertex',
+        'CombinedSVPseudoVertex',
         'CombinedSVNoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -26418,14 +26418,14 @@ process.combinedSecondaryVertexComputer = cms.ESProducer("CombinedSecondaryVerte
 
 
 process.combinedSecondaryVertexSoftLeptonComputer = cms.ESProducer("CombinedSecondaryVertexSoftLeptonESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton', 
-        'CombinedSVPseudoVertexNoSoftLepton', 
-        'CombinedSVNoVertexNoSoftLepton', 
-        'CombinedSVRecoVertexSoftMuon', 
-        'CombinedSVPseudoVertexSoftMuon', 
-        'CombinedSVNoVertexSoftMuon', 
-        'CombinedSVRecoVertexSoftElectron', 
-        'CombinedSVPseudoVertexSoftElectron', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertexNoSoftLepton',
+        'CombinedSVPseudoVertexNoSoftLepton',
+        'CombinedSVNoVertexNoSoftLepton',
+        'CombinedSVRecoVertexSoftMuon',
+        'CombinedSVPseudoVertexSoftMuon',
+        'CombinedSVNoVertexSoftMuon',
+        'CombinedSVRecoVertexSoftElectron',
+        'CombinedSVPseudoVertexSoftElectron',
         'CombinedSVNoVertexSoftElectron'),
     categoryVariableName = cms.string('vertexLeptonCategory'),
     charmCut = cms.double(1.5),
@@ -26504,8 +26504,8 @@ process.combinedSecondaryVertexSoftLeptonComputer = cms.ESProducer("CombinedSeco
 
 
 process.combinedSecondaryVertexV2Computer = cms.ESProducer("CombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex', 
-        'CombinedSVIVFV2PseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex',
+        'CombinedSVIVFV2PseudoVertex',
         'CombinedSVIVFV2NoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -26598,8 +26598,8 @@ process.fakeForIdealAlignment = cms.ESProducer("FakeAlignmentProducer",
 
 
 process.ghostTrackComputer = cms.ESProducer("GhostTrackESProducer",
-    calibrationRecords = cms.vstring('GhostTrackRecoVertex', 
-        'GhostTrackPseudoVertex', 
+    calibrationRecords = cms.vstring('GhostTrackRecoVertex',
+        'GhostTrackPseudoVertex',
         'GhostTrackNoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -26658,24 +26658,24 @@ process.hcal_db_producer = cms.ESProducer("HcalDbProducer",
 
 
 process.ic5CaloL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'ic5CaloL2Relative', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'ic5CaloL2Relative',
         'ic5CaloL3Absolute')
 )
 
 
 process.ic5CaloL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5CaloL1Offset', 
-        'ic5CaloL2Relative', 
-        'ic5CaloL3Absolute', 
+    correctors = cms.vstring('ic5CaloL1Offset',
+        'ic5CaloL2Relative',
+        'ic5CaloL3Absolute',
         'ic5CaloL6SLB')
 )
 
 
 process.ic5CaloL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5CaloL1Fastjet', 
-        'ic5CaloL2Relative', 
-        'ic5CaloL3Absolute', 
+    correctors = cms.vstring('ic5CaloL1Fastjet',
+        'ic5CaloL2Relative',
+        'ic5CaloL3Absolute',
         'ic5CaloResidual')
 )
 
@@ -26688,16 +26688,16 @@ process.ic5CaloL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ic5CaloL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5CaloL1Offset', 
-        'ic5CaloL2Relative', 
+    correctors = cms.vstring('ic5CaloL1Offset',
+        'ic5CaloL2Relative',
         'ic5CaloL3Absolute')
 )
 
 
 process.ic5CaloL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5CaloL1Offset', 
-        'ic5CaloL2Relative', 
-        'ic5CaloL3Absolute', 
+    correctors = cms.vstring('ic5CaloL1Offset',
+        'ic5CaloL2Relative',
+        'ic5CaloL3Absolute',
         'ic5CaloResidual')
 )
 
@@ -26711,21 +26711,21 @@ process.ic5CaloL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ic5CaloL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5CaloL2Relative', 
+    correctors = cms.vstring('ic5CaloL2Relative',
         'ic5CaloL3Absolute')
 )
 
 
 process.ic5CaloL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5CaloL2Relative', 
-        'ic5CaloL3Absolute', 
+    correctors = cms.vstring('ic5CaloL2Relative',
+        'ic5CaloL3Absolute',
         'ic5CaloL6SLB')
 )
 
 
 process.ic5CaloL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5CaloL2Relative', 
-        'ic5CaloL3Absolute', 
+    correctors = cms.vstring('ic5CaloL2Relative',
+        'ic5CaloL3Absolute',
         'ic5CaloResidual')
 )
 
@@ -26758,24 +26758,24 @@ process.ic5CaloResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.ic5PFL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'ic5PFL2Relative', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'ic5PFL2Relative',
         'ic5PFL3Absolute')
 )
 
 
 process.ic5PFL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'ic5PFL2Relative', 
-        'ic5PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'ic5PFL2Relative',
+        'ic5PFL3Absolute',
         'ic5PFL6SLB')
 )
 
 
 process.ic5PFL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5PFL1Fastjet', 
-        'ic5PFL2Relative', 
-        'ic5PFL3Absolute', 
+    correctors = cms.vstring('ic5PFL1Fastjet',
+        'ic5PFL2Relative',
+        'ic5PFL3Absolute',
         'ic5PFResidual')
 )
 
@@ -26788,16 +26788,16 @@ process.ic5PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.ic5PFL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5PFL1Offset', 
-        'ic5PFL2Relative', 
+    correctors = cms.vstring('ic5PFL1Offset',
+        'ic5PFL2Relative',
         'ic5PFL3Absolute')
 )
 
 
 process.ic5PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5PFL1Offset', 
-        'ic5PFL2Relative', 
-        'ic5PFL3Absolute', 
+    correctors = cms.vstring('ic5PFL1Offset',
+        'ic5PFL2Relative',
+        'ic5PFL3Absolute',
         'ic5PFResidual')
 )
 
@@ -26811,21 +26811,21 @@ process.ic5PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.ic5PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5PFL2Relative', 
+    correctors = cms.vstring('ic5PFL2Relative',
         'ic5PFL3Absolute')
 )
 
 
 process.ic5PFL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5PFL2Relative', 
-        'ic5PFL3Absolute', 
+    correctors = cms.vstring('ic5PFL2Relative',
+        'ic5PFL3Absolute',
         'ic5PFL6SLB')
 )
 
 
 process.ic5PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ic5PFL2Relative', 
-        'ic5PFL3Absolute', 
+    correctors = cms.vstring('ic5PFL2Relative',
+        'ic5PFL3Absolute',
         'ic5PFResidual')
 )
 
@@ -26945,24 +26945,24 @@ process.jetProbabilityComputer = cms.ESProducer("JetProbabilityESProducer",
 
 
 process.kt4CaloL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'kt4CaloL2Relative', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'kt4CaloL2Relative',
         'kt4CaloL3Absolute')
 )
 
 
 process.kt4CaloL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4CaloL1Offset', 
-        'kt4CaloL2Relative', 
-        'kt4CaloL3Absolute', 
+    correctors = cms.vstring('kt4CaloL1Offset',
+        'kt4CaloL2Relative',
+        'kt4CaloL3Absolute',
         'kt4CaloL6SLB')
 )
 
 
 process.kt4CaloL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4CaloL1Fastjet', 
-        'kt4CaloL2Relative', 
-        'kt4CaloL3Absolute', 
+    correctors = cms.vstring('kt4CaloL1Fastjet',
+        'kt4CaloL2Relative',
+        'kt4CaloL3Absolute',
         'kt4CaloResidual')
 )
 
@@ -26975,16 +26975,16 @@ process.kt4CaloL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.kt4CaloL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4CaloL1Offset', 
-        'kt4CaloL2Relative', 
+    correctors = cms.vstring('kt4CaloL1Offset',
+        'kt4CaloL2Relative',
         'kt4CaloL3Absolute')
 )
 
 
 process.kt4CaloL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4CaloL1Offset', 
-        'kt4CaloL2Relative', 
-        'kt4CaloL3Absolute', 
+    correctors = cms.vstring('kt4CaloL1Offset',
+        'kt4CaloL2Relative',
+        'kt4CaloL3Absolute',
         'kt4CaloResidual')
 )
 
@@ -26998,21 +26998,21 @@ process.kt4CaloL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.kt4CaloL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4CaloL2Relative', 
+    correctors = cms.vstring('kt4CaloL2Relative',
         'kt4CaloL3Absolute')
 )
 
 
 process.kt4CaloL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4CaloL2Relative', 
-        'kt4CaloL3Absolute', 
+    correctors = cms.vstring('kt4CaloL2Relative',
+        'kt4CaloL3Absolute',
         'kt4CaloL6SLB')
 )
 
 
 process.kt4CaloL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4CaloL2Relative', 
-        'kt4CaloL3Absolute', 
+    correctors = cms.vstring('kt4CaloL2Relative',
+        'kt4CaloL3Absolute',
         'kt4CaloResidual')
 )
 
@@ -27045,24 +27045,24 @@ process.kt4CaloResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.kt4PFL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'kt4PFL2Relative', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'kt4PFL2Relative',
         'kt4PFL3Absolute')
 )
 
 
 process.kt4PFL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'kt4PFL2Relative', 
-        'kt4PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'kt4PFL2Relative',
+        'kt4PFL3Absolute',
         'kt4PFL6SLB')
 )
 
 
 process.kt4PFL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4PFL1Fastjet', 
-        'kt4PFL2Relative', 
-        'kt4PFL3Absolute', 
+    correctors = cms.vstring('kt4PFL1Fastjet',
+        'kt4PFL2Relative',
+        'kt4PFL3Absolute',
         'kt4PFResidual')
 )
 
@@ -27075,16 +27075,16 @@ process.kt4PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.kt4PFL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4PFL1Offset', 
-        'kt4PFL2Relative', 
+    correctors = cms.vstring('kt4PFL1Offset',
+        'kt4PFL2Relative',
         'kt4PFL3Absolute')
 )
 
 
 process.kt4PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4PFL1Offset', 
-        'kt4PFL2Relative', 
-        'kt4PFL3Absolute', 
+    correctors = cms.vstring('kt4PFL1Offset',
+        'kt4PFL2Relative',
+        'kt4PFL3Absolute',
         'kt4PFResidual')
 )
 
@@ -27098,21 +27098,21 @@ process.kt4PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.kt4PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4PFL2Relative', 
+    correctors = cms.vstring('kt4PFL2Relative',
         'kt4PFL3Absolute')
 )
 
 
 process.kt4PFL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4PFL2Relative', 
-        'kt4PFL3Absolute', 
+    correctors = cms.vstring('kt4PFL2Relative',
+        'kt4PFL3Absolute',
         'kt4PFL6SLB')
 )
 
 
 process.kt4PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt4PFL2Relative', 
-        'kt4PFL3Absolute', 
+    correctors = cms.vstring('kt4PFL2Relative',
+        'kt4PFL3Absolute',
         'kt4PFResidual')
 )
 
@@ -27145,24 +27145,24 @@ process.kt4PFResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.kt6CaloL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4CaloL1Fastjet', 
-        'kt6CaloL2Relative', 
+    correctors = cms.vstring('ak4CaloL1Fastjet',
+        'kt6CaloL2Relative',
         'kt6CaloL3Absolute')
 )
 
 
 process.kt6CaloL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6CaloL1Offset', 
-        'kt6CaloL2Relative', 
-        'kt6CaloL3Absolute', 
+    correctors = cms.vstring('kt6CaloL1Offset',
+        'kt6CaloL2Relative',
+        'kt6CaloL3Absolute',
         'kt6CaloL6SLB')
 )
 
 
 process.kt6CaloL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6CaloL1Fastjet', 
-        'kt6CaloL2Relative', 
-        'kt6CaloL3Absolute', 
+    correctors = cms.vstring('kt6CaloL1Fastjet',
+        'kt6CaloL2Relative',
+        'kt6CaloL3Absolute',
         'kt6CaloResidual')
 )
 
@@ -27175,16 +27175,16 @@ process.kt6CaloL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.kt6CaloL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6CaloL1Offset', 
-        'kt6CaloL2Relative', 
+    correctors = cms.vstring('kt6CaloL1Offset',
+        'kt6CaloL2Relative',
         'kt6CaloL3Absolute')
 )
 
 
 process.kt6CaloL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6CaloL1Offset', 
-        'kt6CaloL2Relative', 
-        'kt6CaloL3Absolute', 
+    correctors = cms.vstring('kt6CaloL1Offset',
+        'kt6CaloL2Relative',
+        'kt6CaloL3Absolute',
         'kt6CaloResidual')
 )
 
@@ -27198,21 +27198,21 @@ process.kt6CaloL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.kt6CaloL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6CaloL2Relative', 
+    correctors = cms.vstring('kt6CaloL2Relative',
         'kt6CaloL3Absolute')
 )
 
 
 process.kt6CaloL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6CaloL2Relative', 
-        'kt6CaloL3Absolute', 
+    correctors = cms.vstring('kt6CaloL2Relative',
+        'kt6CaloL3Absolute',
         'kt6CaloL6SLB')
 )
 
 
 process.kt6CaloL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6CaloL2Relative', 
-        'kt6CaloL3Absolute', 
+    correctors = cms.vstring('kt6CaloL2Relative',
+        'kt6CaloL3Absolute',
         'kt6CaloResidual')
 )
 
@@ -27245,24 +27245,24 @@ process.kt6CaloResidual = cms.ESProducer("LXXXCorrectionESProducer",
 
 
 process.kt6PFL1FastL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'kt6PFL2Relative', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'kt6PFL2Relative',
         'kt6PFL3Absolute')
 )
 
 
 process.kt6PFL1FastL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('ak4PFL1Fastjet', 
-        'kt6PFL2Relative', 
-        'kt6PFL3Absolute', 
+    correctors = cms.vstring('ak4PFL1Fastjet',
+        'kt6PFL2Relative',
+        'kt6PFL3Absolute',
         'kt6PFL6SLB')
 )
 
 
 process.kt6PFL1FastL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6PFL1Fastjet', 
-        'kt6PFL2Relative', 
-        'kt6PFL3Absolute', 
+    correctors = cms.vstring('kt6PFL1Fastjet',
+        'kt6PFL2Relative',
+        'kt6PFL3Absolute',
         'kt6PFResidual')
 )
 
@@ -27275,16 +27275,16 @@ process.kt6PFL1Fastjet = cms.ESProducer("L1FastjetCorrectionESProducer",
 
 
 process.kt6PFL1L2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6PFL1Offset', 
-        'kt6PFL2Relative', 
+    correctors = cms.vstring('kt6PFL1Offset',
+        'kt6PFL2Relative',
         'kt6PFL3Absolute')
 )
 
 
 process.kt6PFL1L2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6PFL1Offset', 
-        'kt6PFL2Relative', 
-        'kt6PFL3Absolute', 
+    correctors = cms.vstring('kt6PFL1Offset',
+        'kt6PFL2Relative',
+        'kt6PFL3Absolute',
         'kt6PFResidual')
 )
 
@@ -27298,21 +27298,21 @@ process.kt6PFL1Offset = cms.ESProducer("L1OffsetCorrectionESProducer",
 
 
 process.kt6PFL2L3 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6PFL2Relative', 
+    correctors = cms.vstring('kt6PFL2Relative',
         'kt6PFL3Absolute')
 )
 
 
 process.kt6PFL2L3L6 = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6PFL2Relative', 
-        'kt6PFL3Absolute', 
+    correctors = cms.vstring('kt6PFL2Relative',
+        'kt6PFL3Absolute',
         'kt6PFL6SLB')
 )
 
 
 process.kt6PFL2L3Residual = cms.ESProducer("JetCorrectionESChain",
-    correctors = cms.vstring('kt6PFL2Relative', 
-        'kt6PFL3Absolute', 
+    correctors = cms.vstring('kt6PFL2Relative',
+        'kt6PFL3Absolute',
         'kt6PFResidual')
 )
 
@@ -27350,17 +27350,17 @@ process.negativeCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTagESProduce
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('negativeOnlyJetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('negativeCombinedSecondaryVertexComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('negativeSoftPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('negativeSoftPFElectronComputer'),
@@ -27371,8 +27371,8 @@ process.negativeCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTagESProduce
 
 
 process.negativeCombinedSecondaryVertexComputer = cms.ESProducer("CombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertex', 
-        'CombinedSVPseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertex',
+        'CombinedSVPseudoVertex',
         'CombinedSVNoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -27451,8 +27451,8 @@ process.negativeCombinedSecondaryVertexComputer = cms.ESProducer("CombinedSecond
 
 
 process.negativeCombinedSecondaryVertexV2Computer = cms.ESProducer("CombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex', 
-        'CombinedSVIVFV2PseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex',
+        'CombinedSVIVFV2PseudoVertex',
         'CombinedSVIVFV2NoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -27669,17 +27669,17 @@ process.positiveCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTagESProduce
         discriminator = cms.bool(True),
         jetTagComputer = cms.string('positiveOnlyJetProbabilityComputer'),
         variables = cms.bool(False)
-    ), 
+    ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('positiveCombinedSecondaryVertexComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('positiveSoftPFMuonComputer'),
             variables = cms.bool(False)
-        ), 
+        ),
         cms.PSet(
             discriminator = cms.bool(True),
             jetTagComputer = cms.string('positiveSoftPFElectronComputer'),
@@ -27690,8 +27690,8 @@ process.positiveCombinedMVAComputer = cms.ESProducer("CombinedMVAJetTagESProduce
 
 
 process.positiveCombinedSecondaryVertexComputer = cms.ESProducer("CombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVRecoVertex', 
-        'CombinedSVPseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVRecoVertex',
+        'CombinedSVPseudoVertex',
         'CombinedSVNoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -27770,8 +27770,8 @@ process.positiveCombinedSecondaryVertexComputer = cms.ESProducer("CombinedSecond
 
 
 process.positiveCombinedSecondaryVertexV2Computer = cms.ESProducer("CombinedSecondaryVertexESProducer",
-    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex', 
-        'CombinedSVIVFV2PseudoVertex', 
+    calibrationRecords = cms.vstring('CombinedSVIVFV2RecoVertex',
+        'CombinedSVIVFV2PseudoVertex',
         'CombinedSVIVFV2NoVertex'),
     categoryVariableName = cms.string('vertexCategory'),
     charmCut = cms.double(1.5),
@@ -27957,7 +27957,7 @@ process.siPixelQualityESProducer = cms.ESProducer("SiPixelQualityESProducer",
     ListOfRecordToMerge = cms.VPSet(cms.PSet(
         record = cms.string('SiPixelQualityFromDbRcd'),
         tag = cms.string('')
-    ), 
+    ),
         cms.PSet(
             record = cms.string('SiPixelDetVOffRcd'),
             tag = cms.string('')
@@ -27986,7 +27986,7 @@ process.siStripGainESProducer = cms.ESProducer("SiStripGainESProducer",
         Label = cms.untracked.string(''),
         NormalizationFactor = cms.untracked.double(1.0),
         Record = cms.string('SiStripApvGainRcd')
-    ), 
+    ),
         cms.PSet(
             Label = cms.untracked.string(''),
             NormalizationFactor = cms.untracked.double(1.0),
@@ -28018,27 +28018,27 @@ process.siStripQualityESProducer = cms.ESProducer("SiStripQualityESProducer",
     ListOfRecordToMerge = cms.VPSet(cms.PSet(
         record = cms.string('SiStripDetVOffRcd'),
         tag = cms.string('')
-    ), 
+    ),
         cms.PSet(
             record = cms.string('SiStripDetCablingRcd'),
             tag = cms.string('')
-        ), 
+        ),
         cms.PSet(
             record = cms.string('RunInfoRcd'),
             tag = cms.string('')
-        ), 
+        ),
         cms.PSet(
             record = cms.string('SiStripBadChannelRcd'),
             tag = cms.string('')
-        ), 
+        ),
         cms.PSet(
             record = cms.string('SiStripBadFiberRcd'),
             tag = cms.string('')
-        ), 
+        ),
         cms.PSet(
             record = cms.string('SiStripBadModuleRcd'),
             tag = cms.string('')
-        ), 
+        ),
         cms.PSet(
             record = cms.string('SiStripBadStripRcd'),
             tag = cms.string('')
@@ -28332,17 +28332,17 @@ process.es_hardcode = cms.ESSource("HcalHardcodeCalibrations",
         RelabelHits = cms.untracked.bool(False),
         RelabelRules = cms.untracked.PSet(
             CorrectPhi = cms.untracked.bool(False),
-            Eta1 = cms.untracked.vint32(1, 2, 2, 2, 3, 
-                3, 3, 3, 3, 3, 
-                3, 3, 3, 3, 3, 
+            Eta1 = cms.untracked.vint32(1, 2, 2, 2, 3,
+                3, 3, 3, 3, 3,
+                3, 3, 3, 3, 3,
                 3, 3, 3, 3),
-            Eta16 = cms.untracked.vint32(1, 1, 2, 2, 2, 
-                2, 2, 2, 2, 3, 
-                3, 3, 3, 3, 3, 
+            Eta16 = cms.untracked.vint32(1, 1, 2, 2, 2,
+                2, 2, 2, 2, 3,
+                3, 3, 3, 3, 3,
                 3, 3, 3, 3),
-            Eta17 = cms.untracked.vint32(1, 1, 2, 2, 3, 
-                3, 3, 4, 4, 4, 
-                4, 4, 5, 5, 5, 
+            Eta17 = cms.untracked.vint32(1, 1, 2, 2, 3,
+                3, 3, 4, 4, 4,
+                4, 4, 5, 5, 5,
                 5, 5, 5, 5)
         )
     ),
@@ -28375,662 +28375,662 @@ process.loadRecoTauTagMVAsFromPrepDBPFlow = cms.ESSource("PoolDBESSource",
         label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1'),
         record = cms.string('GBRWrapperRcd'),
         tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1')
-    ), 
+    ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff50'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff50')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff70'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff70')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff60'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff60')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff80'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff80')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff40'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff40')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff90'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1_WPEff90')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwoLTv1_mvaOutput_normalization'),
             record = cms.string('PhysicsTFormulaPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwoLTv1_mvaOutput_normalization')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff50'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff50')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff70'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff70')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff60'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff60')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff80'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff80')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff40'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff40')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff90'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1_WPEff90')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwLTv1_mvaOutput_normalization'),
             record = cms.string('PhysicsTFormulaPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwLTv1_mvaOutput_normalization')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff50'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff50')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff70'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff70')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff60'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff60')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff80'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff80')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff40'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff40')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff90'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1_WPEff90')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAoldDMwLTv1_mvaOutput_normalization'),
             record = cms.string('PhysicsTFormulaPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAoldDMwLTv1_mvaOutput_normalization')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff50'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff50')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff70'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff70')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff60'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff60')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff80'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff80')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff40'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff40')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff90'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1_WPEff90')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_tauIdMVAnewDMwoLTv1_mvaOutput_normalization'),
             record = cms.string('PhysicsTFormulaPayloadRcd'),
             tag = cms.string('RecoTauTag_tauIdMVAnewDMwoLTv1_mvaOutput_normalization')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_wGwoGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_woGwoGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_wGwoGSF_BL_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff99'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff99')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff96'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff96')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff91'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff91')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff85'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff85')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff79'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_antiElectronMVA5v1_gbr_NoEleMatch_woGwoGSF_EC_WPeff79')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_againstMuonMVAv1'),
             record = cms.string('GBRWrapperRcd'),
             tag = cms.string('RecoTauTag_againstMuonMVAv1')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_againstMuonMVAv1_WPeff99_5'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_againstMuonMVAv1_WPeff99_5')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_againstMuonMVAv1_WPeff99_0'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_againstMuonMVAv1_WPeff99_0')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_againstMuonMVAv1_WPeff98_0'),
             record = cms.string('PhysicsTGraphPayloadRcd'),
             tag = cms.string('RecoTauTag_againstMuonMVAv1_WPeff98_0')
-        ), 
+        ),
         cms.PSet(
             label = cms.untracked.string('RecoTauTag_againstMuonMVAv1_mvaOutput_normalization'),
             record = cms.string('PhysicsTFormulaPayloadRcd'),
@@ -29040,10 +29040,10 @@ process.loadRecoTauTagMVAsFromPrepDBPFlow = cms.ESSource("PoolDBESSource",
 
 
 process.magfield = cms.ESSource("XMLIdealGeometryESSource",
-    geomXMLFiles = cms.vstring('Geometry/CMSCommonData/data/normal/cmsextent.xml', 
-        'Geometry/CMSCommonData/data/cms.xml', 
-        'Geometry/CMSCommonData/data/cmsMagneticField.xml', 
-        'MagneticField/GeomBuilder/data/MagneticFieldVolumes_1103l.xml', 
+    geomXMLFiles = cms.vstring('Geometry/CMSCommonData/data/normal/cmsextent.xml',
+        'Geometry/CMSCommonData/data/cms.xml',
+        'Geometry/CMSCommonData/data/cmsMagneticField.xml',
+        'MagneticField/GeomBuilder/data/MagneticFieldVolumes_1103l.xml',
         'Geometry/CMSCommonData/data/materials.xml'),
     rootNodeName = cms.string('cmsMagneticField:MAGF')
 )
@@ -29074,17 +29074,17 @@ process.HcalReLabel = cms.PSet(
     RelabelHits = cms.untracked.bool(False),
     RelabelRules = cms.untracked.PSet(
         CorrectPhi = cms.untracked.bool(False),
-        Eta1 = cms.untracked.vint32(1, 2, 2, 2, 3, 
-            3, 3, 3, 3, 3, 
-            3, 3, 3, 3, 3, 
+        Eta1 = cms.untracked.vint32(1, 2, 2, 2, 3,
+            3, 3, 3, 3, 3,
+            3, 3, 3, 3, 3,
             3, 3, 3, 3),
-        Eta16 = cms.untracked.vint32(1, 1, 2, 2, 2, 
-            2, 2, 2, 2, 3, 
-            3, 3, 3, 3, 3, 
+        Eta16 = cms.untracked.vint32(1, 1, 2, 2, 2,
+            2, 2, 2, 2, 3,
+            3, 3, 3, 3, 3,
             3, 3, 3, 3),
-        Eta17 = cms.untracked.vint32(1, 1, 2, 2, 3, 
-            3, 3, 4, 4, 4, 
-            4, 4, 5, 5, 5, 
+        Eta17 = cms.untracked.vint32(1, 1, 2, 2, 3,
+            3, 3, 4, 4, 4,
+            4, 4, 5, 5, 5,
             5, 5, 5, 5)
     )
 )
@@ -29164,23 +29164,23 @@ process.combinedSecondaryVertexCommon = cms.PSet(
 )
 
 process.fieldScaling = cms.PSet(
-    scalingFactors = cms.vdouble(1, 1, 0.994, 1.004, 1.004, 
-        1.005, 1.004, 1.004, 0.994, 0.965, 
-        0.958, 0.958, 0.953, 0.958, 0.958, 
-        0.965, 0.918, 0.924, 0.924, 0.906, 
-        0.924, 0.924, 0.918, 0.991, 0.998, 
-        0.998, 0.978, 0.998, 0.998, 0.991, 
-        0.991, 0.998, 0.998, 0.978, 0.998, 
-        0.998, 0.991, 0.991, 0.998, 0.998, 
+    scalingFactors = cms.vdouble(1, 1, 0.994, 1.004, 1.004,
+        1.005, 1.004, 1.004, 0.994, 0.965,
+        0.958, 0.958, 0.953, 0.958, 0.958,
+        0.965, 0.918, 0.924, 0.924, 0.906,
+        0.924, 0.924, 0.918, 0.991, 0.998,
+        0.998, 0.978, 0.998, 0.998, 0.991,
+        0.991, 0.998, 0.998, 0.978, 0.998,
+        0.998, 0.991, 0.991, 0.998, 0.998,
         0.978, 0.998, 0.998, 0.991),
-    scalingVolumes = cms.vint32(14100, 14200, 17600, 17800, 17900, 
-        18100, 18300, 18400, 18600, 23100, 
-        23300, 23400, 23600, 23800, 23900, 
-        24100, 28600, 28800, 28900, 29100, 
-        29300, 29400, 29600, 28609, 28809, 
-        28909, 29109, 29309, 29409, 29609, 
-        28610, 28810, 28910, 29110, 29310, 
-        29410, 29610, 28611, 28811, 28911, 
+    scalingVolumes = cms.vint32(14100, 14200, 17600, 17800, 17900,
+        18100, 18300, 18400, 18600, 23100,
+        23300, 23400, 23600, 23800, 23900,
+        24100, 28600, 28800, 28900, 29100,
+        29300, 29400, 29600, 28609, 28809,
+        28909, 29109, 29309, 29409, 29609,
+        28610, 28810, 28910, 29110, 29310,
+        29410, 29610, 28611, 28811, 28911,
         29111, 29311, 29411, 29611)
 )
 
@@ -29249,17 +29249,17 @@ process.trackClassifier = cms.PSet(
     enableSimToReco = cms.untracked.bool(False),
     hepMC = cms.untracked.InputTag("generator"),
     hitAssociator = cms.PSet(
-        ROUList = cms.vstring('TrackerHitsTIBLowTof', 
-            'TrackerHitsTIBHighTof', 
-            'TrackerHitsTIDLowTof', 
-            'TrackerHitsTIDHighTof', 
-            'TrackerHitsTOBLowTof', 
-            'TrackerHitsTOBHighTof', 
-            'TrackerHitsTECLowTof', 
-            'TrackerHitsTECHighTof', 
-            'TrackerHitsPixelBarrelLowTof', 
-            'TrackerHitsPixelBarrelHighTof', 
-            'TrackerHitsPixelEndcapLowTof', 
+        ROUList = cms.vstring('TrackerHitsTIBLowTof',
+            'TrackerHitsTIBHighTof',
+            'TrackerHitsTIDLowTof',
+            'TrackerHitsTIDHighTof',
+            'TrackerHitsTOBLowTof',
+            'TrackerHitsTOBHighTof',
+            'TrackerHitsTECLowTof',
+            'TrackerHitsTECHighTof',
+            'TrackerHitsPixelBarrelLowTof',
+            'TrackerHitsPixelBarrelHighTof',
+            'TrackerHitsPixelEndcapLowTof',
             'TrackerHitsPixelEndcapHighTof'),
         associatePixel = cms.bool(True),
         associateRecoTracks = cms.bool(True),
@@ -29316,17 +29316,17 @@ process.trackPseudoSelectionBlock = cms.PSet(
 
 process.trackQuality = cms.PSet(
     hitAssociator = cms.PSet(
-        ROUList = cms.vstring('TrackerHitsTIBLowTof', 
-            'TrackerHitsTIBHighTof', 
-            'TrackerHitsTIDLowTof', 
-            'TrackerHitsTIDHighTof', 
-            'TrackerHitsTOBLowTof', 
-            'TrackerHitsTOBHighTof', 
-            'TrackerHitsTECLowTof', 
-            'TrackerHitsTECHighTof', 
-            'TrackerHitsPixelBarrelLowTof', 
-            'TrackerHitsPixelBarrelHighTof', 
-            'TrackerHitsPixelEndcapLowTof', 
+        ROUList = cms.vstring('TrackerHitsTIBLowTof',
+            'TrackerHitsTIBHighTof',
+            'TrackerHitsTIDLowTof',
+            'TrackerHitsTIDHighTof',
+            'TrackerHitsTOBLowTof',
+            'TrackerHitsTOBHighTof',
+            'TrackerHitsTECLowTof',
+            'TrackerHitsTECHighTof',
+            'TrackerHitsPixelBarrelLowTof',
+            'TrackerHitsPixelBarrelHighTof',
+            'TrackerHitsPixelEndcapLowTof',
             'TrackerHitsPixelEndcapHighTof'),
         associatePixel = cms.bool(True),
         associateRecoTracks = cms.bool(True),
