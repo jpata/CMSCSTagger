@@ -7,24 +7,40 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
-const int NMAX = 1000;
+const int NMAX = 100;
 
-void save_coll(TFile* outfile, vector<TTree*> trees, const char* name) {
-    TList treelist;
-    for(auto& tree : trees) {
-        treelist.Add(tree);
+void save_coll(TFile* outfile, TTree* in, TagVarBranches* tv, vector<vector<unsigned long int>> trees, const char* name) {
+    TTree* _tot = new TTree(name, name);
+    tv->RegisterTree(_tot);
+    //_tot->SetAutoFlush(100000);
+    //_tot->SetAutoSave(100000);
+    //_tot->SetDirectory(outfile);
+    int n = 0;
+    in->SetCacheSize(0);
+    vector<unsigned int> inds;
+    for (auto& tree: trees) {
+        n += tree.size();
+        for (unsigned int i : tree) {
+            inds.push_back(i);
+        }
     }
-
-    TTree* _tot = TTree::MergeTrees(&treelist);
-    _tot->SetDirectory(outfile);
+    sort(inds.begin(), inds.end());
+    cout << "Looping " << name << " " << n << endl;
+    for (unsigned int i : inds) {
+        in->GetEntry(i);
+        _tot->Fill();
+        //if (_tot->GetEntries() % 1000 == 0) {
+        //    cout << _tot->GetEntries();
+        //}
+    }
+    cout << endl;
+    cout << _tot->GetName() << " has " << _tot->GetEntries() << " entries" << endl;
 
     cout << "Saving..." << endl;
-    _tot->SetName(name);
-    _tot->SetTitle(name);
     _tot->Write("", TObject::kOverwrite);
-    treelist.Delete();
 }
 
 int main(int argc, char** argv) {
@@ -43,43 +59,37 @@ int main(int argc, char** argv) {
     int Nx = 100;
     int Ny = 100;
     TFile* outfile = new TFile(outfile_name, "RECREATE");
+    outfile->cd(); 
     TH2D counter("hcounter", "hcounter", Nx, 20, 620, Ny, 0.0, 2.5);
-    vector<TTree*> trees_b; 
-    vector<TTree*> trees_c; 
-    vector<TTree*> trees_l; 
+    vector<vector<unsigned long int>> trees_b;
+    vector<vector<unsigned long int>> trees_c;
+    vector<vector<unsigned long int>> trees_l;
     
     for (int nx=0; nx<Nx+2; nx++) {
         for (int ny=0; ny<Ny+2; ny++) {
-            stringstream ss;
-            ss << "tree_pt_" << nx << "_eta_" << ny;
-            const string tn = ss.str();
-
-            TTree* tree_b = new TTree((tn + "_b").c_str(), tn.c_str());
-            trees_b.push_back(tree_b);
-            tagvars.RegisterTree(tree_b);
-            
-            TTree* tree_c = new TTree((tn + "_c").c_str(), tn.c_str());
-            trees_c.push_back(tree_c);
-            tagvars.RegisterTree(tree_c);
-            
-            TTree* tree_l = new TTree((tn + "_l").c_str(), tn.c_str());
-            trees_l.push_back(tree_l);
-            tagvars.RegisterTree(tree_l);
+            vector<unsigned long int> v;
+            trees_b.push_back(v);
+            trees_c.push_back(v);
+            trees_l.push_back(v);
         }
     }
 
     cout << "Looping over " << tree->GetEntries() << " events" << endl;
-    for(int i=0; i<tree->GetEntries(); i++) {
+    tree->SetBranchStatus("*", false);
+    tree->SetBranchStatus("Jet_pt", true);
+    tree->SetBranchStatus("Jet_eta", true);
+    tree->SetBranchStatus("Jet_flavour", true);
+    for(unsigned long int i=0; i<tree->GetEntries(); i++) {
         memset(&tagvars, 0x00, sizeof(tagvars));
         tree->GetEntry(i);
 
         int nb = counter.FindBin(tagvars.Jet_pt, std::abs(tagvars.Jet_eta));
       
-        vector<TTree*>* treecoll = 0;
-        if (std::abs(tagvars.Jet_flavour) == 5) {
+        vector<vector<unsigned long int>>* treecoll = 0;
+        if (std::abs(int(tagvars.Jet_flavour)) == 5) {
             treecoll = &(trees_b);
         }
-        else if (std::abs(tagvars.Jet_flavour) == 4) {
+        else if (std::abs(int(tagvars.Jet_flavour)) == 4) {
             treecoll = &(trees_c);
         }
         else {
@@ -88,15 +98,16 @@ int main(int argc, char** argv) {
 
         assert(nb>=0 && nb < treecoll->size());
        
-        if ((*treecoll)[nb]->GetEntries() < NMAX) {
+        if ((*treecoll)[nb].size() < NMAX) {
             counter.Fill(tagvars.Jet_pt, std::abs(tagvars.Jet_eta));
-            (*treecoll)[nb]->Fill();
+            (*treecoll)[nb].push_back(i);
         }
     }
+    tree->SetBranchStatus("*", true);
     
-    save_coll(outfile, trees_b, "tree_b");
-    save_coll(outfile, trees_c, "tree_c");
-    save_coll(outfile, trees_l, "tree_l");
+    save_coll(outfile, tree, &tagvars, trees_b, "tree_b");
+    save_coll(outfile, tree, &tagvars, trees_c, "tree_c");
+    save_coll(outfile, tree, &tagvars, trees_l, "tree_l");
     
     counter.Write("", TObject::kOverwrite);
     outfile->Close();
