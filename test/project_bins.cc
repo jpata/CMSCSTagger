@@ -10,10 +10,11 @@
 #include <algorithm>
 
 using namespace std;
-const int NMAX = 100;
+const int NMAX = 1000;
 
 void save_coll(TFile* outfile, TTree* in, TagVarBranches* tv, vector<vector<unsigned long int>> trees, const char* name) {
     TTree* _tot = new TTree(name, name);
+    tv->doTagVarsCSV = true;
     tv->RegisterTree(_tot);
     //_tot->SetAutoFlush(100000);
     //_tot->SetAutoSave(100000);
