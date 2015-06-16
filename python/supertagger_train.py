@@ -1,6 +1,5 @@
 import ROOT
 from ROOT import TMVA
-from copy import deepcopy
 import numpy as np
 import ctypes
 import array
