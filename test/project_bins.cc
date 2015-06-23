@@ -10,10 +10,16 @@
 #include <algorithm>
 
 using namespace std;
-const int NMAX = 100;
+
+//maximum number of entries per pt/eta bin
+const int NMAX = 1000;
+
+//if true, save also CSV tagger input vars
+const bool doTagVarCSV = false;
 
 void save_coll(TFile* outfile, TTree* in, TagVarBranches* tv, vector<vector<unsigned long int>> trees, const char* name) {
     TTree* _tot = new TTree(name, name);
+    tv->doTagVarsCSV = doTagVarCSV;
     tv->RegisterTree(_tot);
     //_tot->SetAutoFlush(100000);
     //_tot->SetAutoSave(100000);
@@ -53,7 +59,7 @@ int main(int argc, char** argv) {
     assert(tree != 0);
    
     TagVarBranches tagvars;
-    tagvars.doTagVarsCSV = true;
+    tagvars.doTagVarsCSV = doTagVarCSV;
     tagvars.ReadTree(tree);
 
     int Nx = 100;
