@@ -61,6 +61,11 @@ class ROOTData(Data):
         h = ROOT.TH1D("h", "h", *bins)
         n = self.tree.Draw("{0} >> h".format(func), cut)
         return h.Clone(hname)
+        
+    def validate(self, vars):
+        print "Validating", self.label
+        for var in vars:
+            print var, self.tree.GetEntries("{0} != {0}".format(var)), self.tree.GetEntries("{0} > 99999 || {0} < -99999".format(var))
 
 def roc(h1, h2):
     """
@@ -115,13 +120,14 @@ class TMVABDTClassifier(Classifier):
         self.ntrees = kwargs.get("ntrees", 1200)
         self.shrinkage = kwargs.get("shrinkage", 0.1)
         self.bag_fraction = kwargs.get("bag_fraction", 1.0)
-        self.ncuts = kwargs.get("ncuts", 50)
+        self.ncuts = kwargs.get("ncuts", 1000)
         self.max_depth = kwargs.get("max_depth", 3)
         self.use_bootstrap = kwargs.get("use_bootstrap", False)
         self.weight = kwargs.get("weight", None)
         self.label_signal = kwargs.get("label_signal", None)
         self.cut = kwargs.get("cut", "1")
-        self.data = []
+        self.data = OrderedDict()
+        self.min_samples_leaf = kwargs.get("min_samples_leaf", 0.005)
 
     def prepare(self):
         self.out = ROOT.TFile(
@@ -131,41 +137,36 @@ class TMVABDTClassifier(Classifier):
         self.out.cd()
         self.factory = TMVA.Factory(
             "tmva", self.out,
-            "Transformations=I;N:"+
-            "DrawProgressBar=False:"+
-            "!V:Silent=True:"+
+            "Transformations=I:"+
+            "DrawProgressBar=True:"+
+            "!V:Silent=False:"+
             "AnalysisType=Classification"
         )
         for var in self.variables:
             self.factory.AddVariable(var, "F")
         for var in self.spectators:
             self.factory.AddSpectator(var, "F")
-
-        for data in self.data:
-            if data.label == self.label_signal:
-                func = self.factory.AddSignalTree(data.tree, 1.0, data.kind)
-            else:
-            #elif not self.label_signal is None:
-                func = self.factory.AddBackgroundTree(data.tree, 1.0, data.kind)
-            # else:
-            #     self.factory.AddTree(
-            #         data.tree,
-            #         data.label,
-            #         1.0,
-            #         ROOT.TCut(data.selection),
-            #         data.kind
-            #     )
+            
+        for datas in self.data.values():
+            for data in datas:
+                data.validate(self.variables)
+                if data.label == self.label_signal:
+                    self.factory.AddSignalTree(data.tree, 1.0, data.kind)
+                else:
+                    self.factory.AddBackgroundTree(data.tree, 1.0, data.kind)
 
     def load_data(self):
         for data in self.data:
             data.load()
 
-    def add_data(self, data):
-        self.data += [data]
+    def add_data(self, data, class_name, cls_id=None):
+        if not self.data.has_key(class_name):
+            self.data[class_name] = []
+        self.data[class_name] += [data]
 
     def train(self):
         self.mva_opts = ("!H:" +
-            "!V:VerbosityLevel=Fatal:" +
+            "VerbosityLevel=Verbose:" +
             "NTrees={0}:".format(self.ntrees) +
             "BoostType=Grad:" +
             "Shrinkage={0}:".format(self.shrinkage) +
@@ -173,7 +174,8 @@ class TMVABDTClassifier(Classifier):
             "nCuts={0}:".format(self.ncuts) +
             "MaxDepth={0}:".format(self.max_depth)+
             "UseBaggedBoost={0}:".format(self.use_bootstrap)+
-            "DoBoostMonitor=False"
+            "MinNodeSize={0}:".format(self.min_samples_leaf)+
+            "DoBoostMonitor=True"
         )
 
         self.factory.BookMethod(
@@ -182,17 +184,10 @@ class TMVABDTClassifier(Classifier):
             #"VerbosityLevel=Debug"
             self.mva_opts
         )
-
-        # nevents_str = []
-        # for icl, cl in enumerate(self.data_classes):
-        #     nmax = min(self.max_events, self.data[cl].tree.GetEntries() / 2)
-        #     nevents_str += ["nTrain_{0}={1}".format(cl, nmax)]
-        #     nevents_str += ["nTest_{0}={1}".format(cl, nmax)]
-        # nevents_str = ":".join(nevents_str)
-
+        
         self.factory.PrepareTrainingAndTestTree(
             ROOT.TCut(self.cut),
-            "SplitMode=Block:MixMode=Block:NormMode=None:V"# + nevents_str
+            "SplitMode=Random:MixMode=Random:NormMode=None:V"
         )
         if self.weight:
             self.factory.SetWeightExpression(self.weight)

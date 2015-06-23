@@ -2,30 +2,36 @@ import ROOT
 ROOT.gROOT.cd()
 ROOT.gROOT.SetBatch(True)
 
-from supertagger_train import ROOTData, TMVABDTClassifier
-import supertagger_train
+from tmva_cls import ROOTData, TMVABDTClassifier
 import numpy as np
 import multiprocessing
 from roothelpers import array2root
 from collections import OrderedDict
 
 #path = "/Users/joosep/Documents/btv/data/"
-path = "./data/"
-ncores = 4
-spectators = ["bd_cmva1", "bd_cmva2", "pt", "eta", "flavour"]
+path = "/Users/joosep/Documents/btv/data/small/"
+ncores = 2
+spectators = ["Jet_CSV", "Jet_CSVIVF", "Jet_pt", "Jet_eta", "Jet_flavour"]
 
 def load_data(path):
     data = OrderedDict()
 
-    for dt in ["qcd", "ttjets", "ttjets2"]:
+    for dt in ["ttjets"]:
         for typ, kind in [
-            ("testing", ROOT.TMVA.Types.kTesting),
-            ("training", ROOT.TMVA.Types.kTraining)
+            #("testing", ROOT.TMVA.Types.kTesting),
+            #("training", ROOT.TMVA.Types.kTraining)
+            ("notype", ROOT.TMVA.Types.kMaxTreeType)
         ]:
             for label, lt in [("b", "b"), ("c", "l"), ("l", "l")]:
+                # data[(dt, typ, label)] = ROOTData(
+                #     label=lt,
+                #     filename=path+"{0}_{1}_{2}.root".format(dt, label, typ),
+                #     treename="tree_{0}".format(label),
+                #     kind=kind
+                # )
                 data[(dt, typ, label)] = ROOTData(
                     label=lt,
-                    filename=path+"{0}_{1}_{2}.root".format(dt, label, typ),
+                    filename=path + "{0}_{1}.root".format(dt, label),
                     treename="tree_{0}".format(label),
                     kind=kind
                 )
@@ -34,61 +40,62 @@ def load_data(path):
 def create_classifiers(ds):
 
     ret = OrderedDict()
-    #Select a subregion of the full training data
+
     cls1 = TMVABDTClassifier(
         name="cls1",
-        variables=["bd_csv1", "bd_csv2"],
-        ntrees=2000,
+        variables=["Jet_CSV", "Jet_CSVIVF"],
+        ntrees=200,
         spectators=spectators,
         label_signal="b",
-        cut="bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=0 && bd_csv1<1 && bd_csv2>=0 && bd_csv2<1"
+        cut="Jet_CSV==Jet_CSV && Jet_CSVIVF==Jet_CSVIVF && Jet_CSV>=-10 && Jet_CSV<5 && Jet_CSVIVF>=-10 && Jet_CSVIVF<5"
     )
     ret["cls1"] = cls1
-
+    
     #Select a subregion of the full training data
     cls2 = TMVABDTClassifier(
         name="cls2",
-        variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
-        ntrees=2000,
+        variables=["Jet_CSV", "Jet_CSVIVF", "Jet_JP", "Jet_JBP", "Jet_SoftMu", "Jet_SoftEl"],
+        ntrees=200,
         spectators=spectators,
         label_signal="b",
-        cut="bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
+        cut="Jet_CSV >= -10 && Jet_CSVIVF>=-10 && Jet_JP>=-10 && Jet_JBP>=-10 && Jet_SoftMu>=-10 && Jet_SoftEl>=-10",
     )
     ret["cls2"] = cls2
+    # 
+    # #Select a subregion of the full training data
+    # cls3 = TMVABDTClassifier(
+    #     name="cls3",
+    #     variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
+    #     ntrees=2000,
+    #     spectators=spectators,
+    #     weight="w1",
+    #     label_signal="b",
+    #     cut="w1==w1 && w1>0 && w1<10000000 && bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
+    # )
+    # ret["cls3"] = cls3
+    # 
+    # #Select a subregion of the full training data
+    # cls4 = TMVABDTClassifier(
+    #     name="cls4",
+    #     variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu", "pt", "eta"],
+    #     ntrees=2000,
+    #     spectators=spectators,
+    #     weight="w1",
+    #     label_signal="b",
+    #     cut="w1==w1 && w1>0 && w1<10000000 && bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
+    # )
+    # ret["cls4"] = cls4
 
-    #Select a subregion of the full training data
-    cls3 = TMVABDTClassifier(
-        name="cls3",
-        variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu"],
-        ntrees=2000,
-        spectators=spectators,
-        weight="w1",
-        label_signal="b",
-        cut="w1==w1 && w1>0 && w1<10000000 && bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
-    )
-    ret["cls3"] = cls3
-
-    #Select a subregion of the full training data
-    cls4 = TMVABDTClassifier(
-        name="cls4",
-        variables=["bd_csv1", "bd_csv2", "bd_jp", "bd_sel", "bd_smu", "pt", "eta"],
-        ntrees=2000,
-        spectators=spectators,
-        weight="w1",
-        label_signal="b",
-        cut="w1==w1 && w1>0 && w1<10000000 && bd_csv1==bd_csv1 && bd_csv2==bd_csv2 && bd_csv1>=-10 && bd_csv1<1 && bd_csv2>=-10 && bd_csv2<1 && bd_jp>=0 && bd_jp<5 && bd_sel>=-9999 && bd_sel<1 && bd_smu>=-9999 && bd_smu<1"
-    )
-    ret["cls4"] = cls4
-
-    for dt in ["ttjets2"]:
+    for dt in ["ttjets"]:
         for typ, kind in [
-            ("testing", ROOT.TMVA.Types.kTesting),
-            ("training", ROOT.TMVA.Types.kTraining)
+            #("testing", ROOT.TMVA.Types.kTesting),
+            #("training", ROOT.TMVA.Types.kTraining),
+            ("notype", ROOT.TMVA.Types.kMaxTreeType)
         ]:
             for label, lt in [("b", "b"), ("c", "l"), ("l", "l")]:
                 d = ds[(dt, typ, label)]
                 for cl in ret.values():
-                    cl.add_data(d)
+                    cl.add_data(d, d.label)
 
     return ret
 
@@ -182,8 +189,8 @@ def main():
     args = [
         (data, classifiers["cls1"]),
         (data, classifiers["cls2"]),
-        (data, classifiers["cls3"]),
-        (data, classifiers["cls4"]),
+        #(data, classifiers["cls3"]),
+        #(data, classifiers["cls4"]),
     ]
 
     print "training classifiers"
@@ -197,13 +204,13 @@ def main():
     for r in res:
         resd[r.name] = r
 
-    print "evaluating classifiers"
+    #print "evaluating classifiers"
     #careful, you must keep a reference to ds_eval, otherwise any operations with
     #an AddFriend tree fail
-    ds_eval = evaluate_classifiers(classifiers, data)
+    #ds_eval = evaluate_classifiers(classifiers, data)
 
-    print "validating classifiers"
-    validate_classifiers(data)
+    #print "validating classifiers"
+    #validate_classifiers(data)
 
 if __name__=="__main__":
     main()
