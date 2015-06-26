@@ -38,8 +38,8 @@ CombinedMVAJetTagComputerETH::CombinedMVAJetTagComputerETH(
 
 	uses(0, "ipTagInfos");
   	uses(1, "svTagInfos");
-  	uses(2, "muonTagInfos");
-  	uses(3, "elecTagInfos");
+  	uses(2, "smTagInfos");
+  	uses(3, "seTagInfos");
 }
 
 CombinedMVAJetTagComputerETH::~CombinedMVAJetTagComputerETH()

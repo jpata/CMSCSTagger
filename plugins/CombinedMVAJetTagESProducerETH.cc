@@ -3,5 +3,5 @@
 #include "RecoBTau/JetTagComputer/interface/JetTagComputerESProducer.h"
 #include "RecoBTag/CombinedMVA/interface/CombinedMVAJetTagComputerETH.h"
 
-typedef JetTagComputerESProducer<CombinedMVAJetTagComputerETH> CombinedMVAETHJetTagESProducer;
-DEFINE_FWK_EVENTSETUP_MODULE(CombinedMVAETHJetTagESProducer);
+typedef JetTagComputerESProducer<CombinedMVAJetTagComputerETH> CombinedMVAJetTagESProducerETH;
+DEFINE_FWK_EVENTSETUP_MODULE(CombinedMVAJetTagESProducerETH);
