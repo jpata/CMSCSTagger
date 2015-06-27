@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <map>
+#include <typeinfo>
 
 #include "FWCore/Utilities/interface/Exception.h"
 #include "FWCore/Framework/interface/ESHandle.h"
@@ -29,6 +30,11 @@
 #include "DataFormats/BTauReco/interface/SoftLeptonTagInfo.h" 
 #include "DataFormats/BTauReco/interface/SecondaryVertexTagInfo.h"
 #include "DataFormats/BTauReco/interface/IPTagInfo.h"
+
+#include "RecoBTag/ImpactParameter/interface/JetProbabilityComputer.h"
+#include "RecoBTag/ImpactParameter/interface/CandidateJetProbabilityComputer.h"
+#include "RecoBTag/ImpactParameter/interface/JetBProbabilityComputer.h"
+#include "RecoBTag/ImpactParameter/interface/CandidateJetBProbabilityComputer.h"
 
 using namespace reco;
 using namespace PhysicsTools;
@@ -65,6 +71,7 @@ void CombinedMVAJetTagComputerETH::initialize(const JetTagComputerRecord & recor
 		record.get(name, computerHandle);
 		const JetTagComputer* comp = computerHandle.product();
 		computers.push_back(comp);
+        std::cout << name << " " << typeid(*comp).name() << std::endl;
 		std::vector<std::string> inputLabels(comp->getInputLabels());
 		
 		for (auto lab : inputLabels) {
@@ -77,26 +84,43 @@ void CombinedMVAJetTagComputerETH::initialize(const JetTagComputerRecord & recor
 
 float CombinedMVAJetTagComputerETH::discriminator(const JetTagComputer::TagInfoHelper &info) const
 {
-   
+    
 
     if (isCandidateBased) {
-        float a1, a2, a3, a4, a5, a6;
-        const JetTagComputer::TagInfoHelper tv1({(const reco::BaseTagInfo*)&info.get<const reco::CandIPTagInfo>(0)}); 
-        const JetTagComputer::TagInfoHelper tv2({(const reco::BaseTagInfo*)&info.get<const reco::CandIPTagInfo>(0)}); 
-        const JetTagComputer::TagInfoHelper tv_csv1({(const reco::BaseTagInfo*)&info.get<const reco::CandIPTagInfo>(0), (const reco::BaseTagInfo*)&info.get<const reco::CandSecondaryVertexTagInfo>(1)}); 
-        const JetTagComputer::TagInfoHelper tv_csv2({(const reco::BaseTagInfo*)&info.get<const reco::CandIPTagInfo>(0), (const reco::BaseTagInfo*)&info.get<const reco::CandSecondaryVertexTagInfo>(2)}); 
-        const JetTagComputer::TagInfoHelper tv3({(const reco::BaseTagInfo*)&info.get<const reco::CandSoftLeptonTagInfo>(3)});
-        const JetTagComputer::TagInfoHelper tv4({(const reco::BaseTagInfo*)&info.get<const reco::CandSoftLeptonTagInfo>(4)});
-        std::cout << "got taginfos" << std::endl;	
+        std::cout << "main tag info" << std::endl;
+        info.printTypes();
+        //float a1, a2, a3, a4, a5, a6;
+        float a1, a2;
+        const reco::CandIPTagInfo* ti1 = new reco::CandIPTagInfo(info.get<reco::CandIPTagInfo>(0));
+        const reco::CandIPTagInfo* ti2 = new reco::CandIPTagInfo(info.get<reco::CandIPTagInfo>(0));
+        const JetTagComputer::TagInfoHelper tv1({ti1}); 
+        const JetTagComputer::TagInfoHelper tv2({ti2});
+        //const JetTagComputer::TagInfoHelper tv_csv1({&info.get<const reco::BaseTagInfo>(0), &info.get<const reco::BaseTagInfo>(1)}); 
+        //const JetTagComputer::TagInfoHelper tv_csv2({&info.get<const reco::BaseTagInfo>(0), &info.get<const reco::BaseTagInfo>(2)}); 
+        //const JetTagComputer::TagInfoHelper tv3({&info.get<const reco::BaseTagInfo>(3)});
+        //const JetTagComputer::TagInfoHelper tv4({&info.get<const reco::BaseTagInfo>(4)});
+        std::cout << "got taginfos " << std::endl;
         //jetProbabilityComputer
-        a1 = (*computers[0])(tv1);
+        const CandidateJetProbabilityComputer* comp1 = dynamic_cast<const CandidateJetProbabilityComputer*>(computers[0]);
+        const CandidateJetBProbabilityComputer* comp2 = dynamic_cast<const CandidateJetBProbabilityComputer*>(computers[1]);
+        if (!comp1) {
+            throw std::exception();
+        }
+        if (!comp2) {
+            throw std::exception();
+        }
+        std::cout << "casted" << std::endl;
+        
+        a2 = (*comp2)(tv2);
+        std::cout << "a2 " << a2 << std::endl;
+        
+        a1 = (*comp1)(tv1);
         std::cout << "a1 " << a1 << std::endl;
-        a2 = (*computers[1])(tv2);
-        a3 = (*computers[2])(tv_csv1);
-        a4 = (*computers[3])(tv_csv2);
-        a5 = (*computers[4])(tv3);
-        a6 = (*computers[5])(tv4);
-        std::cout << "computer " << a1 << " " << a2 << " " << a3 << " " << a4 << " " << a5 << " " << a6 << std::endl;
+        //a3 = (*computers[2])(tv_csv1);
+        //a4 = (*computers[3])(tv_csv2);
+        //a5 = (*computers[4])(tv3);
+        //a6 = (*computers[5])(tv4);
+        //std::cout << "computer " << a1 << " " << a2 << " " << a3 << " " << a4 << " " << a5 << " " << a6 << std::endl;
     }
 	return 0.0;
 }
