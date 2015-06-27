@@ -23,7 +23,8 @@ class CombinedMVAJetTagComputerETH : public GenericMVAJetTagComputer {
 
     std::vector<const JetTagComputer*> computers;
 
-        std::vector<std::string> inputComputerNames;
+    std::vector<std::string> inputComputerNames;
+    bool isCandidateBased;
 };
 
 #endif // RecoBTau_JetTagComputer_CombinedMVAJetTagComputerETH_h

@@ -5,9 +5,12 @@ combinedMVAComputerETH = cms.ESProducer("CombinedMVAJetTagESProducerETH",
 	calibrationRecord = cms.string('CombinedMVA'),
 	jetTagComputers = cms.vstring(
 		'jetProbabilityComputer',
+		'jetBProbabilityComputer',
+		'combinedSecondaryVertexComputer',
 		'combinedSecondaryVertexComputer',
 		'softPFMuonComputer',
 		'softPFElectronComputer'
-    )
+    ),
+    isCandidateBased = cms.bool(False)
 )
 

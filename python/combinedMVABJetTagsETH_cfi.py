@@ -4,6 +4,7 @@ combinedMVABJetTagsETH = cms.EDProducer("JetTagProducer",
 	jetTagComputer = cms.string('combinedMVAComputerETH'),
 	tagInfos = cms.VInputTag(
 		cms.InputTag("impactParameterTagInfos"),
+		cms.InputTag("secondaryVertexTagInfos"),
 		cms.InputTag("inclusiveSecondaryVertexFinderTagInfos"),
 		cms.InputTag("softPFMuonsTagInfos"),
 		cms.InputTag("softPFElectronsTagInfos")

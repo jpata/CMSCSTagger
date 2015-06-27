@@ -1,6 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 
 from RecoBTag.CombinedMVA.combinedMVAComputerETH_cfi import *
+from RecoBTag.CombinedMVA.candidateCombinedMVAComputerETH_cfi import *
 from RecoBTag.CombinedMVA.combinedMVABJetTagsETH_cfi import *
 from RecoBTag.CombinedMVA.pfCombinedMVABJetTagsETH_cfi import *
 
