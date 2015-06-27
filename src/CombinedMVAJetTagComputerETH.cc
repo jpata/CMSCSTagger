@@ -91,8 +91,8 @@ float CombinedMVAJetTagComputerETH::discriminator(const JetTagComputer::TagInfoH
         info.printTypes();
         //float a1, a2, a3, a4, a5, a6;
         float a1, a2;
-        const reco::CandIPTagInfo* ti1 = new reco::CandIPTagInfo(info.get<reco::CandIPTagInfo>(0));
-        const reco::CandIPTagInfo* ti2 = new reco::CandIPTagInfo(info.get<reco::CandIPTagInfo>(0));
+        const reco::CandIPTagInfo* ti1 = (const reco::CandIPTagInfo*)&info.getBase(0);
+        const reco::CandIPTagInfo* ti2 = (const reco::CandIPTagInfo*)&info.getBase(0);
         const JetTagComputer::TagInfoHelper tv1({ti1}); 
         const JetTagComputer::TagInfoHelper tv2({ti2});
         //const JetTagComputer::TagInfoHelper tv_csv1({&info.get<const reco::BaseTagInfo>(0), &info.get<const reco::BaseTagInfo>(1)}); 
@@ -101,8 +101,10 @@ float CombinedMVAJetTagComputerETH::discriminator(const JetTagComputer::TagInfoH
         //const JetTagComputer::TagInfoHelper tv4({&info.get<const reco::BaseTagInfo>(4)});
         std::cout << "got taginfos " << std::endl;
         //jetProbabilityComputer
-        const CandidateJetProbabilityComputer* comp1 = dynamic_cast<const CandidateJetProbabilityComputer*>(computers[0]);
-        const CandidateJetBProbabilityComputer* comp2 = dynamic_cast<const CandidateJetBProbabilityComputer*>(computers[1]);
+        //const CandidateJetProbabilityComputer* comp1 = dynamic_cast<const CandidateJetProbabilityComputer*>(computers[0]);
+        //const CandidateJetBProbabilityComputer* comp2 = dynamic_cast<const CandidateJetBProbabilityComputer*>(computers[1]);
+        const JetTagComputer* comp1 = computers[0];
+        const JetTagComputer* comp2 = computers[1];
         if (!comp1) {
             throw std::exception();
         }
