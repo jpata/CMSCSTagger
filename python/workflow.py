@@ -9,8 +9,9 @@ from roothelpers import array2root
 from collections import OrderedDict
 
 #path = "/Users/joosep/Documents/btv/data/"
-path = "/Users/joosep/Documents/btv/data/small/"
-ncores = 2
+#path = "/Users/joosep/Documents/btv/data/small/"
+path = "/home/joosep/btv/data/jun17/"
+ncores = 1
 spectators = ["Jet_CSV", "Jet_CSVIVF", "Jet_pt", "Jet_eta", "Jet_flavour"]
 
 def load_data(path):
@@ -29,9 +30,15 @@ def load_data(path):
                 #     treename="tree_{0}".format(label),
                 #     kind=kind
                 # )
+                #data[(dt, typ, label)] = ROOTData(
+                #    label=lt,
+                #    filename=path + "{0}_{1}.root".format(dt, label),
+                #    treename="tree_{0}".format(label),
+                #    kind=kind
+                #)
                 data[(dt, typ, label)] = ROOTData(
                     label=lt,
-                    filename=path + "{0}_{1}.root".format(dt, label),
+                    filename=path + "{0}.root".format(dt),
                     treename="tree_{0}".format(label),
                     kind=kind
                 )
@@ -44,7 +51,7 @@ def create_classifiers(ds):
     cls1 = TMVABDTClassifier(
         name="cls1",
         variables=["Jet_CSV", "Jet_CSVIVF"],
-        ntrees=200,
+        ntrees=1000,
         spectators=spectators,
         label_signal="b",
         cut="Jet_CSV==Jet_CSV && Jet_CSVIVF==Jet_CSVIVF && Jet_CSV>=-10 && Jet_CSV<5 && Jet_CSVIVF>=-10 && Jet_CSVIVF<5"
@@ -55,7 +62,7 @@ def create_classifiers(ds):
     cls2 = TMVABDTClassifier(
         name="cls2",
         variables=["Jet_CSV", "Jet_CSVIVF", "Jet_JP", "Jet_JBP", "Jet_SoftMu", "Jet_SoftEl"],
-        ntrees=200,
+        ntrees=1000,
         spectators=spectators,
         label_signal="b",
         cut="Jet_CSV >= -10 && Jet_CSVIVF>=-10 && Jet_JP>=-10 && Jet_JBP>=-10 && Jet_SoftMu>=-10 && Jet_SoftEl>=-10",
@@ -187,7 +194,7 @@ def main():
     classifiers = create_classifiers(data)
 
     args = [
-        (data, classifiers["cls1"]),
+        #(data, classifiers["cls1"]),
         (data, classifiers["cls2"]),
         #(data, classifiers["cls3"]),
         #(data, classifiers["cls4"]),
