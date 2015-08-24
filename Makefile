@@ -6,8 +6,8 @@ PARCMD=~/parallel
 
 tagvar-qcd:
 	rm -f x*
-	split data/qcd2.txt -l10
-	ls x* | $(PARCMD) -j10 cmsRun $(CMSSW_BASE)/src/RecoBTag/TagVarExtractor/test/tagvarextractor_cfg.py $(TAGVARPARS) externalInput={} outFilename=qcd_{#}.root
+	split ~/btv/qcd_spring15.txt -l10
+	ls x* | $(PARCMD) -j20 cmsRun $(CMSSW_BASE)/src/RecoBTag/TagVarExtractor/test/tagvarextractor_cfg.py $(TAGVARPARS) externalInput={} outFilename=qcd_{#}.root
 	rm -f x*
 
 project-qcd:
@@ -16,8 +16,8 @@ project-qcd:
 
 tagvar-ttjets:
 	rm -f x*
-	split data/ttjets2.txt -l10
-	ls x* | $(PARCMD) -j10 cmsRun $(CMSSW_BASE)/src/RecoBTag/TagVarExtractor/test/tagvarextractor_cfg.py $(TAGVARPARS) externalInput={} outFilename=ttjets_{#}.root
+	split /home/joosep/btv/ttjets_spring15.txt -l10
+	ls x* | $(PARCMD) -j20 cmsRun $(CMSSW_BASE)/src/RecoBTag/TagVarExtractor/test/tagvarextractor_cfg.py $(TAGVARPARS) externalInput={} outFilename=ttjets_{#}.root
 	rm -f x*
 
 project-ttjets:
