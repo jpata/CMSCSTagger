@@ -12,7 +12,7 @@
 using namespace std;
 
 //maximum number of entries per pt/eta bin
-const int NMAX = 1000;
+const int NMAX = 2000;
 
 //if true, save also CSV tagger input vars
 const bool doTagVarCSV = false;

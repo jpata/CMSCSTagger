@@ -7,7 +7,6 @@ import copy
 import rootpy
 from rootpy.plotting import Hist
 import sys
-sys.path.append("/Users/joosep/Documents/ROOTDataHelpers/python/")
 import sklearn_to_tmva
 
 class SKLearnClassifier:
