@@ -23,7 +23,7 @@ class SKLearnClassifier:
         self.min_samples_leaf = kwargs.get("min_samples_leaf", 100)
         
         self.weight = kwargs.get("weight", None)
-        self.label = kwargs.get("label", None)
+        self.label = kwargs.get("label")
         
         self.data = OrderedDict()
 
