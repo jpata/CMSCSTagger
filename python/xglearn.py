@@ -2,7 +2,8 @@ import pandas
 import numpy as np
 from collections import OrderedDict
 import sys
-sys.path.append("/Users/joosep/Documents/xgboost/wrapper/")
+#sys.path.append("/Users/joosep/Documents/xgboost/wrapper/")
+sys.path.append("/home/joosep/local-sl6/xgboost/wrapper/")
 import xgboost as xgb
 from rootpy.plotting import Hist
 

@@ -1,6 +1,8 @@
 import sys
 import cPickle as pickle
 
+import matplotlib
+matplotlib.use('Agg')
 #remove problematic cmssw python packages
 newpath = []
 for x in sys.path:
@@ -11,7 +13,7 @@ sys.path = newpath
 
 from collections import OrderedDict
 
-location = "jpata-macbook"
+location = "phys"
 
 if location=="jpata-macbook":
     sys.path.append("/Users/joosep/Documents/btv/CMSSW_7_4_5/src/RecoBTag/CombinedMVA/python/")
@@ -270,7 +272,7 @@ if __name__ == "__main__":
         path = "/home/joosep/btv/CMSSW_7_4_5/src/RecoBTag/CombinedMVA/"
 
     memmap_fn = "data.mmap"
-    load_mmap = True
+    load_mmap = False
         
     if not load_mmap:
         print "loading data..."

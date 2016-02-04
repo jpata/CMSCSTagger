@@ -25,9 +25,9 @@ project-ttjets:
 	hadd -f ttjets.root sub_ttjets_*.root
 
 reduce:
-	../ROOTDataHelpers/TreeSelector qcd.root tree_b qcd_b_1M.root 1000000
-	../ROOTDataHelpers/TreeSelector qcd.root tree_c qcd_c_1M.root 1000000
-	../ROOTDataHelpers/TreeSelector qcd.root tree_l qcd_l_1M.root 1000000
-	../ROOTDataHelpers/TreeSelector ttjets.root tree_b ttjets_b_1M.root 1000000
-	../ROOTDataHelpers/TreeSelector ttjets.root tree_c ttjets_c_1M.root 1000000
-	../ROOTDataHelpers/TreeSelector ttjets.root tree_l ttjets_l_1M.root 1000000
+	../ROOTDataHelpers/TreeSelector qcd.root tree_b qcd_b_10M.root 10000000
+	../ROOTDataHelpers/TreeSelector qcd.root tree_c qcd_c_10M.root 10000000
+	../ROOTDataHelpers/TreeSelector qcd.root tree_l qcd_l_10M.root 10000000
+	../ROOTDataHelpers/TreeSelector ttjets.root tree_b ttjets_b_10M.root 10000000
+	../ROOTDataHelpers/TreeSelector ttjets.root tree_c ttjets_c_10M.root 10000000
+	../ROOTDataHelpers/TreeSelector ttjets.root tree_l ttjets_l_10M.root 10000000
