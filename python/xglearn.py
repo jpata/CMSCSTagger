@@ -1,91 +1,63 @@
 import pandas
 import numpy as np
-from collections import OrderedDict
+import root_numpy as rnpy
 import sys
-#sys.path.append("/Users/joosep/Documents/xgboost/wrapper/")
 sys.path.append("/home/joosep/local-sl6/xgboost/wrapper/")
 import xgboost as xgb
-from rootpy.plotting import Hist
 
-
-class XGBoostClassifier:
-    def __init__(self, **kwargs):
-        self.name = kwargs.get("name")
-        self.variables = kwargs.get("variables")
-        #self.spectators = kwargs.get("spectators", [])
-        self.ntrees = kwargs.get("ntrees", 200)
-        self.shrinkage = kwargs.get("shrinkage", 0.1)
-        self.max_depth = kwargs.get("max_depth", 3)
-        self.subsample = kwargs.get("subsample", 1.0)
-        self.gamma = kwargs.get("gamma", 0.0)
-        #self.min_samples_split = kwargs.get("min_samples_split", 100)
-        self.min_samples_leaf = kwargs.get("min_samples_leaf", 100)
-        
-        self.weight = kwargs.get("weight", None)
-        self.label = kwargs.get("label", None)
-        
-        self.data = OrderedDict()
-        self.data_testing = OrderedDict()
-        
-        self.param = {
-            'bst:max_depth': self.max_depth,
-            'bst:eta': self.shrinkage,
-            'bst:subsample': self.subsample,
-            "bst:min_child_weight": self.min_samples_leaf,
-            "bst:gamma": self.gamma,
-            'silent':1,
-            'objective':'binary:logistic',
-            "eval_metric": "logloss"
-        }
-        self.param['nthread'] = 4
-
-    def prepare(self):
-        pass
+def load_dataset(fn, treename, i):
+    print "loading", fn
+    arr = rnpy.root2rec(
+        fn,
+        selection="Jet_pt>20",
+        #branches=["Jet_pt", "Jet_eta", "Jet_flavour"],
+        branches=["Jet_pt", "Jet_eta", "Jet_flavour", "Jet_CSV", "Jet_CSVIVF", "Jet_CombMVA", "Jet_CombMVANEW", "Jet_CombMVAETH", "Jet_SoftMu", "Jet_SoftEl", "Jet_JP", "Jet_JBP", "TagVarCSV_vertexCategory"],
+        treename=treename,
+        start=0,
+        stop=5000000
+    )
+    df = pandas.DataFrame(arr)
+    df["id"] = i
+    df[np.isnan(df)] = 0.0
+    df[np.isinf(df)] = 0.0
+    for c in ["Jet_CSV", "Jet_CSVIVF", "Jet_SoftEl", "Jet_SoftMu"]:
+        df.loc[df[c]<=0, c] = 0
+        df.loc[df[c]>=1, c] = 1
+    df["abs_eta"] = df["Jet_eta"].abs()
+    df["training"] = 0
     
-    def add_data(self, data, class_name, kind="training"):
-        if kind == "training":
-            dd = self.data
-        elif kind == "testing":
-            dd = self.data_testing
-        
-        dd[class_name] = data 
+    perminds = np.random.permutation(df.index)
+    df.loc[perminds[:len(perminds)/2], "training"] = 1
+    df["w"] = 1.0
+    return df
 
-    def train(self):
-        
-        d_testing = xgb.DMatrix(
-            pandas.concat([data[self.variables] for data in self.data_testing.values()]),
-            label=pandas.concat([data[self.label] for data in self.data_testing.values()]),
-            weight=pandas.concat([data[self.weight] for data in self.data_testing.values()])
-        )
-        d_training = xgb.DMatrix(
-            pandas.concat([data[self.variables] for data in self.data.values()]),
-            label=pandas.concat([data[self.label] for data in self.data.values()]),
-            weight=pandas.concat([data[self.weight] for data in self.data.values()])
-        )
-        evallist  = [(d_testing,'eval'), (d_training,'train')]
-        evald = dict()
+d1 = load_dataset("data/jul13/ttjets.root", "tree_b", 2)
+d2 = load_dataset("data/jul13/ttjets.root", "tree_c", 1)
+d3 = load_dataset("data/jul13/ttjets.root", "tree_l", 0)
+d = pandas.concat((d1, d2, d3))
 
-        print "training"
-        self.model = xgb.train( self.param.items(), d_training, self.ntrees, evallist, evals_result=evald)
-        return self.model
+print "loaded data", d.shape
+d_training = d[d["training"]==1]
+d_testing = d[d["training"]==0]
 
-    def evaluate(self, data):
-        data = xgb.DMatrix(
-            data[self.variables],
-            label=data[self.label],
-            weight=data[self.weight]
+varlist = ["Jet_CSV", "Jet_CSVIVF", "Jet_JP", "Jet_JBP", "Jet_SoftEl", "Jet_SoftMu", "Jet_pt", "abs_eta"]
 
-        )
-        return self.model.predict(data)
-        
-    def hists(self, bins, data, func, weight):
-        ret = OrderedDict()
-        for dn, d in data.items():
-            ret[dn] = Hist(*bins)
-            ret[dn].FillN(int(d.shape[0]), func(d).astype("float64"), weight(d).astype("float64"), 1)
-        return ret
-        
-    def hists_cls(self, bins, data=None, weight="w"):
-        if not data:
-            data = self.data
-        return self.hists(bins, data, lambda d: self.evaluate(d), lambda d: d[weight].as_matrix())
+dts = xgb.DMatrix(d_training[varlist], label=(d_training["id"]==2))
+dtr = xgb.DMatrix(d_testing[varlist], label=(d_testing["id"]==2))
+
+param = {'bst:max_depth':4, 'bst:eta':0.1, 'silent':1, 'objective':'binary:logistic' }
+param['nthread'] = 20
+plst = param.items()
+plst += [('eval_metric', 'auc')] # Multiple evals can be handled in this way
+#plst += [('eval_metric', 'ams@0')]
+evallist  = [(dts,'eval'), (dtr,'train')]
+num_round = 1000
+evald = dict()
+
+print "training"
+bst = xgb.train( plst, dtr, num_round, evallist, evals_result=evald)
+
+of = open("model.pkl", "w")
+import pickle
+pickle.dump(bst, of)
+of.close()

@@ -18,6 +18,81 @@ from keras.utils import np_utils, generic_utils
 from keras.layers.advanced_activations import PReLU
 from keras.layers.normalization import BatchNormalization
 
+ptbins = np.linspace(20, 620, 11)
+etabins = np.linspace(0.5, 11)
+
+def load_dataset(fn, treename, i):
+    print "loading {0}:{1}".format(fn, treename)
+    arr = rnpy.root2rec(
+        fn,
+        selection="Jet_pt>20",
+        treename=treename,
+        start=0,
+        stop=1000000
+    )
+    df = pandas.DataFrame(arr)
+    df["id"] = i
+    df[np.isnan(df)] = 0.0
+    df[np.isinf(df)] = 0.0
+    df["abs_eta"] = df["Jet_eta"].abs()
+    df["training"] = 0
+
+    perminds = np.random.permutation(df.index)
+    df.loc[perminds[:len(perminds)/2], "training"] = 1
+    df["ptbin"] = map(lambda x: ptbins.searchsorted(x), df["Jet_pt"])
+    df["etabin"] = map(lambda x: ptbins.searchsorted(x), df["abs_eta"])
+    df["w"] = 1.0
+    return df
+
+def cumerr(arr, nb=100000):
+    h = np.histogram(
+        arr,
+        bins=np.linspace(-5,5,nb)
+    )
+    h = h[0]
+    hc = np.cumsum(h)
+    he = np.sqrt(np.cumsum(h))
+    hc = hc / float(np.sum(h))
+    he = he / float(np.sum(h))
+    return hc, he
+
+def roc(d, sig, bkg, col, **kwargs):
+    ds = d[d.eval(sig)]
+    db = d[d.eval(bkg)]
+    c1, e1 = cumerr(ds[col], nb=10000)
+    c2, e2 = cumerr(db[col], nb=10000)
+    plt.plot(1.0 - c1, 1.0 - c2, **kwargs)
+
+md = None
+d = None
+memmap_fn = "/scratch/joosep/data.mmap"
+
+if not os.path.isfile(memmap_fn):
+    print "could not find memmap, projecting"
+    d1 = load_dataset("data/jun11/ttjets.root", "tree_b", 2)
+    d2 = load_dataset("data/jun11/ttjets.root", "tree_c", 1)
+    d3 = load_dataset("data/jun11/ttjets.root", "tree_l", 0)
+
+    print "done loading data"
+
+    d = pandas.concat((d1, d2, d3))
+
+    mp = np.memmap(memmap_fn, dtype='float32', mode='w+', shape=d.shape)
+    mp[:] = d.as_matrix().astype("float32")[:]
+    md = open("metadata.pkl", "w")
+    pickle.dump((d.shape, d.columns, d.dtypes), md)
+    md.close()
+    del md
+else:
+    print "loading memmap"
+    md = open("metadata.pkl", "r")
+    (shape, columns, dtypes) = pickle.load(md)
+    md.close()
+
+    mp = np.memmap(memmap_fn, dtype='float32', mode='r', shape=shape)
+
+    d = pandas.DataFrame(mp, columns=columns, dtype=dtypes)
+
 # for c in d.columns:
 #     print c
 def normalize_col(d, col):
@@ -203,3 +278,4 @@ for scenario, trainvars in [("sc1", trainvars1), ("sc2", trainvars2), ("sc3", tr
     plt.ylim(0.001, 1.0)
     plt.xlim(0.5, 1.0)
     plt.savefig("/home/joosep/public_html/learn_{0}.pdf".format(scenario))
+
