@@ -9,13 +9,11 @@ config.General.transferLogs = True
 
 config.section_("JobType")
 config.JobType.pluginName = 'Analysis'
-config.JobType.allowNonProductionCMSSW = True
-config.JobType.maxJobRuntimeMin = 60*48 #maximal job runtime in minute
+config.JobType.maxJobRuntimeMin = 200
 config.JobType.psetName = "../python/runAnalyzerMiniAOD.py"
 
 config.section_("Data")
-config.Data.inputDataset = "/TTJets_MSDecaysCKM_central_Tune4C_13TeV-madgraph-tauola/Phys14DR-PU20bx25_PHYS14_25_V1-v1/MINIAODSIM"
-config.Data.inputDBS = 'global'
+config.Data.inputDataset = "/QCD_Pt-1000toInf_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/MINIAODSIM"
 config.Data.splitting = 'FileBased'
 config.Data.publication = False
 
@@ -23,6 +21,6 @@ config.Data.unitsPerJob = 1
 config.Data.totalUnits = 20
 
 config.section_("Site")
-config.Site.storageSite = "T2_EE_Estonia"
+config.Site.storageSite = "T2_CH_CSCS"
 
 
