@@ -1,26 +1,64 @@
-from WMCore.Configuration import Configuration
+import argparse, os, glob
+from CRABAPI.RawCommand import crabCommand
+from CRABClient.UserUtilities import getUsernameFromSiteDB, config
 
-global config
+class Sample:
+    def __init__(self, name, dataset):
+        self.name = name
+        self.dataset = dataset
 
-config = Configuration()
+samples = [
+    Sample("ttjets", "/TT_TuneCUETP8M1_13TeV-powheg-pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14_ext3-v1/MINIAODSIM"),
+    Sample("qcd_120_170", "/QCD_Pt-120to170_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/MINIAODSIM"),
+    Sample("qcd_170_300", "/QCD_Pt-170to300_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14_ext1-v1/MINIAODSIM"),
+    Sample("qcd_300_470", "/QCD_Pt-300to470_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14_ext1-v1/MINIAODSIM"),
+    Sample("qcd_470_600", "/QCD_Pt-470to600_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/MINIAODSIM"),
+    Sample("qcd_600_800", "/QCD_Pt-600to800_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14_ext1-v1/MINIAODSIM"),
+    Sample("qcd_800_1000", "/QCD_Pt-800to1000_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14_ext1-v1/MINIAODSIM"),
+    Sample("qcd_1000_inf", "/QCD_Pt-1000toInf_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/MINIAODSIM"),
+]
 
-config.section_("General")
-config.General.transferLogs = True
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Submits crab jobs')
+    parser.add_argument('--out', action="store", required=True, help="output site, e.g. T2_CH_CSCS", type=str)
+    parser.add_argument('--tag', action="store", required=True, help="unique tag for processing", type=str)
+    parser.add_argument('--user', action="store", help="username on grid", type=str, default=getUsernameFromSiteDB())
+    args = parser.parse_args()
+   
+    jobs_file = open("jobs_{0}.txt".format(args.tag), "w")
+    for sample in samples:
+        cfg = config()
+        
+        cfg.section_("General")
+        cfg.General.transferLogs = True
+        cfg.General.requestName = 'btv_{0}_{1}'.format(args.tag, sample.name)
+        cfg.General.workArea = 'crab_projects/{0}'.format(args.tag)
+        if not os.path.exists(cfg.General.workArea):
+            os.makedirs(cfg.General.workArea)
+        
+        cfg.section_("JobType")
+        cfg.JobType.pluginName = 'Analysis'
+        cfg.JobType.maxJobRuntimeMin = 300
+        cfg.JobType.psetName = "../python/runAnalyzerMiniAOD.py"
+        
+        cfg.section_("Data")
+        cfg.Data.inputDataset = sample.dataset
+        cfg.Data.splitting = 'FileBased'
+        cfg.Data.publication = False
+        
+        cfg.Data.unitsPerJob = 1
+        cfg.Data.totalUnits = 200
+        cfg.Data.outLFNDirBase = '/store/user/{0}/btv/{1}'.format(
+            args.user, args.tag 
+        )
+        
+        cfg.section_("Site")
+        cfg.Site.storageSite = "T2_CH_CSCS"
+        
+        res = crabCommand('submit', config = cfg)
 
-config.section_("JobType")
-config.JobType.pluginName = 'Analysis'
-config.JobType.maxJobRuntimeMin = 200
-config.JobType.psetName = "../python/runAnalyzerMiniAOD.py"
-
-config.section_("Data")
-config.Data.inputDataset = "/QCD_Pt-1000toInf_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/MINIAODSIM"
-config.Data.splitting = 'FileBased'
-config.Data.publication = False
-
-config.Data.unitsPerJob = 1
-config.Data.totalUnits = 20
-
-config.section_("Site")
-config.Site.storageSite = "T2_CH_CSCS"
-
-
+        outpath = "{0}/crab_{1}".format(cfg.General.workArea, cfg.General.requestName)
+        print outpath
+        jobs_file.write(outpath + "\n") 
+    
+    jobs_file.close()
