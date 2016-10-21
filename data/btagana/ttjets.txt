@@ -1,153 +1,201 @@
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_1.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_92.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_285.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_100.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_93.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_95.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_251.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_99.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_427.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_98.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_297.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_208.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_147.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_368.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_360.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_9.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_148.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_108.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_195.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_283.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_298.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_277.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_289.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_173.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_425.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_130.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_161.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_12.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_288.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_279.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_132.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_349.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_372.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_179.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_287.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_304.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_369.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_96.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_301.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_10.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_300.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_44.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_282.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_7.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_387.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_302.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_134.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_159.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_293.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_13.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_156.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_373.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_382.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_15.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_127.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_321.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_229.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_131.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_218.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_281.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_135.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_284.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_341.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_193.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_164.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_384.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_128.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_286.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_345.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_189.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_177.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_217.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_204.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_61.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_366.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_202.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_213.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_261.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_385.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_276.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_186.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_402.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_292.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_322.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_324.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_199.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_183.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_181.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_383.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_252.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_157.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_136.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_254.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_239.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_141.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_303.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_339.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_133.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_376.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_116.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_223.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_375.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_106.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_143.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_346.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_120.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_2.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_344.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_407.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_105.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_220.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_112.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_206.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_150.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_406.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_374.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_129.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_258.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_352.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_238.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_145.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_355.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_185.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_367.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_144.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_167.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_311.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_249.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_237.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_236.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_410.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_424.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_391.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_314.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_405.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_241.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_319.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_334.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_325.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_350.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_389.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_354.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_414.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_411.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_388.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_426.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_386.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_8.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_124.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_102.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_21.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_265.root
-root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_Oct4_ttjets/161004_131355/0000/JetTree_mc_109.root
+[TT_TuneCUETP8M1_13TeV-powheg-pythia8]
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_23.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_89.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_152.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_138.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_91.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_117.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_132.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_127.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_42.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_135.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_101.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_32.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_102.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_131.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_85.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_49.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_62.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_94.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_134.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_37.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_141.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_43.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_81.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_52.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_84.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_15.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_38.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_125.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_60.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_77.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_61.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_75.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_54.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_56.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_100.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_160.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_133.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_119.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_146.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_79.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_39.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_7.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_197.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_179.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_180.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_145.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_27.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_165.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_195.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_72.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_157.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_115.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_194.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_189.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_21.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_178.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_187.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_65.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_147.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_143.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_113.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_48.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_139.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_55.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_86.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_35.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_97.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_105.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_80.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_120.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_57.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_159.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_148.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_83.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_103.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_173.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_16.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_151.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_40.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_11.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_104.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_88.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_185.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_6.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_68.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_46.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_58.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_123.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_95.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_154.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_112.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_122.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_67.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_14.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_47.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_129.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_153.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_126.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_98.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_50.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_110.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_29.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_124.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_108.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_26.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_158.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_140.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_107.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_130.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_31.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_36.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_167.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_63.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_182.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_106.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_66.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_136.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_184.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_19.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_9.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_90.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_2.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_196.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_162.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_30.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_99.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_144.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_45.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_59.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_41.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_137.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_198.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_73.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_78.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_87.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_142.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_76.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_17.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_128.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_92.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_20.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_200.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_163.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_33.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_5.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_10.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_170.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_171.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_8.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_166.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_93.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_188.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_183.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_168.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_34.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_4.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_156.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_69.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_74.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_44.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_191.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_176.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_25.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_121.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_70.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_1.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_174.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_193.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_149.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_177.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_175.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_172.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_13.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_199.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_3.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_181.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_150.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_111.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_169.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_64.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_155.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_22.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_118.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_109.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_116.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_51.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_114.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_53.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_12.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_192.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_71.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_96.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_28.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_164.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_82.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_18.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_24.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_190.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_161.root = 1
+root://storage01.lcg.cscs.ch//pnfs/lcg.cscs.ch/cms/trivcat/store/user/jpata/btv/btv_Oct18_v1/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_btv_btv_Oct18_v1_ttjets/161018_162558/0000/JetTree_mc_186.root = 1
