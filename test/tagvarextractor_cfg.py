@@ -80,7 +80,8 @@ process.MessageLogger.cout = cms.untracked.PSet(
     threshold = cms.untracked.string('INFO')
 )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) ) # Keep as such
+# This is a fake parameters, must be ==1 to process files once
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1) )
 
 process.source = cms.Source("EmptySource")
 
@@ -89,6 +90,7 @@ process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(options.w
 
 ## Input files
 inputFiles = os.environ["FILE_NAMES"].split()
+print inputFiles
 ## Output file
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string(options.outFilename)
