@@ -47,7 +47,7 @@ if __name__ == "__main__":
         cfg.Data.publication = False
         
         cfg.Data.unitsPerJob = 1
-        cfg.Data.totalUnits = 200
+        cfg.Data.totalUnits = 600
         cfg.Data.outLFNDirBase = '/store/user/{0}/btv/{1}'.format(
             args.user, args.tag 
         )
