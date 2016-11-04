@@ -46,15 +46,17 @@ if __name__ == "__main__":
         cfg.Data.splitting = 'FileBased'
         cfg.Data.publication = False
         
-        cfg.Data.unitsPerJob = 1
+        cfg.Data.unitsPerJob = 2
         cfg.Data.totalUnits = 600
         cfg.Data.outLFNDirBase = '/store/user/{0}/btv/{1}'.format(
             args.user, args.tag 
         )
+        cfg.Data.ignoreLocality = True
         
         cfg.section_("Site")
         cfg.Site.storageSite = "T2_CH_CSCS"
-        
+        cfg.Site.whitelist = ["T2_CH_CSCS"]
+
         res = crabCommand('submit', config = cfg)
 
         outpath = "{0}/crab_{1}".format(cfg.General.workArea, cfg.General.requestName)

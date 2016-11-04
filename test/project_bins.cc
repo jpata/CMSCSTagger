@@ -18,8 +18,10 @@ const int Nx = 100;
 const int Ny = 100;
 
 void save_coll(TFile* outfile, TTree* in, TagVarBranches* tv, vector<vector<unsigned long int>> trees, const char* name) {
+    int index = 0; 
     TTree* _tot = new TTree(name, name);
     tv->RegisterTree(_tot);
+    _tot->Branch("index", &index, "index/I");
     //_tot->SetAutoFlush(100000);
     //_tot->SetAutoSave(100000);
     //_tot->SetDirectory(outfile);
@@ -39,12 +41,15 @@ void save_coll(TFile* outfile, TTree* in, TagVarBranches* tv, vector<vector<unsi
 
     //copy all the given entries
     cout << "Looping " << name << " " << n << endl;
+    unsigned int cur_entry = 0;
     for (unsigned int i : inds) {
         in->GetEntry(i);
         _tot->Fill();
-        if (_tot->GetEntries() % 100000 == 0) {
-            cout << _tot->GetEntries() << endl;
+        index = cur_entry%10;
+        if (cur_entry % 100000 == 0) {
+            cout << cur_entry << endl;
         }
+        cur_entry += 1;
     }
     cout << _tot->GetName() << " has " << _tot->GetEntries() << " entries" << endl;
 
