@@ -12,7 +12,7 @@
 using namespace std;
 
 //maximum number of entries per pt/eta bin
-const int NMAX = 1000;
+const int NMAX = 100;
 //number of bins in pt/eta
 const int Nx = 100;
 const int Ny = 100;
