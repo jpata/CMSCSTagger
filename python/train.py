@@ -28,53 +28,72 @@ import seaborn
 
 import xgboost
 
-import rootpy.plotting.root2matplotlib as rplt
-
 import sklearn_cls
 
-from pandas.tools.plotting import scatter_matrix
-
-import bcolz
 import json
+import logging
 
+if __name__ == "__main__":
+    infile = open(sys.argv[1])
+    conf = json.load(infile)
+    infile.close()
 
-eval_set = sklearn_cls.load_set("eval_set_allvars")
+    eval_set = sklearn_cls.load_set(conf["input_data"])
 
-print "training"
+    params = conf["params"]
+    params["eval_metric"] = conf["eval_metric"]
 
-params = {
-    "base_score": 0.5,
-    "colsample_bylevel": 1,
-    "colsample_bytree": 1,
-    "gamma": 0,
-    "learning_rate": 0.1,
-    "max_delta_step": 0,
-    "max_depth": 3,
-    "min_child_weight": 1,
-    "missing": None,
-    "n_estimators": 500,
-    "nthread": 1,
-    "objective": "binary:logistic",
-    "reg_alpha": 0,
-    "reg_lambda": 1,
-    "scale_pos_weight": 1,
-    "seed": 0,
-    "silent": False,
-    "subsample": 1
-}
-params["eval_metric"] = ["error", "auc"]
+    roc_pairs = map(tuple, conf["roc_pairs"])
 
-watchlist = [(eval_set[0], "train"), (eval_set[1], "test")]
-print "training over {0} rows, {1} features".format(eval_set[0].num_row(), eval_set[0].num_col())
-bst = xgboost.train(params, eval_set[0], 500, watchlist)
+    watchlist = [(eval_set[0], "train"), (eval_set[1], "test")]
+    logging.info(
+        "training over {0} rows, {1} features".format(
+            eval_set[0].num_row(), eval_set[0].num_col()
+        )
+    )
+    evals_result = {}
+    bst = xgboost.train(
+        params,
+        eval_set[0],
+        num_boost_round = conf["num_boost_round"],
+        evals = watchlist,
+        evals_result = evals_result
+    )
 
-for eset, name in watchlist:
-    print name
-    pred = bst.predict(eset)
-    fpr, tpr, _ = metrics.roc_curve(eset.get_label(), pred)
-    a = metrics.auc(fpr, tpr)
-    print "AUC = {0:.4f}".format(a)
+    training_result = {}
+    training_result["rocs"] = {}
+    for eset, name in watchlist:
+        training_result["rocs"][name] = {}
+        label_array = eset.get_label()
+        labels = np.unique(label_array)
+        print "unique labels", labels
+        for ilab, lab in enumerate(labels):
+            sel = label_array == lab
+            idx = np.where(sel)[0]
+            pred = bst.predict(eset.slice(idx))
+            print lab, pred[0:10]
+        for lab_1, lab_2 in roc_pairs:
+            
+            ls1 = label_array == lab_1
+            ls2 = label_array == lab_2
 
-of = open("model.pkl", "wb")
-cPickle.dump(bst, of)
-of.close()
+            idx = np.where(ls1+ls2)[0]
+            pred = bst.predict(eset.slice(idx))
+
+            fpr, tpr, _ = metrics.roc_curve(
+                label_array[idx]==lab_1,
+                pred[:, lab_1]
+            )
+            training_result["rocs"][name]["{0}_{1}".format(lab_1, lab_2)] = [list(fpr), list(tpr)]
+            a = metrics.auc(fpr, tpr)
+            print "AUC({0} vs {1}) = {2:.4f}".format(lab_1, lab_2, a)
+
+    training_result["evals_result"] = evals_result
+
+    of = open(conf["output_model"], "wb")
+    cPickle.dump(bst, of)
+    of.close()
+
+    of = open(conf["output_evals"], "w")
+    json.dump(training_result, of, indent=4)
+    of.close()
