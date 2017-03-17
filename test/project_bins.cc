@@ -12,6 +12,7 @@
 using namespace std;
 
 //maximum number of entries per pt/eta bin
+//tune this to save more events vs. have smaller trees
 const int NMAX = 100;
 //number of bins in pt/eta
 const int Nx = 100;
@@ -96,7 +97,8 @@ int main(int argc, char** argv) {
     tree->SetBranchStatus("Jet_pt", true);
     tree->SetBranchStatus("Jet_eta", true);
     tree->SetBranchStatus("Jet_flavour", true);
-    
+   
+    //index of jet counts per (flavour, 2D bin index)
     map<int, int> counters_pre;
     counters_pre[0] = 0;
     counters_pre[1] = 0;
@@ -116,14 +118,17 @@ int main(int argc, char** argv) {
         
         int map_idx = -1;
         vector<vector<unsigned long int>>* treecoll = 0;
+        //b-jets
         if (std::abs(int(tagvars.Jet_flavour)) == 5) {
             treecoll = &(trees_b);
             map_idx = 0;
         }
+        //charm
         else if (std::abs(int(tagvars.Jet_flavour)) == 4) {
             treecoll = &(trees_c);
             map_idx = 1;
         }
+        //others
         else {
             treecoll = &(trees_l);
             map_idx = 2;

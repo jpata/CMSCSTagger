@@ -7,6 +7,8 @@
 #include <vector>
 #include <algorithm>
 
+//This code sets the per-jet weights in a file according to a predefined pt/eta weight map.
+
 int main(int argc, char** argv) {
     TFile* tf = new TFile(argv[1]);
     TTree* tr = (TTree*)tf->Get(argv[2]);

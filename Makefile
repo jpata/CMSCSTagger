@@ -1,8 +1,16 @@
-projector:
+TAGVARPARS="useExternalInput=True jetPtMin=20 jetPtMax=620 jetAbsEtaMin=0 jetAbsEtaMax=2.5 maxEvents=-1"
+RECOBTAG=$(CMSSW_BASE)/src/RecoBTag
+PARCMD=~/parallel
+
+projector: test/project_bins.cc
 	g++ `root-config --libs --cflags` -I$(CMSSW_BASE)/src/ test/project_bins.cc -o project_bins
 
-TAGVARPARS="useExternalInput=True jetPtMin=20 jetPtMax=620 jetAbsEtaMin=0 jetAbsEtaMax=2.5 maxEvents=-1"
-PARCMD=~/parallel
+#run all steps chained together as a test
+all-steps-test:
+	cd $(RECOBTAG)/PerformanceMeasurements/test && cmsRun runBTagAnalyzer_cfg.py miniAOD=True maxEvents=1000 reportEvery=1 wantSummary=True
+	cmsRun $(RECOBTAG)/TagVarExtractor/test/tagvarextractor_cfg.py useExternalInput=True jetPtMin=20 jetPtMax=620 jetAbsEtaMin=0 jetAbsEtaMax=2.5 maxEvents=-1 externalInput=$(RECOBTAG)/CMSCSTagger/input.txt outFilename=test.root
+	$(RECOBTAG)/CMSCSTagger/project_bins test.root tagVars/ttree test_sub.root
+	rootls test_sub.root
 
 tagvar-qcd:
 	rm -f x*
