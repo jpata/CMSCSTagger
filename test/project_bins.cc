@@ -8,15 +8,10 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <unistd.h>
 
 using namespace std;
 
-//maximum number of entries per pt/eta bin
-//tune this to save more events vs. have smaller trees
-const int NMAX = 100;
-//number of bins in pt/eta
-const int Nx = 100;
-const int Ny = 100;
 
 void save_coll(TFile* outfile, TTree* in, TagVarBranches* tv, vector<vector<unsigned long int>> trees, const char* name) {
     int index = 0; 
@@ -59,13 +54,24 @@ void save_coll(TFile* outfile, TTree* in, TagVarBranches* tv, vector<vector<unsi
 }
 
 int main(int argc, char** argv) {
-    if (argc != 4) {
-        cerr << "project_bins infile.root tree outfile.root" << endl;
+    
+    //maximum number of entries per pt/eta bin
+    int NMAX = 100;
+    //number of bins in pt/eta
+    const int Nx = 100;
+    const int Ny = 100;
+
+    if (argc != 5) {
+        cerr << "project_bins infile.root tree outfile.root NMAX" << endl;
         exit(0);
     };
     const char* infile_name = argv[1];
     const char* tree_name = argv[2];
     const char* outfile_name = argv[3];
+    NMAX = atoi(argv[4]);
+    if (NMAX < 0) {
+        NMAX = std::numeric_limits<int>::max();
+    }
     TFile* inf = new TFile(infile_name);
     TTree* tree = (TTree*)inf->Get(tree_name);
     assert(tree != 0);

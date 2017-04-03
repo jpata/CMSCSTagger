@@ -22,10 +22,10 @@ def log_memory():
     mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
     logging.info("memory usage: {0:.2f} MB".format(mem))
 
-ptbins = np.linspace(20, 620, 41)
+ptbins = np.linspace(20, 620, 11)
 ptbins2 = np.array([20, 30, 40, 50, 60, 70, 80, 100, 120, 140, 160, 200, 240, 280, 320, 360])
 
-etabins = np.linspace(0, 2.5, 41)
+etabins = np.linspace(0, 2.5, 11)
 etabins2 = np.linspace(0, 2.5, 11)
 
 cols_replacevals = {
@@ -154,6 +154,7 @@ def train_crossvalidation(cls, data_tuple):
     X = data_tuple[0].as_matrix()
     y = data_tuple[1].as_matrix()
     for train, test in kf.split(X):
+        logging.info("Training crossvalidation {0}:{1}".format(len(train), len(test)))
         fitted = cls.fit(
             X[train],
             y[train],
@@ -173,7 +174,7 @@ def train_variable_remove(cls, data_tuple_train, data_tuple_test):
     for c in cols:
         new_cols = copy.deepcopy(list(cols))
         new_cols.pop(new_cols.index(c))
-        print new_cols
+        logging.info("Training variable remove with -{0}".format(c))
         cls.fit(
             data_tuple_train[0][new_cols],
             data_tuple_train[1],

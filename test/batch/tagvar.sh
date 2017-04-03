@@ -6,4 +6,4 @@ cd $CMSSW_BASE
 eval `scram runtime -sh`
 
 cd $GC_SCRATCH
-cmsRun $CMSSW_BASE/src/RecoBTag/CMSCSTagger/test/tagvarextractor_cfg.py
+cmsRun $CMSSW_BASE/src/RecoBTag/CMSCSTagger/test/tagvarextractor_cfg.py 
